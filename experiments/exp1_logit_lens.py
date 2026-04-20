@@ -30,6 +30,13 @@ for cond_idx, use_image in enumerate([True, False]):
             img = Image.open(ex["image_path"]).convert("RGB")
             question = ex["questions"][lang]
 
+            en_word  = processor.tokenizer.decode([en_tid])
+            tl_word  = processor.tokenizer.decode([tl_tid])
+            img_info = ex["image_path"] if use_image else "blank"
+            print(f"[EXP1] cond={'image' if use_image else 'blank'} lang={lang} ex={ex_idx} "
+                  f"| image={img_info} | q={question} "
+                  f"| en_ans='{en_word}' tl_ans='{tl_word}'")
+
             if use_image:
                 inputs, answer_pos = get_image_text_inputs(processor, img, question)
             else:
