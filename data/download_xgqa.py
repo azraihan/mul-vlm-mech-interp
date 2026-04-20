@@ -50,12 +50,15 @@ if __name__ == "__main__":
         import subprocess
         repo_dir = "data/xgqa_repo"
         if not os.path.exists(repo_dir):
+            pat = os.environ.get("GITHUB_PAT", "")
+            base_url = (f"https://{pat}@github.com/sherzod-hakimov/xGQA"
+                        if pat else "https://github.com/sherzod-hakimov/xGQA")
             env = os.environ.copy()
-            env["GIT_TERMINAL_PROMPT"] = "0"   # fail immediately instead of prompting
+            env["GIT_TERMINAL_PROMPT"] = "0"
             for branch in ["main", "master"]:
                 result = subprocess.run(
                     ["git", "clone", "--depth", "1", "--branch", branch,
-                     "https://github.com/sherzod-hakimov/xGQA", repo_dir],
+                     base_url, repo_dir],
                     capture_output=True, text=True, timeout=120, env=env
                 )
                 if result.returncode == 0:
