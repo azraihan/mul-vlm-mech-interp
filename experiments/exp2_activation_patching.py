@@ -16,6 +16,31 @@ os.makedirs("outputs/patching", exist_ok=True)
 model, processor = load_model()
 examples = json.load(open("data/probing_set/probing_set.json"))
 
+# ── Example I/O diagnostic ────────────────────────────────────────────────────
+print("\n[IO] ── Example input/output diagnostic ──")
+_ex0 = examples[0]
+_img0 = Image.open(_ex0["image_path"]).convert("RGB")
+print(f"[IO] Image path : {_ex0['image_path']}")
+print(f"[IO] Image size : {_img0.size}  (W×H)")
+print(f"[IO] Category   : {_ex0.get('category', 'n/a')}")
+for _lg in ["en", "fr", "ar", "zh", "bn"]:
+    if _lg in _ex0.get("questions", {}):
+        print(f"[IO] Question [{_lg}]: {_ex0['questions'][_lg]}")
+for _lg in ["en", "fr", "ar", "zh", "bn"]:
+    if _lg in _ex0.get("token_ids", {}):
+        _tid = _ex0["token_ids"][_lg]
+        _word = processor.tokenizer.decode([_tid])
+        print(f"[IO] Target token [{_lg}]: id={_tid}  decoded='{_word}'")
+# Run greedy generation on the English question to see what the model outputs
+_inp_gen, _ = get_image_text_inputs(processor, _img0, _ex0["questions"]["en"])
+with torch.no_grad():
+    _gen_ids = model.generate(**_inp_gen, max_new_tokens=10, do_sample=False)
+_gen_text = processor.decode(_gen_ids[0][_inp_gen["input_ids"].shape[1]:],
+                              skip_special_tokens=True)
+print(f"[IO] Model output (en question, greedy): '{_gen_text}'")
+del _ex0, _img0, _inp_gen, _gen_ids, _gen_text
+print("[IO] ────────────────────────────────────────\n")
+
 # ── Patching sanity check (runs on 1 example, takes ~5 seconds) ──────────────
 print("[SANITY] Verifying activation patching works...")
 _ex = examples[0]

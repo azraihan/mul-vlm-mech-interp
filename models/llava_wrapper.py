@@ -192,42 +192,72 @@ def apply_logit_lens(model, hidden_1d_numpy):
 def patch_and_run(model, inputs_clean, inputs_corrupted, patch_layer, patch_positions,
                   corrupted_cache=None):
     """
-    Causal activation patching: run clean forward pass but replace residual stream
-    at patch_layer for patch_positions with values from the corrupted forward pass.
+    Causal activation patching: run clean forward pass but replace the residual stream
+    at patch_layer for patch_positions with activations from the corrupted forward pass.
+
+    Uses register_forward_pre_hook on layer L+1 (or on the final norm for layer 31).
+    Pre-hooks are guaranteed to propagate by PyTorch regardless of how the layer wrapper
+    (GradientCheckpointingLayer in transformers 5.0) handles post-hook return values.
 
     Returns probs (32000,) numpy at the last sequence position.
     """
-    # Step 1: Get corrupted hidden state at patch_layer
     if corrupted_cache is not None:
-        corrupted_h = corrupted_cache[patch_layer]   # numpy (seq_len, 4096)
+        corrupted_h = corrupted_cache[patch_layer]
     else:
         cache = extract_residual_streams(model, inputs_corrupted, [patch_layer])
-        corrupted_h = cache[patch_layer]             # numpy (seq_len, 4096)
+        corrupted_h = cache[patch_layer]
 
-    # Step 2 & 3: Patch and run clean pass
+    pv_np = corrupted_h[patch_positions]   # numpy (n_positions, 4096)
     final_hidden = {}
-
-    def patch_hook(module, inp, output):
-        _patch_inplace(output, patch_positions, corrupted_h[patch_positions])
-
-    def capture_final_hook(module, inp, output):
-        final_hidden["layer31"] = _get_hidden(output)
-
     hooks = []
+
+    def _make_pre_hook():
+        def pre_hook(module, args):
+            h = args[0].clone()
+            pv = torch.tensor(pv_np, dtype=h.dtype, device=h.device)
+            if h.dim() == 3:
+                h[0, patch_positions, :] = pv
+            else:
+                h[patch_positions, :] = pv
+            return (h,) + args[1:]
+        return pre_hook
+
     try:
-        h1 = model.language_model.model.layers[patch_layer].register_forward_hook(patch_hook)
-        h2 = model.language_model.model.layers[31].register_forward_hook(capture_final_hook)
-        hooks = [h1, h2]
+        if patch_layer < 31:
+            # Pre-hook on layer L+1: its first arg is the output of layer L (the residual stream).
+            hooks.append(
+                model.language_model.model.layers[patch_layer + 1]
+                .register_forward_pre_hook(_make_pre_hook())
+            )
+            # Capture layer-31 output via post-hook (read-only — confirmed working).
+            def capture_final(module, inp, output):
+                final_hidden["h31"] = _get_hidden(output)
+            hooks.append(
+                model.language_model.model.layers[31].register_forward_hook(capture_final)
+            )
+        else:
+            # patch_layer == 31: pre-hook on the final norm receives layer-31 output.
+            def norm_pre_hook(module, args):
+                h = args[0].clone()
+                pv = torch.tensor(pv_np, dtype=h.dtype, device=h.device)
+                if h.dim() == 3:
+                    h[0, patch_positions, :] = pv
+                else:
+                    h[patch_positions, :] = pv
+                final_hidden["h31"] = _get_hidden(h)   # capture patched value
+                return (h,) + args[1:]
+            hooks.append(
+                model.language_model.model.norm.register_forward_pre_hook(norm_pre_hook)
+            )
+
         with torch.no_grad():
             model(**inputs_clean)
     finally:
         for h in hooks:
             h.remove()
 
-    # Step 4: Apply logit lens at the last position
     last_pos = inputs_clean["input_ids"].shape[1] - 1
-    probs = apply_logit_lens(model, final_hidden["layer31"][last_pos])
-    return probs
+    return apply_logit_lens(model, final_hidden["h31"][last_pos])
 
 
 def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, submodule,
@@ -272,15 +302,20 @@ def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, 
     final_hidden = {}
 
     def patch_hook(module, inp, output):
+        # self_attn / mlp are plain nn.Modules (not GradientCheckpointingLayer),
+        # so in-place modification propagates normally within LlamaDecoderLayer.forward.
         _patch_inplace(output, patch_positions, corrupted_val[patch_positions])
 
-    def capture_final(module, inp, output):
-        final_hidden["val"] = _get_hidden(output)
+    # Capture final hidden state via pre-hook on norm (reliable across transformers versions).
+    def norm_pre_hook(module, args):
+        final_hidden["val"] = _get_hidden(args[0])
 
     hooks = []
     try:
         hooks.append(sub.register_forward_hook(patch_hook))
-        hooks.append(model.language_model.model.layers[31].register_forward_hook(capture_final))
+        hooks.append(
+            model.language_model.model.norm.register_forward_pre_hook(norm_pre_hook)
+        )
         with torch.no_grad():
             model(**inputs_clean)
     finally:
