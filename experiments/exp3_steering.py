@@ -136,7 +136,7 @@ for lang in MMMB_LANGS:
 
 # ─── xGQA evaluation ──────────────────────────────────────────────────────────
 
-XGQA_LANGS_EVAL = [lang for lang in ["ar", "bn", "en"]
+XGQA_LANGS_EVAL = [lang for lang in ["en", "zh", "ar", "bn"]
                    if os.path.exists(f"data/xgqa/xgqa_{lang}.json") and
                    len(json.load(open(f"data/xgqa/xgqa_{lang}.json"))) > 0]
 

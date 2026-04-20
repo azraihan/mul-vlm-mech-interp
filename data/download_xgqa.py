@@ -7,7 +7,17 @@ import PIL.Image
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-XGQA_LANGS = ["en", "zh", "ar", "bn"]
+XGQA_LANGS = ["en", "zh", "bn"]   # ar not in adapter-hub/xGQA; bn and zh are
+
+
+def parse_xgqa_example(ex):
+    """Normalize one xGQA example to our standard format, handling multiple field name variants."""
+    return {
+        "question_id": str(ex.get("question_id", ex.get("questionId", ex.get("id", "")))),
+        "question":    ex.get("question", ""),
+        "answer":      ex.get("answer",   ex.get("full_answer", ex.get("label", ""))),
+        "imageId":     str(ex.get("imageId", ex.get("image_id", ex.get("img_id", "")))),
+    }
 
 
 def download_gqa_image(image_id):
@@ -37,9 +47,9 @@ if __name__ == "__main__":
     ds = None
     try:
         from datasets import load_dataset
-        ds = load_dataset("BKrumins/xGQA")
+        ds = load_dataset("adapter-hub/xGQA")
         hf_success = True
-        print("Loaded xGQA from HuggingFace (BKrumins/xGQA)")
+        print("Loaded xGQA from HuggingFace (adapter-hub/xGQA)")
     except Exception as e:
         print(f"HuggingFace xGQA failed: {e}")
 
@@ -51,8 +61,8 @@ if __name__ == "__main__":
         repo_dir = "data/xgqa_repo"
         if not os.path.exists(repo_dir):
             pat = os.environ.get("GITHUB_PAT", "")
-            base_url = (f"https://{pat}@github.com/sherzod-hakimov/xGQA"
-                        if pat else "https://github.com/sherzod-hakimov/xGQA")
+            base_url = (f"https://{pat}@github.com/adapter-hub/xGQA"
+                        if pat else "https://github.com/adapter-hub/xGQA")
             env = os.environ.copy()
             env["GIT_TERMINAL_PROMPT"] = "0"
             for branch in ["main", "master"]:
@@ -71,17 +81,25 @@ if __name__ == "__main__":
 
         for lang in XGQA_LANGS:
             raw_data[lang] = []
-            # Try multiple possible path structures within the repo
+            # adapter-hub/xGQA uses flat files: data/few_shot/test_{lang}.json
+            # and data/zero_shot/test_{lang}.json — try both, plus legacy paths
             candidate_paths = [
+                f"{repo_dir}/data/few_shot/test_{lang}.json",
+                f"{repo_dir}/data/zero_shot/test_{lang}.json",
+                f"{repo_dir}/data/few_shot/test_{lang}.jsonl",
+                f"{repo_dir}/data/zero_shot/test_{lang}.jsonl",
                 f"{repo_dir}/data/few-shot/{lang}/test.jsonl",
                 f"{repo_dir}/data/{lang}/test.jsonl",
-                f"{repo_dir}/annotations/{lang}/test.jsonl",
-                f"{repo_dir}/{lang}/test.jsonl",
             ]
             for path in candidate_paths:
                 if os.path.exists(path):
                     with open(path, encoding="utf-8") as f:
-                        lines = [json.loads(l) for l in f if l.strip()]
+                        content = f.read().strip()
+                    # Handle both JSON array and JSONL formats
+                    if content.startswith("["):
+                        lines = json.loads(content)
+                    else:
+                        lines = [json.loads(l) for l in content.splitlines() if l.strip()]
                     raw_data[lang] = lines
                     print(f"  xGQA [{lang}]: {len(lines)} examples from {path}")
                     break
@@ -102,12 +120,7 @@ if __name__ == "__main__":
                     split_data = list(ds[list(ds.keys())[0]])
                 examples = []
                 for ex in split_data[:200]:
-                    examples.append({
-                        "question_id": str(ex.get("question_id", ex.get("id", ""))),
-                        "question": ex.get("question", ""),
-                        "answer": ex.get("answer", ex.get("full_answer", "")),
-                        "imageId": str(ex.get("imageId", ex.get("image_id", ""))),
-                    })
+                    examples.append(parse_xgqa_example(dict(ex)))
             except Exception as e:
                 print(f"  HF parse error for {lang}: {e}, using empty list")
                 examples = []
