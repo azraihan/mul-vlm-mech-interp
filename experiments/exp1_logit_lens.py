@@ -21,10 +21,12 @@ tl_probs = np.full((2, 4, N, NUM_LAYERS), np.nan, dtype=np.float32)
 for cond_idx, use_image in enumerate([True, False]):
     for lang_idx, lang in enumerate(LANGUAGES):
         for ex_idx, ex in enumerate(tqdm(examples, desc=f"cond={cond_idx} lang={lang}")):
+            en_tid = ex["token_ids"].get("en")
+            tl_tid = ex["token_ids"].get(lang)
+            if en_tid is None or tl_tid is None:
+                continue  # leaves NaN in the array; nanmean handles it
             img = Image.open(ex["image_path"]).convert("RGB")
             question = ex["questions"][lang]
-            en_tid = ex["token_ids"]["en"]
-            tl_tid = ex["token_ids"][lang]
 
             if use_image:
                 inputs, answer_pos = get_image_text_inputs(processor, img, question)
