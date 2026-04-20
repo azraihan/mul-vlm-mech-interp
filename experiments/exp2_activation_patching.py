@@ -48,16 +48,15 @@ _img = Image.open(_ex["image_path"]).convert("RGB")
 _inputs_clean, _ans = get_image_text_inputs(processor, _img, _ex["questions"]["fr"])
 _inputs_corr,  _    = get_image_text_inputs(processor, _img, _ex["questions"]["en"])
 _lc, _lr = _inputs_clean["input_ids"].shape[1], _inputs_corr["input_ids"].shape[1]
-print(f"[SANITY] seq_len clean(fr)={_lc}  corrupted(en)={_lr}  answer_pos={_ans}")
-if _lc != _lr:
-    _ml = min(_lc, _lr)
-    for _k in ("input_ids", "attention_mask"):
-        _inputs_clean[_k] = _inputs_clean[_k][:, :_ml]
-        _inputs_corr[_k]  = _inputs_corr[_k][:, :_ml]
-    _ans = _ml - 1
-    print(f"[SANITY] truncated to min_len={_ml}  new answer_pos={_ans}")
+_ml = min(_lc, _lr)
+print(f"[SANITY] seq_len clean(fr)={_lc}  corrupted(en)={_lr}  answer_pos={_ans}  min_len={_ml}")
+# Only truncate corrupted — keep clean at full length so answer_pos stays at ASSISTANT:
+for _k in ("input_ids", "attention_mask"):
+    _inputs_corr[_k] = _inputs_corr[_k][:, :_ml]
+print(f"[SANITY] answer_pos kept at {_ans} (last token of ASSISTANT: in clean run)")
 
-_all_pos = list(range(_inputs_clean["input_ids"].shape[1]))
+# Patch only positions that exist in both sequences
+_all_pos = list(range(_ml))
 _en_tid  = _ex["token_ids"]["en"]
 _fr_tid  = _ex["token_ids"].get("fr")
 print(f"[SANITY] en_tid={_en_tid}  fr_tid={_fr_tid}")
@@ -132,24 +131,22 @@ for lang_idx, lang in enumerate(LANGUAGES):
         inputs_clean, answer_pos = get_image_text_inputs(processor, img, ex["questions"][lang])
         inputs_corr,  _          = get_image_text_inputs(processor, img, ex["questions"]["en"])
 
-        # Ensure same seq_len (truncate to min length)
+        # Only truncate corrupted to min_len — keep clean at full length so
+        # answer_pos stays at the real last token (end of ASSISTANT: prompt).
         len_clean = inputs_clean["input_ids"].shape[1]
         len_corr  = inputs_corr["input_ids"].shape[1]
-        if len_corr != len_clean:
-            min_len = min(len_clean, len_corr)
-            inputs_clean["input_ids"]      = inputs_clean["input_ids"][:, :min_len]
-            inputs_clean["attention_mask"] = inputs_clean["attention_mask"][:, :min_len]
-            inputs_corr["input_ids"]       = inputs_corr["input_ids"][:, :min_len]
-            inputs_corr["attention_mask"]  = inputs_corr["attention_mask"][:, :min_len]
-            answer_pos = min_len - 1
+        min_len   = min(len_clean, len_corr)
+        inputs_corr["input_ids"]       = inputs_corr["input_ids"][:, :min_len]
+        inputs_corr["attention_mask"]  = inputs_corr["attention_mask"][:, :min_len]
 
         # Baseline: P(en token) in clean (non-English) run
         res_clean = extract_residual_streams(model, inputs_clean, [NUM_LAYERS - 1])
         probs_clean = apply_logit_lens(model, res_clean[NUM_LAYERS - 1][answer_pos])
         p_en_clean = float(probs_clean[en_tid])
 
-        all_positions    = list(range(inputs_clean["input_ids"].shape[1]))
-        visual_positions = list(range(VISUAL_START, VISUAL_END + 1))
+        # Patch only positions that exist in both sequences
+        all_positions    = list(range(min_len))
+        visual_positions = list(range(VISUAL_START, min(VISUAL_END + 1, min_len)))
 
         # Pre-extract ALL corrupted layers once (residual, attn, mlp) — 3 passes total
         # instead of 1 + 32 + 32 = 65 corrupted passes per example.
