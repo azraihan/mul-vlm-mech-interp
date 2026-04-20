@@ -17,10 +17,10 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-echo "[1/4] Installing dependencies (skipping torch/torchvision — Kaggle provides them)..."
-grep -v "^torch" setup/requirements.txt \
-  | grep -v "^torchvision" \
-  | pip install -q -r /dev/stdin
+echo "[1/4] Installing dependencies (only packages not already in Kaggle)..."
+# Only install what Kaggle doesn't provide — do NOT touch transformers, numpy,
+# protobuf, huggingface_hub etc. as downgrading them breaks the environment.
+pip install -q pycocotools einops sentencepiece
 
 echo "[2/4] Downloading and preparing data..."
 python data/build_probing_set.py

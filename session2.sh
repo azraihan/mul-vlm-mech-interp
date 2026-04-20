@@ -52,10 +52,10 @@ if missing:
 print("Session 1 outputs verified. Proceeding.")
 EOF
 
-echo "[1/5] Installing dependencies (skipping torch/torchvision — Kaggle provides them)..."
-grep -v "^torch" setup/requirements.txt \
-  | grep -v "^torchvision" \
-  | pip install -q -r /dev/stdin
+echo "[1/5] Installing dependencies (only packages not already in Kaggle)..."
+# Only install what Kaggle doesn't provide — do NOT touch transformers, numpy,
+# protobuf, huggingface_hub etc. as downgrading them breaks the environment.
+pip install -q pycocotools einops sentencepiece
 
 echo "[2/5] Experiment 3: Steering Vectors + Evaluation (~3–4h on H100)..."
 python experiments/exp3_steering.py
