@@ -337,7 +337,10 @@ def get_token_id(processor, word):
     prefix_ids = processor.tokenizer.encode(prefix, add_special_tokens=False)
     full_ids   = processor.tokenizer.encode(f"{prefix} {word}", add_special_tokens=False)
     word_ids   = full_ids[len(prefix_ids):]
-    ids = word_ids
+    # Token 29871 is LLaMA's leading-space token (▁). For non-Latin scripts
+    # (Arabic, Chinese, Bengali) the space doesn't merge with the word, so it
+    # appears as a standalone prefix token. Strip it to get the real first token.
+    ids = [i for i in word_ids if i != 29871]
     if len(ids) >= 1:
         return ids[0]
     return None
