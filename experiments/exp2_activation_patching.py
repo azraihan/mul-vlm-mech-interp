@@ -71,26 +71,39 @@ for _tid, _tp in _top5_clean:
     print(f"  id={_tid:6d}  p={_tp:.6f}  word='{processor.tokenizer.decode([_tid])}'")
 print(f"[SANITY] P(en='cat') in clean run = {float(_probs_clean[_en_tid]):.6f}")
 
-# Step 2: check corrupted (English) run hidden state at layer 16
+# Step 2: top-5 of corrupted (English) run and find its first response token
 _corr_cache = extract_residual_streams(model, _inputs_corr, [16, 31])
 _corr_h16   = _corr_cache[16]
-_corr_h31   = _corr_cache[31][-1]   # corrupted run is shorter, use its own last pos
+_corr_h31   = _corr_cache[31][-1]
 _probs_corr = apply_logit_lens(model, _corr_h31)
-print(f"[SANITY] P(en='cat') in corrupted (en) run = {float(_probs_corr[_en_tid]):.6f}")
-print(f"[SANITY] corrupted hidden state at layer 16: shape={_corr_h16.shape}  "
-      f"norm={float(np.linalg.norm(_corr_h16.mean(axis=0))):.4f}")
+_top5_corr  = sorted(enumerate(_probs_corr), key=lambda x: -x[1])[:5]
+print(f"[SANITY] Corrupted (en) run top-5 tokens at answer_pos:")
+for _tid, _tp in _top5_corr:
+    print(f"  id={_tid:6d}  p={_tp:.6f}  word='{processor.tokenizer.decode([_tid])}'")
 
-# Step 3: verify the hidden states actually differ between clean and corrupted
+# The first generated token is what the model ACTUALLY outputs — use this as target,
+# not the object label ('cat') which is never the first generated token.
+with torch.no_grad():
+    _en_resp_ids = model.generate(**_inputs_corr, max_new_tokens=1, do_sample=False)
+_en_resp_tid = int(_en_resp_ids[0, -1])
+with torch.no_grad():
+    _fr_resp_ids = model.generate(**_inputs_clean, max_new_tokens=1, do_sample=False)
+_fr_resp_tid = int(_fr_resp_ids[0, -1])
+print(f"[SANITY] English first response token: id={_en_resp_tid}  word='{processor.tokenizer.decode([_en_resp_tid])}'")
+print(f"[SANITY] French  first response token: id={_fr_resp_tid}  word='{processor.tokenizer.decode([_fr_resp_tid])}'")
+print(f"[SANITY] P(en_first_token) in clean run   = {float(_probs_clean[_en_resp_tid]):.6f}")
+print(f"[SANITY] P(en_first_token) in corrupt run = {float(_probs_corr[_en_resp_tid]):.6f}")
+
+# Step 3: verify hidden states differ
 _clean_h16 = extract_residual_streams(model, _inputs_clean, [16])[16]
 _diff = np.abs(_clean_h16[:_ml] - _corr_h16[:_ml]).mean()
-print(f"[SANITY] Mean abs diff between clean/corrupted at layer 16: {_diff:.6f}  "
+print(f"[SANITY] Mean abs diff clean/corrupted at layer 16: {_diff:.6f}  "
       f"{'(ZERO — identical inputs?!)' if _diff < 1e-6 else '(non-zero, good)'}")
 
-# Step 4: test if the pre-hook fires at all using a flag
+# Step 4: pre-hook fires?
 _hook_fired = {"fired": False}
 def _test_pre_hook(module, args):
     _hook_fired["fired"] = True
-    print(f"[SANITY] Pre-hook fired! args[0].shape={args[0].shape}  dim={args[0].dim()}")
     return args
 _test_h = model.language_model.model.layers[17].register_forward_pre_hook(_test_pre_hook)
 with torch.no_grad():
@@ -98,13 +111,14 @@ with torch.no_grad():
 _test_h.remove()
 print(f"[SANITY] Pre-hook on layer 17 fired: {_hook_fired['fired']}")
 
-# Step 5: actual patch test
-_p_clean   = float(_probs_clean[_en_tid])
+# Step 5: patch test using en_resp_tid (first English response token, not object label)
+_p_clean   = float(_probs_clean[_en_resp_tid])
 _p_patched = float(patch_and_run(model, _inputs_clean, _inputs_corr, 16,
-                                  _all_pos, corrupted_cache=_corr_cache)[_en_tid])
+                                  _all_pos, corrupted_cache=_corr_cache)[_en_resp_tid])
 _delta = _p_patched - _p_clean
-print(f"[SANITY] p_en clean={_p_clean:.6f}  patched={_p_patched:.6f}  delta={_delta:+.6f}")
-if abs(_delta) < 1e-5:
+print(f"[SANITY] tracking token '{processor.tokenizer.decode([_en_resp_tid])}'")
+print(f"[SANITY] p_en_resp clean={_p_clean:.6f}  patched={_p_patched:.6f}  delta={_delta:+.6f}")
+if abs(_delta) < 1e-4:
     print("[SANITY] WARNING: delta ~0 — patching still not working.")
 else:
     print("[SANITY] OK — patching produces non-zero effect, proceeding.")
@@ -112,6 +126,7 @@ else:
 del _ex, _img, _inputs_clean, _inputs_corr, _corr_cache, _clean_cache, _clean_h31
 del _clean_h16, _corr_h16, _corr_h31, _all_pos, _en_tid, _fr_tid
 del _lc, _lr, _ans, _p_clean, _p_patched, _delta, _diff, _hook_fired
+del _en_resp_tid, _fr_resp_tid, _en_resp_ids, _fr_resp_ids, _ml
 # ─────────────────────────────────────────────────────────────────────────────
 
 # WARNING: ~38k forward passes total. Expect 12-20h on A100.
@@ -126,7 +141,6 @@ counts       = np.zeros(4, dtype=np.int32)
 for lang_idx, lang in enumerate(LANGUAGES):
     for ex in tqdm(examples, desc=f"Patching [{lang}]"):
         img = Image.open(ex["image_path"]).convert("RGB")
-        en_tid = ex["token_ids"]["en"]
 
         inputs_clean, answer_pos = get_image_text_inputs(processor, img, ex["questions"][lang])
         inputs_corr,  _          = get_image_text_inputs(processor, img, ex["questions"]["en"])
@@ -139,7 +153,15 @@ for lang_idx, lang in enumerate(LANGUAGES):
         inputs_corr["input_ids"]       = inputs_corr["input_ids"][:, :min_len]
         inputs_corr["attention_mask"]  = inputs_corr["attention_mask"][:, :min_len]
 
-        # Baseline: P(en token) in clean (non-English) run
+        # Use the first generated token of the English run as the target.
+        # P('cat') ≈ 0 at answer_pos because the model generates "The image shows a cat"
+        # — 'cat' is never the first token. The first token (e.g. 'The') is what
+        # answer_pos actually predicts and is a reliable language-identity signal.
+        with torch.no_grad():
+            _resp = model.generate(**inputs_corr, max_new_tokens=1, do_sample=False)
+        en_tid = int(_resp[0, -1])
+
+        # Baseline: P(en first response token) in clean (non-English) run
         res_clean = extract_residual_streams(model, inputs_clean, [NUM_LAYERS - 1])
         probs_clean = apply_logit_lens(model, res_clean[NUM_LAYERS - 1][answer_pos])
         p_en_clean = float(probs_clean[en_tid])
