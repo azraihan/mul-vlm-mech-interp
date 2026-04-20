@@ -1,2 +1,11 @@
 *.ipynb
 *.md
+
+**.DS_Store**
+
+outputs
+data/gqa_images
+data/mmmb
+data/probing_set
+data/xgqa
+data/xgqa_repo

@@ -27,15 +27,15 @@ for lang in LANGUAGES:
 
     for ex in tqdm(examples, desc=f"Steering vector [{lang}]"):
         img = Image.open(ex["image_path"]).convert("RGB")
-        inputs_lang, ans_pos = get_image_text_inputs(processor, img, ex["questions"][lang])
-        inputs_en,   _       = get_image_text_inputs(processor, img, ex["questions"]["en"])
+        inputs_lang, ans_pos    = get_image_text_inputs(processor, img, ex["questions"][lang])
+        inputs_en,   ans_pos_en = get_image_text_inputs(processor, img, ex["questions"]["en"])
 
         res_lang = extract_residual_streams(model, inputs_lang, pivot_layers)
         res_en   = extract_residual_streams(model, inputs_en,   pivot_layers)
 
         for L in pivot_layers:
-            h_lang[L].append(torch.tensor(res_lang[L][ans_pos]))  # (4096,)
-            h_en[L].append(  torch.tensor(res_en[L][ans_pos]))
+            h_lang[L].append(torch.tensor(res_lang[L][ans_pos]))     # (4096,)
+            h_en[L].append(  torch.tensor(res_en[L][ans_pos_en]))
 
     steering_vec = {}
     for L in pivot_layers:

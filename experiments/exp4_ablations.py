@@ -25,13 +25,13 @@ def extract_steering_vec(lang, layers_to_use):
     h_en   = {L: [] for L in layers_to_use}
     for ex in examples:
         img = Image.open(ex["image_path"]).convert("RGB")
-        inputs_lang, ans_pos = get_image_text_inputs(processor, img, ex["questions"][lang])
-        inputs_en,   _       = get_image_text_inputs(processor, img, ex["questions"]["en"])
+        inputs_lang, ans_pos    = get_image_text_inputs(processor, img, ex["questions"][lang])
+        inputs_en,   ans_pos_en = get_image_text_inputs(processor, img, ex["questions"]["en"])
         res_lang = extract_residual_streams(model, inputs_lang, layers_to_use)
         res_en   = extract_residual_streams(model, inputs_en,   layers_to_use)
         for L in layers_to_use:
             h_lang[L].append(torch.tensor(res_lang[L][ans_pos]))
-            h_en[L].append(  torch.tensor(res_en[L][ans_pos]))
+            h_en[L].append(  torch.tensor(res_en[L][ans_pos_en]))
     sv = {}
     for L in layers_to_use:
         sv[L] = torch.stack(h_lang[L]).mean(0) - torch.stack(h_en[L]).mean(0)
@@ -114,12 +114,12 @@ for lang in ["zh", "ar"]:
     res_en_list   = []
     for ex in examples:
         img = Image.open(ex["image_path"]).convert("RGB")
-        inputs_lang, ans_pos = get_image_text_inputs(processor, img, ex["questions"][lang])
-        inputs_en,   _       = get_image_text_inputs(processor, img, ex["questions"]["en"])
+        inputs_lang, ans_pos    = get_image_text_inputs(processor, img, ex["questions"][lang])
+        inputs_en,   ans_pos_en = get_image_text_inputs(processor, img, ex["questions"]["en"])
         res_lang = extract_residual_streams(model, inputs_lang, ALL_LAYERS)
         res_en   = extract_residual_streams(model, inputs_en,   ALL_LAYERS)
-        res_lang_list.append({L: res_lang[L][ans_pos] for L in ALL_LAYERS})
-        res_en_list.append(  {L: res_en[L][ans_pos]   for L in ALL_LAYERS})
+        res_lang_list.append({L: res_lang[L][ans_pos]    for L in ALL_LAYERS})
+        res_en_list.append(  {L: res_en[L][ans_pos_en]   for L in ALL_LAYERS})
     cached_residuals[lang] = {"lang": res_lang_list, "en": res_en_list}
     print(f"  Done pre-extracting [{lang}]: {len(res_lang_list)} examples × 32 layers")
 
