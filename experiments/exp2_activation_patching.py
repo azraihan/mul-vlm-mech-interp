@@ -22,22 +22,28 @@ _ex = examples[0]
 _img = Image.open(_ex["image_path"]).convert("RGB")
 _inputs_clean, _ans = get_image_text_inputs(processor, _img, _ex["questions"]["fr"])
 _inputs_corr,  _    = get_image_text_inputs(processor, _img, _ex["questions"]["en"])
+_lc, _lr = _inputs_clean["input_ids"].shape[1], _inputs_corr["input_ids"].shape[1]
+if _lc != _lr:
+    _ml = min(_lc, _lr)
+    for _k in ("input_ids", "attention_mask"):
+        _inputs_clean[_k] = _inputs_clean[_k][:, :_ml]
+        _inputs_corr[_k]  = _inputs_corr[_k][:, :_ml]
+    _ans = _ml - 1
+_all_pos = list(range(_inputs_clean["input_ids"].shape[1]))
 _corr_cache = extract_residual_streams(model, _inputs_corr, [16])
-_p_baseline  = apply_logit_lens(model,
-    extract_residual_streams(model, _inputs_clean, [31])[31][_ans])
-_p_patched   = patch_and_run(model, _inputs_clean, _inputs_corr, 16,
-                              list(range(_inputs_clean["input_ids"].shape[1])),
-                              corrupted_cache=_corr_cache)
-_delta = float(_p_patched[_ex["token_ids"]["en"]]) - float(
-         apply_logit_lens(model,
-             extract_residual_streams(model, _inputs_clean, [31])[31][_ans]
-         )[_ex["token_ids"]["en"]])
-print(f"[SANITY] Patch delta at layer 16 = {_delta:+.6f}")
+_clean_h31  = extract_residual_streams(model, _inputs_clean, [31])[31][_ans]
+_en_tid = _ex["token_ids"]["en"]
+_p_clean   = float(apply_logit_lens(model, _clean_h31)[_en_tid])
+_p_patched = float(patch_and_run(model, _inputs_clean, _inputs_corr, 16,
+                                  _all_pos, corrupted_cache=_corr_cache)[_en_tid])
+_delta = _p_patched - _p_clean
+print(f"[SANITY] p_en clean={_p_clean:.6f}  patched={_p_patched:.6f}  delta={_delta:+.6f}")
 if abs(_delta) < 1e-5:
-    print("[SANITY] WARNING: delta is ~0 — patching may not be working!")
+    print("[SANITY] WARNING: delta ~0 — in-place patching may still not be working.")
 else:
-    print("[SANITY] OK — patching produces non-zero effect.")
-del _ex, _img, _inputs_clean, _inputs_corr, _corr_cache, _p_baseline, _p_patched, _delta
+    print("[SANITY] OK — patching produces non-zero effect, proceeding.")
+del _ex, _img, _inputs_clean, _inputs_corr, _corr_cache, _clean_h31, _all_pos
+del _lc, _lr, _en_tid, _p_clean, _p_patched, _delta
 # ─────────────────────────────────────────────────────────────────────────────
 
 # WARNING: ~38k forward passes total. Expect 12-20h on A100.
