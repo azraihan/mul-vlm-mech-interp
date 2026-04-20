@@ -144,6 +144,17 @@ print(f"\nEvaluating xGQA for langs: {XGQA_LANGS_EVAL}")
 
 from data.download_xgqa import download_gqa_image
 
+# Pre-check: attempt one image download to detect dead hosting
+_test_img = download_gqa_image(XGQA_LANGS_EVAL and
+    json.load(open(f"data/xgqa/xgqa_{XGQA_LANGS_EVAL[0]}.json"))[0]["imageId"])
+_images_available = _test_img is not None
+if not _images_available:
+    print("[WARN] xGQA image hosting (VG_100K) is unreachable — all images will be "
+          "blank white fallbacks. xGQA accuracy numbers are NOT valid and should be "
+          "excluded from the paper.")
+else:
+    print("[OK] xGQA image hosting reachable.")
+
 for lang in XGQA_LANGS_EVAL:
     xgqa = json.load(open(f"data/xgqa/xgqa_{lang}.json"))[:200]
     sv_lang = lang if lang in LANGUAGES else None
@@ -161,13 +172,19 @@ for lang in XGQA_LANGS_EVAL:
 
         correct = 0
         total = 0
+        img_failures = 0
+        empty_questions = 0
         for ex in tqdm(xgqa, desc=f"xGQA {lang} {method}"):
             image_id = ex.get("imageId", "")
             img = download_gqa_image(image_id)
             if img is None:
+                img_failures += 1
                 img = PILImage.new("RGB", (336, 336), color=(255, 255, 255))
 
             question = ex.get("question", "")
+            if not question.strip():
+                empty_questions += 1
+
             inputs, _ = get_image_text_inputs(processor, img, question)
 
             if method == "baseline":
@@ -186,9 +203,18 @@ for lang in XGQA_LANGS_EVAL:
                 correct += 1
             total += 1
 
+        if img_failures > 0:
+            print(f"  [WARN] xGQA {lang} {method}: {img_failures}/{total} images failed to download — used blank fallback")
+        if empty_questions > 0:
+            print(f"  [WARN] xGQA {lang} {method}: {empty_questions}/{total} examples had empty questions")
+        if img_failures == 0 and empty_questions == 0:
+            print(f"  [OK] xGQA {lang} {method}: all {total} images and questions present")
+
         acc = correct / total if total > 0 else 0.0
         result = {
             "accuracy": acc, "correct": correct, "total": total,
+            "img_failures": img_failures, "empty_questions": empty_questions,
+            "images_valid": _images_available,
             "method": method, "lang": lang, "dataset": "xgqa"
         }
         fname = f"outputs/eval_results/results_xgqa_{lang}_{method}.json"

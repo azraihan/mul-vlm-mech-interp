@@ -1,150 +1,110 @@
 import os
+import io
 import json
 import sys
 import requests
-from tqdm import tqdm
 import PIL.Image
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-XGQA_LANGS = ["en", "zh", "bn"]   # ar not in adapter-hub/xGQA; bn and zh are
-
-
-def parse_xgqa_example(ex):
-    """Normalize one xGQA example to our standard format, handling multiple field name variants."""
-    return {
-        "question_id": str(ex.get("question_id", ex.get("questionId", ex.get("id", "")))),
-        "question":    ex.get("question", ""),
-        "answer":      ex.get("answer",   ex.get("full_answer", ex.get("label", ""))),
-        "imageId":     str(ex.get("imageId", ex.get("image_id", ex.get("img_id", "")))),
-    }
+XGQA_LANGS = ["en", "zh", "bn"]
 
 
 def download_gqa_image(image_id):
-    """Download a GQA image by ID, caching to data/gqa_images/."""
+    """Return a GQA image by ID, using data/gqa_images/ cache."""
     os.makedirs("data/gqa_images", exist_ok=True)
     cache_path = f"data/gqa_images/{image_id}.jpg"
     if os.path.exists(cache_path):
         return PIL.Image.open(cache_path).convert("RGB")
-    url = f"https://cs.stanford.edu/people/rak248/VG_100K/{image_id}.jpg"
-    try:
-        r = requests.get(url, timeout=10)
-        r.raise_for_status()
-        with open(cache_path, "wb") as f:
-            f.write(r.content)
-        return PIL.Image.open(cache_path).convert("RGB")
-    except Exception as e:
-        print(f"  Warning: could not download GQA image {image_id}: {e}")
-        return None
+    # Stanford hosting is offline — images must be pre-cached by download_xgqa.py
+    print(f"  Warning: image {image_id} not in cache and Stanford VG_100K is offline.")
+    return None
 
 
 if __name__ == "__main__":
     os.makedirs("data/xgqa", exist_ok=True)
     os.makedirs("data/gqa_images", exist_ok=True)
 
-    # STEP 1: Try HuggingFace first
-    hf_success = False
-    ds = None
+    from datasets import load_dataset
+
+    # Primary source: floschne/xgqa — has text + embedded images, image_id in n-prefix format
+    print("Loading floschne/xgqa (streaming)...")
     try:
-        from datasets import load_dataset
-        ds = load_dataset("adapter-hub/xGQA")
-        hf_success = True
-        print("Loaded xGQA from HuggingFace (adapter-hub/xGQA)")
+        ds = load_dataset("floschne/xgqa", streaming=True)
+        available = list(ds.keys())
+        print(f"  Available splits: {available}")
     except Exception as e:
-        print(f"HuggingFace xGQA failed: {e}")
+        print(f"floschne/xgqa failed: {e}")
+        ds = None
 
-    # STEP 2 (fallback): git clone the full xGQA repo, then parse JSONLs
-    raw_data = {}
-    if not hf_success:
-        print("Falling back to GitHub xGQA clone...")
-        import subprocess
-        repo_dir = "data/xgqa_repo"
-        if not os.path.exists(repo_dir):
-            pat = os.environ.get("GITHUB_PAT", "")
-            base_url = (f"https://{pat}@github.com/adapter-hub/xGQA"
-                        if pat else "https://github.com/adapter-hub/xGQA")
-            env = os.environ.copy()
-            env["GIT_TERMINAL_PROMPT"] = "0"
-            for branch in ["main", "master"]:
-                result = subprocess.run(
-                    ["git", "clone", "--depth", "1", "--branch", branch,
-                     base_url, repo_dir],
-                    capture_output=True, text=True, timeout=120, env=env
-                )
-                if result.returncode == 0:
-                    print(f"  Cloned xGQA repo (branch={branch})")
+    for lang in XGQA_LANGS:
+        out_path = f"data/xgqa/xgqa_{lang}.json"
+        examples = []
+        images_saved = 0
+
+        if ds is not None and lang in ds:
+            for ex in ds[lang]:
+                if len(examples) >= 200:
                     break
-                else:
-                    print(f"  git clone branch={branch} failed: {result.stderr.strip()[:200]}")
-            else:
-                print("  Warning: git clone failed for both branches")
 
-        for lang in XGQA_LANGS:
-            raw_data[lang] = []
-            # adapter-hub/xGQA uses flat files: data/few_shot/test_{lang}.json
-            # and data/zero_shot/test_{lang}.json — try both, plus legacy paths
+                image_id = str(ex.get("image_id", ""))
+                question  = ex.get("question", "")
+                answer    = ex.get("answer", ex.get("full_answer", ""))
+
+                # Save image to cache if not already there
+                cache_path = f"data/gqa_images/{image_id}.jpg"
+                if not os.path.exists(cache_path):
+                    img_field = ex.get("image")
+                    if img_field is not None:
+                        try:
+                            raw = img_field if isinstance(img_field, bytes) else img_field.get("bytes", b"")
+                            PIL.Image.open(io.BytesIO(raw)).convert("RGB").save(cache_path)
+                            images_saved += 1
+                        except Exception as e:
+                            print(f"  Warning: could not save image {image_id}: {e}")
+
+                examples.append({
+                    "question_id": str(ex.get("question_id", "")),
+                    "question":    question,
+                    "answer":      answer,
+                    "imageId":     image_id,
+                })
+
+        else:
+            # Fallback: xgqa_repo (text only, no images)
+            print(f"  [{lang}] not in floschne/xgqa, falling back to xgqa_repo...")
+            repo_dir = "data/xgqa_repo"
             candidate_paths = [
-                f"{repo_dir}/data/few_shot/{lang}/test.json",
                 f"{repo_dir}/data/zero_shot/testdev_balanced_questions_{lang}.json",
-                f"{repo_dir}/data/few_shot/{lang}/test.jsonl",
+                f"{repo_dir}/data/few_shot/{lang}/test.json",
             ]
             for path in candidate_paths:
                 if os.path.exists(path):
-                    with open(path, encoding="utf-8") as f:
-                        content = f.read().strip()
-                    parsed = json.loads(content)
-                    # Handle dict {question_id: {...}, ...}, list [...], or JSONL
-                    if isinstance(parsed, dict):
-                        lines = list(parsed.values())
-                    elif isinstance(parsed, list):
-                        lines = parsed
-                    else:
-                        lines = [json.loads(l) for l in content.splitlines() if l.strip()]
-                    raw_data[lang] = lines
-                    print(f"  xGQA [{lang}]: {len(lines)} examples from {path}")
+                    raw = json.load(open(path, encoding="utf-8"))
+                    items = list(raw.values()) if isinstance(raw, dict) else raw
+                    for item in items[:200]:
+                        examples.append({
+                            "question_id": str(item.get("question_id", item.get("id", ""))),
+                            "question":    item.get("question", ""),
+                            "answer":      item.get("answer", item.get("full_answer", "")),
+                            "imageId":     str(item.get("imageId", item.get("image_id", ""))),
+                        })
+                    print(f"  [{lang}] {len(examples)} examples from {path} (no images)")
                     break
-            else:
-                print(f"  Warning: no xGQA data found for {lang} in cloned repo")
 
-    # STEP 3: Save first 200 examples per language
-    for lang in XGQA_LANGS:
-        out_path = f"data/xgqa/xgqa_{lang}.json"
+        json.dump(examples, open(out_path, "w", encoding="utf-8"),
+                  ensure_ascii=False, indent=2)
+        non_empty_q = sum(1 for e in examples if e["question"].strip())
+        print(f"xGQA [{lang}]: {len(examples)} examples  "
+              f"non-empty question={non_empty_q}  images saved={images_saved}  → {out_path}")
 
-        if hf_success and ds is not None:
-            try:
-                if lang in ds:
-                    split_data = list(ds[lang])
-                elif "test" in ds:
-                    split_data = list(ds["test"])
-                else:
-                    split_data = list(ds[list(ds.keys())[0]])
-                examples = []
-                for ex in split_data[:200]:
-                    examples.append(parse_xgqa_example(dict(ex)))
-            except Exception as e:
-                print(f"  HF parse error for {lang}: {e}, using empty list")
-                examples = []
-        else:
-            raw_examples = raw_data.get(lang, [])
-            examples = []
-            for ex in raw_examples[:200]:
-                examples.append({
-                    "question_id": str(ex.get("question_id", ex.get("id", ""))),
-                    "question": ex.get("question", ""),
-                    "answer": ex.get("answer", ex.get("full_answer", "")),
-                    "imageId": str(ex.get("imageId", ex.get("image_id", ""))),
-                })
-
-        with open(out_path, "w", encoding="utf-8") as f:
-            json.dump(examples, f, ensure_ascii=False, indent=2)
-        print(f"xGQA [{lang}]: {len(examples)} examples → {out_path}")
-
-    # STEP 4: Print summary
     print("\nxGQA download summary:")
     for lang in XGQA_LANGS:
         path = f"data/xgqa/xgqa_{lang}.json"
         if os.path.exists(path):
-            n = len(json.load(open(path)))
-            print(f"  {lang}: {n} examples")
+            print(f"  {lang}: {len(json.load(open(path)))} examples")
         else:
             print(f"  {lang}: missing")
+
+    cached = len([f for f in os.listdir("data/gqa_images") if f.endswith(".jpg")])
+    print(f"  gqa_images cache: {cached} images")

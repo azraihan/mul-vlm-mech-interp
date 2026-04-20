@@ -57,6 +57,14 @@ echo "[1/5] Installing dependencies (only packages not already in Kaggle)..."
 # protobuf, huggingface_hub etc. as downgrading them breaks the environment.
 pip install -q pycocotools einops sentencepiece
 
+echo "[1b/5] Re-downloading MMMB (source moved to AIDC-AI/Parrot-dataset)..."
+rm -rf data/mmmb/mmmb_*.json data/mmmb/images/
+python data/download_mmmb.py
+
+echo "[1c/5] Re-downloading xGQA with images (source: floschne/xgqa)..."
+rm -rf data/xgqa/xgqa_*.json data/gqa_images/
+python data/download_xgqa.py
+
 echo "[2/5] Experiment 3: Steering Vectors + Evaluation (~3–4h on H100)..."
 python experiments/exp3_steering.py
 
