@@ -74,7 +74,7 @@ for lang in MMMB_LANGS:
     mmmb = json.load(open(f"data/mmmb/mmmb_{lang}.json"))[:200]
     sv_lang = lang if lang in LANGUAGES else None   # "en" has no steering vector
 
-    methods = ["baseline"] + [f"steered_a{a}" for a in [0.1, 0.2, 0.3, 0.4, 0.5]]
+    methods = ["baseline"] + [f"steered_a{a}" for a in [0.01, 0.02, 0.05, 0.07, 0.1, 0.2, 0.3, 0.4, 0.5]]
 
     for method in methods:
         if method != "baseline" and sv_lang is None:
@@ -159,7 +159,7 @@ for lang in XGQA_LANGS_EVAL:
     xgqa = json.load(open(f"data/xgqa/xgqa_{lang}.json"))[:200]
     sv_lang = lang if lang in LANGUAGES else None
 
-    methods = ["baseline"] + [f"steered_a{a}" for a in [0.1, 0.2, 0.3, 0.4, 0.5]]
+    methods = ["baseline"] + [f"steered_a{a}" for a in [0.01, 0.02, 0.05, 0.07, 0.1, 0.2, 0.3, 0.4, 0.5]]
 
     for method in methods:
         if method != "baseline" and sv_lang is None:
