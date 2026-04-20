@@ -121,27 +121,19 @@ model, processor = load_model()
 # STEP 5: Build the probing set
 examples = []
 for category in CATEGORIES:
-    # 5a: English must be single-token (required). Collect target langs that are single-token.
-    # A category is kept if English passes and at least 2 of the 4 target languages pass.
+    # 5a: Store first-token IDs for all languages (PMI normalization handles ambiguity).
+    # English must resolve to at least one token; all other languages always will.
     token_ids = {}
-    en_word = TRANSLATIONS[category]["en"]
-    en_tid = get_token_id(processor, en_word)
-    if en_tid is None:
-        print(f"SKIP category={category}: English '{en_word}' is multi-token")
-        continue
-    token_ids["en"] = en_tid
-
-    for lang in ["fr", "ar", "zh", "bn"]:
+    for lang in ["en", "fr", "ar", "zh", "bn"]:
         word = TRANSLATIONS[category][lang]
         tid = get_token_id(processor, word)
         if tid is None:
-            print(f"NOTE category={category} lang={lang}: '{word}' is multi-token, skipping this lang")
-        else:
-            token_ids[lang] = tid
-
-    valid_target_langs = [l for l in token_ids if l != "en"]
-    if len(valid_target_langs) < 2:
-        print(f"SKIP category={category}: only {len(valid_target_langs)} valid target-language token(s)")
+            print(f"SKIP category={category}: '{word}' (en) produced no tokens")
+            break
+        token_ids[lang] = tid
+    else:
+        pass  # all langs stored successfully
+    if "en" not in token_ids:
         continue
 
     # 5b: Find top-4 COCO images by bounding box area
@@ -178,4 +170,4 @@ for category in CATEGORIES:
 with open("data/probing_set/probing_set.json", "w", encoding="utf-8") as f:
     json.dump(examples, f, ensure_ascii=False, indent=2)
 print(f"Probing set: {len(examples)} examples across {len(set(e['category'] for e in examples))} categories")
-assert len(examples) >= 16, "Too few examples — check tokenizer filtering"
+assert len(examples) >= 40, "Too few examples — check tokenizer filtering"

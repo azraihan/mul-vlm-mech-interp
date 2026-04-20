@@ -239,19 +239,34 @@ def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, 
 
 def get_token_id(processor, word):
     """
-    Returns the token ID for `word` as it appears at answer generation time, using
-    contextual subtraction to avoid BOS/space-prefix ambiguity: encode "ASSISTANT: {word}"
-    and subtract the "ASSISTANT:" prefix tokens to isolate the word tokens.
-    Returns None if the word tokenizes to != 1 token in this context.
+    Returns the FIRST token ID for `word` in generation context, regardless of how many
+    tokens the word spans. Uses contextual subtraction ("ASSISTANT: {word}" minus the
+    "ASSISTANT:" prefix) to match actual generation-time tokenization.
+    Returns None only if the word produces zero tokens (should never happen).
     """
     prefix = "ASSISTANT:"
     prefix_ids = processor.tokenizer.encode(prefix, add_special_tokens=False)
     full_ids   = processor.tokenizer.encode(f"{prefix} {word}", add_special_tokens=False)
     word_ids   = full_ids[len(prefix_ids):]
     ids = word_ids
-    if len(ids) == 1:
+    if len(ids) >= 1:
         return ids[0]
     return None
+
+
+def compute_pmi_baseline(model):
+    """
+    Returns log P(token) for each vocabulary token using a zero hidden state as the
+    model's prior. Shape: (VOCAB_SIZE,) float32 numpy array.
+    Used to PMI-normalize logit lens scores: score = log P(token|h) - log P(token|0).
+    """
+    device = model.language_model.lm_head.weight.device
+    h = torch.zeros(1, 1, 4096, dtype=torch.float16, device=device)
+    with torch.no_grad():
+        normed = model.language_model.model.norm(h)
+        logits = model.language_model.lm_head(normed)
+    log_probs = torch.log_softmax(logits.squeeze(), dim=-1)
+    return log_probs.float().cpu().numpy()
 
 
 def generate_with_steering(model, inputs, steering_vec, alpha, pivot_layers, max_new_tokens=5):

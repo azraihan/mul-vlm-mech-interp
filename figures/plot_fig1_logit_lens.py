@@ -41,10 +41,10 @@ for cond in range(2):
                    alpha=0.12, color="gray",
                    label="Pivot region" if (cond == 0 and lang == 0) else "")
         ax.set_xlim(0, 31)
-        ax.set_ylim(0, 1)
+        ax.axhline(0, color="black", linewidth=0.5, linestyle=":")
         ax.set_xlabel("Transformer Layer")
         if lang == 0:
-            ax.set_ylabel("Token Probability")
+            ax.set_ylabel("Log PMI")
         title_cond = "Image Present" if cond == 0 else "Blank Image"
         ax.set_title(f"{LANG_NAMES[LANGUAGES[lang]]}\n({title_cond})", fontsize=10)
 

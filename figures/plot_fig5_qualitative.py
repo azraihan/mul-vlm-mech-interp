@@ -7,7 +7,8 @@ import torch
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.llava_wrapper import (load_model, get_image_text_inputs,
-                                   extract_residual_streams, apply_logit_lens)
+                                   extract_residual_streams, apply_logit_lens,
+                                   compute_pmi_baseline)
 from models.constants import LANGUAGES, LANG_NAMES
 
 import matplotlib
@@ -30,6 +31,7 @@ en_probs_all = np.load("outputs/logit_lens/logit_lens_en_prob.npy")   # (2, 4, N
 tl_probs_all = np.load("outputs/logit_lens/logit_lens_tl_prob.npy")   # (2, 4, N, 32)
 
 model, processor = load_model()
+baseline_log_probs = compute_pmi_baseline(model)   # (32000,)
 
 # STEP 1: Pick examples — for ar and bn, find the most severe English pivot
 chosen = {}
@@ -104,10 +106,12 @@ for col_i, lang in enumerate(col_keys):
             residuals = extract_residual_streams(model, inputs, list(range(32)))
 
         en_curve = np.array([
-            apply_logit_lens(model, residuals[l][answer_pos])[en_tid] for l in range(32)
+            np.log(apply_logit_lens(model, residuals[l][answer_pos])[en_tid] + 1e-10)
+            - baseline_log_probs[en_tid] for l in range(32)
         ])
         tl_curve = np.array([
-            apply_logit_lens(model, residuals[l][answer_pos])[tl_tid] for l in range(32)
+            np.log(apply_logit_lens(model, residuals[l][answer_pos])[tl_tid] + 1e-10)
+            - baseline_log_probs[tl_tid] for l in range(32)
         ])
 
         # Persist curves so this figure can be restyled without re-running the model.
@@ -121,9 +125,9 @@ for col_i, lang in enumerate(col_keys):
         ax.plot(layers, tl_curve, color="#d6604d", linewidth=2, linestyle="--",
                 label=LANG_NAMES[lang])
         ax.set_xlim(0, 31)
-        ax.set_ylim(0, 1)
+        ax.axhline(0, color="black", linewidth=0.5, linestyle=":")
         ax.set_xlabel("Transformer Layer")
-        ax.set_ylabel("Token Probability")
+        ax.set_ylabel("Log PMI")
         steering_str = "With steering" if use_steering else "Without steering"
         ax.set_title(f"{LANG_NAMES[lang]} — {steering_str}", fontsize=10)
 
