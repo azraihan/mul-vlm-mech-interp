@@ -117,6 +117,25 @@ def get_blank_image_inputs(processor, question_text, device="cuda"):
     return get_image_text_inputs(processor, blank, question_text, device)
 
 
+def _unbatch(tensor):
+    """
+    Normalize decoder-layer outputs to (seq_len, hidden) numpy float32.
+    Transformers 5.0 removed the batch dim from intermediate tensors;
+    older versions return (batch, seq_len, hidden). Handles both.
+    """
+    if tensor.dim() == 3:
+        return tensor[0].detach().cpu().float().numpy()   # drop batch dim
+    return tensor.detach().cpu().float().numpy()          # already (seq, hidden)
+
+
+def _patch_tensor(h, patch_positions, patch_vals):
+    """In-place patch of h at patch_positions. Handles 2-D and 3-D h."""
+    if h.dim() == 3:
+        h[0, patch_positions, :] = patch_vals
+    else:
+        h[patch_positions, :] = patch_vals
+
+
 def extract_residual_streams(model, inputs, layers):
     """
     Returns dict: layer_idx → numpy array (seq_len, 4096) float32.
@@ -127,7 +146,7 @@ def extract_residual_streams(model, inputs, layers):
 
     def make_hook(layer_idx):
         def hook_fn(module, inp, output):
-            residuals[layer_idx] = output[0][0].detach().cpu().float().numpy()
+            residuals[layer_idx] = _unbatch(output[0])
         return hook_fn
 
     try:
@@ -156,7 +175,7 @@ def extract_submodule_streams(model, inputs, layers, submodule):
     def make_hook(layer_idx):
         def hook_fn(module, inp, output):
             tensor = output[0] if isinstance(output, tuple) else output
-            cache[layer_idx] = tensor[0].detach().cpu().float().numpy()
+            cache[layer_idx] = _unbatch(tensor)
         return hook_fn
 
     try:
@@ -213,14 +232,13 @@ def patch_and_run(model, inputs_clean, inputs_corrupted, patch_layer, patch_posi
     final_hidden = {}
 
     def patch_hook(module, inp, output):
-        h = output[0].clone()   # (batch=1, seq_len, 4096)
-        device = h.device
-        patch_vals = torch.tensor(corrupted_h[patch_positions], dtype=h.dtype, device=device)
-        h[0, patch_positions, :] = patch_vals
+        h = output[0].clone()
+        patch_vals = torch.tensor(corrupted_h[patch_positions], dtype=h.dtype, device=h.device)
+        _patch_tensor(h, patch_positions, patch_vals)
         return (h,) + output[1:]
 
     def capture_final_hook(module, inp, output):
-        final_hidden["layer31"] = output[0][0].detach().cpu().float().numpy()
+        final_hidden["layer31"] = _unbatch(output[0])
 
     hooks = []
     try:
@@ -267,7 +285,7 @@ def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, 
 
         def capture_hook(module, inp, output):
             tensor = output[0] if isinstance(output, tuple) else output
-            corrupted_sub_out["val"] = tensor[0].detach().cpu().float().numpy()
+            corrupted_sub_out["val"] = _unbatch(tensor)
 
         h_cap = sub.register_forward_hook(capture_hook)
         try:
@@ -282,17 +300,14 @@ def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, 
 
     def patch_hook(module, inp, output):
         is_tuple = isinstance(output, tuple)
-        tensor = output[0] if is_tuple else output          # (batch, seq_len, 4096)
+        tensor = output[0] if is_tuple else output
         h = tensor.clone()
-        device = h.device
-        patch_vals = torch.tensor(corrupted_val[patch_positions],
-                                  dtype=h.dtype, device=device)
-        h[0, patch_positions, :] = patch_vals
+        patch_vals = torch.tensor(corrupted_val[patch_positions], dtype=h.dtype, device=h.device)
+        _patch_tensor(h, patch_positions, patch_vals)
         return (h,) + output[1:] if is_tuple else h
 
     def capture_final(module, inp, output):
-        # layer 31 is always a LlamaDecoderLayer → tuple; output[0] is (batch, seq_len, 4096)
-        final_hidden["val"] = output[0][0].detach().cpu().float().numpy()
+        final_hidden["val"] = _unbatch(output[0])
 
     hooks = []
     try:
