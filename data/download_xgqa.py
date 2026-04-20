@@ -43,21 +43,43 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"HuggingFace xGQA failed: {e}")
 
-    # STEP 2 (fallback): Download from GitHub
+    # STEP 2 (fallback): git clone the full xGQA repo, then parse JSONLs
     raw_data = {}
     if not hf_success:
-        print("Falling back to GitHub xGQA download...")
+        print("Falling back to GitHub xGQA clone...")
+        import subprocess
+        repo_dir = "data/xgqa_repo"
+        if not os.path.exists(repo_dir):
+            for branch in ["main", "master"]:
+                result = subprocess.run(
+                    ["git", "clone", "--depth", "1", "--branch", branch,
+                     "https://github.com/sherzod-hakimov/xGQA", repo_dir],
+                    capture_output=True, text=True
+                )
+                if result.returncode == 0:
+                    print(f"  Cloned xGQA repo (branch={branch})")
+                    break
+            else:
+                print("  Warning: git clone failed for both main and master branches")
+
         for lang in XGQA_LANGS:
-            url = f"https://raw.githubusercontent.com/sherzod-hakimov/xGQA/main/data/few-shot/{lang}/test.jsonl"
-            try:
-                r = requests.get(url, timeout=30)
-                r.raise_for_status()
-                lines = [json.loads(line) for line in r.text.strip().splitlines() if line.strip()]
-                raw_data[lang] = lines
-                print(f"  Downloaded {len(lines)} examples for {lang}")
-            except Exception as e:
-                print(f"  Warning: could not download xGQA for {lang}: {e}")
-                raw_data[lang] = []
+            raw_data[lang] = []
+            # Try multiple possible path structures within the repo
+            candidate_paths = [
+                f"{repo_dir}/data/few-shot/{lang}/test.jsonl",
+                f"{repo_dir}/data/{lang}/test.jsonl",
+                f"{repo_dir}/annotations/{lang}/test.jsonl",
+                f"{repo_dir}/{lang}/test.jsonl",
+            ]
+            for path in candidate_paths:
+                if os.path.exists(path):
+                    with open(path, encoding="utf-8") as f:
+                        lines = [json.loads(l) for l in f if l.strip()]
+                    raw_data[lang] = lines
+                    print(f"  xGQA [{lang}]: {len(lines)} examples from {path}")
+                    break
+            else:
+                print(f"  Warning: no xGQA data found for {lang} in cloned repo")
 
     # STEP 3: Save first 200 examples per language
     for lang in XGQA_LANGS:
