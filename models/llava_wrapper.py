@@ -6,6 +6,33 @@ from transformers import LlavaForConditionalGeneration, AutoProcessor
 from models.constants import MODEL_ID
 
 
+def _ensure_language_model(model):
+    """
+    Ensure model.language_model points to the sub-module that owns lm_head.
+    Uses an access test rather than hasattr so that broken properties (common
+    in some transformers versions) are caught and the fallback fires correctly.
+    """
+    # Test that the attribute both exists AND is usable
+    try:
+        _ = model.language_model.lm_head
+        return
+    except AttributeError:
+        pass
+
+    # Search direct children for one that owns lm_head
+    for attr_name in ('model', 'text_model', 'llm', 'decoder', 'transformer'):
+        candidate = getattr(model, attr_name, None)
+        if candidate is not None and hasattr(candidate, 'lm_head'):
+            model.language_model = candidate
+            return
+
+    children = [n for n, _ in model.named_children()]
+    raise AttributeError(
+        f"Cannot find language model component (needs lm_head). "
+        f"Direct children: {children}"
+    )
+
+
 def load_model(device="cuda"):
     """
     Returns: (model, processor)
@@ -17,6 +44,7 @@ def load_model(device="cuda"):
     )
     model.eval()
     processor = AutoProcessor.from_pretrained(MODEL_ID)
+    _ensure_language_model(model)
     return model, processor
 
 
