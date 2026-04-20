@@ -50,17 +50,21 @@ if __name__ == "__main__":
         import subprocess
         repo_dir = "data/xgqa_repo"
         if not os.path.exists(repo_dir):
+            env = os.environ.copy()
+            env["GIT_TERMINAL_PROMPT"] = "0"   # fail immediately instead of prompting
             for branch in ["main", "master"]:
                 result = subprocess.run(
                     ["git", "clone", "--depth", "1", "--branch", branch,
                      "https://github.com/sherzod-hakimov/xGQA", repo_dir],
-                    capture_output=True, text=True
+                    capture_output=True, text=True, timeout=120, env=env
                 )
                 if result.returncode == 0:
                     print(f"  Cloned xGQA repo (branch={branch})")
                     break
+                else:
+                    print(f"  git clone branch={branch} failed: {result.stderr.strip()[:200]}")
             else:
-                print("  Warning: git clone failed for both main and master branches")
+                print("  Warning: git clone failed for both branches")
 
         for lang in XGQA_LANGS:
             raw_data[lang] = []
