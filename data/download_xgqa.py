@@ -84,20 +84,20 @@ if __name__ == "__main__":
             # adapter-hub/xGQA uses flat files: data/few_shot/test_{lang}.json
             # and data/zero_shot/test_{lang}.json — try both, plus legacy paths
             candidate_paths = [
-                f"{repo_dir}/data/few_shot/test_{lang}.json",
-                f"{repo_dir}/data/zero_shot/test_{lang}.json",
-                f"{repo_dir}/data/few_shot/test_{lang}.jsonl",
-                f"{repo_dir}/data/zero_shot/test_{lang}.jsonl",
-                f"{repo_dir}/data/few-shot/{lang}/test.jsonl",
-                f"{repo_dir}/data/{lang}/test.jsonl",
+                f"{repo_dir}/data/few_shot/{lang}/test.json",
+                f"{repo_dir}/data/zero_shot/testdev_balanced_questions_{lang}.json",
+                f"{repo_dir}/data/few_shot/{lang}/test.jsonl",
             ]
             for path in candidate_paths:
                 if os.path.exists(path):
                     with open(path, encoding="utf-8") as f:
                         content = f.read().strip()
-                    # Handle both JSON array and JSONL formats
-                    if content.startswith("["):
-                        lines = json.loads(content)
+                    parsed = json.loads(content)
+                    # Handle dict {question_id: {...}, ...}, list [...], or JSONL
+                    if isinstance(parsed, dict):
+                        lines = list(parsed.values())
+                    elif isinstance(parsed, list):
+                        lines = parsed
                     else:
                         lines = [json.loads(l) for l in content.splitlines() if l.strip()]
                     raw_data[lang] = lines
