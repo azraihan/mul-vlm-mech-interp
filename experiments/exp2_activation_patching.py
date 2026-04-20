@@ -74,7 +74,7 @@ print(f"[SANITY] P(en='cat') in clean run = {float(_probs_clean[_en_tid]):.6f}")
 # Step 2: check corrupted (English) run hidden state at layer 16
 _corr_cache = extract_residual_streams(model, _inputs_corr, [16, 31])
 _corr_h16   = _corr_cache[16]
-_corr_h31   = _corr_cache[31][_ans]
+_corr_h31   = _corr_cache[31][-1]   # corrupted run is shorter, use its own last pos
 _probs_corr = apply_logit_lens(model, _corr_h31)
 print(f"[SANITY] P(en='cat') in corrupted (en) run = {float(_probs_corr[_en_tid]):.6f}")
 print(f"[SANITY] corrupted hidden state at layer 16: shape={_corr_h16.shape}  "
@@ -82,7 +82,7 @@ print(f"[SANITY] corrupted hidden state at layer 16: shape={_corr_h16.shape}  "
 
 # Step 3: verify the hidden states actually differ between clean and corrupted
 _clean_h16 = extract_residual_streams(model, _inputs_clean, [16])[16]
-_diff = np.abs(_clean_h16 - _corr_h16[:_clean_h16.shape[0]]).mean()
+_diff = np.abs(_clean_h16[:_ml] - _corr_h16[:_ml]).mean()
 print(f"[SANITY] Mean abs diff between clean/corrupted at layer 16: {_diff:.6f}  "
       f"{'(ZERO — identical inputs?!)' if _diff < 1e-6 else '(non-zero, good)'}")
 
