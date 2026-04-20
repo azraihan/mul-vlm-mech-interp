@@ -12,59 +12,27 @@ def _ensure_language_model(model):
     .lm_head and .model.layers/.model.norm, regardless of transformers version.
     Uses an access test rather than hasattr so broken properties are caught.
     """
-    print("[DEBUG] _ensure_language_model: direct children =",
-          [n for n, _ in model.named_children()])
-
     # Test that the attribute both exists AND is usable
     try:
-        lm = model.language_model
-        _ = lm.lm_head
-        print("[DEBUG] model.language_model already usable, type =", type(lm).__name__)
-        print("[DEBUG]   .lm_head =", type(lm.lm_head).__name__)
-        print("[DEBUG]   children of language_model =",
-              [n for n, _ in lm.named_children()] if hasattr(lm, 'named_children') else "n/a")
+        _ = model.language_model.lm_head
         return
-    except AttributeError as e:
-        print("[DEBUG] model.language_model not usable:", e)
+    except AttributeError:
+        pass
 
-    # Case 1: a direct child owns lm_head (e.g. transformers < 4.40)
+    # Case 1: a direct child owns lm_head (e.g. transformers < 4.46)
     for attr_name in ('model', 'text_model', 'llm', 'decoder', 'transformer'):
         candidate = getattr(model, attr_name, None)
-        if candidate is not None:
-            print(f"[DEBUG] checking child '{attr_name}': type={type(candidate).__name__}, "
-                  f"has lm_head={hasattr(candidate, 'lm_head')}")
-            if hasattr(candidate, 'lm_head'):
-                model.language_model = candidate
-                print(f"[DEBUG] set model.language_model = model.{attr_name}")
-                return
+        if candidate is not None and hasattr(candidate, 'lm_head'):
+            model.language_model = candidate
+            return
 
     # Case 2: lm_head is directly on the top-level model (transformers >= 4.46+).
-    # Structure: model.lm_head (Linear) + model.model (LlavaModel) which itself
-    # has a .language_model child (LlamaModel with .layers / .norm).
+    # Structure: model.lm_head + model.model (LlavaModel) -> .language_model (LlamaModel)
     if hasattr(model, 'lm_head') and hasattr(model, 'model'):
-        lm_head = model.lm_head
-        llava_model = model.model  # LlavaModel
-        print("[DEBUG] Case 2 proxy: lm_head on top-level model")
-        print("[DEBUG]   model.lm_head type =", type(lm_head).__name__)
-        print("[DEBUG]   model.model type   =", type(llava_model).__name__)
-        print("[DEBUG]   model.model children =",
-              [n for n, _ in llava_model.named_children()])
-
-        # Prefer LlavaModel.language_model (LlamaModel) as the decoder backbone
-        if hasattr(llava_model, 'language_model'):
-            lm_sub = llava_model.language_model
-            print("[DEBUG]   using model.model.language_model as decoder, type =",
-                  type(lm_sub).__name__)
-            print("[DEBUG]   decoder children =",
-                  [n for n, _ in lm_sub.named_children()])
-        else:
-            lm_sub = llava_model
-            print("[DEBUG]   no .language_model on LlavaModel, falling back to model.model")
-
-        proxy = type('_LMProxy', (), {'lm_head': lm_head, 'model': lm_sub})()
+        llava_model = model.model
+        lm_sub = llava_model.language_model if hasattr(llava_model, 'language_model') else llava_model
+        proxy = type('_LMProxy', (), {'lm_head': model.lm_head, 'model': lm_sub})()
         object.__setattr__(model, 'language_model', proxy)
-        print("[DEBUG] proxy set: language_model.lm_head =", type(proxy.lm_head).__name__,
-              "| language_model.model =", type(proxy.model).__name__)
         return
 
     children = [n for n, _ in model.named_children()]
@@ -80,8 +48,6 @@ def load_model(device="cuda"):
     - model: LlavaForConditionalGeneration, float16, on `device`
     - processor: AutoProcessor for llava-hf/llava-1.5-7b-hf
     """
-    import transformers
-    print("[DEBUG] transformers version =", transformers.__version__)
     model = LlavaForConditionalGeneration.from_pretrained(
         MODEL_ID, torch_dtype=torch.float16, device_map=device
     )
@@ -366,12 +332,14 @@ def generate_with_steering(model, inputs, steering_vec, alpha, pivot_layers, max
     """
     def make_hook(L):
         def hook_fn(module, inp, output):
-            h = output[0].clone()
-            v = steering_vec[L].to(h.device).to(h.dtype)
-            # Steer the last position only — works for both prefill (seq_len > 1)
-            # and KV-cache decode steps (seq_len = 1, where answer_pos would be OOB).
-            h[:, -1:, :] += alpha * v
-            return (h,) + output[1:]
+            tensor = output[0] if isinstance(output, tuple) else output
+            v = steering_vec[L].to(tensor.device).to(tensor.dtype)
+            # Steer the last position in-place (works for prefill and KV-cache decode steps).
+            # In-place is required for transformers 5.0 where hook return values are ignored.
+            if tensor.dim() == 3:
+                tensor.data[:, -1:, :] += alpha * v
+            else:
+                tensor.data[-1:, :] += alpha * v
         return hook_fn
 
     hooks = []
