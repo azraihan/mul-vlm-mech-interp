@@ -239,11 +239,16 @@ def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, 
 
 def get_token_id(processor, word):
     """
-    Returns single integer token ID for `word` as it appears at answer generation time.
-    Uses a leading space because LLaMA's SentencePiece tokenizer encodes answer-position
-    tokens with a ▁ prefix (e.g. "▁猫" not "猫"). Returns None if != 1 token.
+    Returns the token ID for `word` as it appears at answer generation time, using
+    contextual subtraction to avoid BOS/space-prefix ambiguity: encode "ASSISTANT: {word}"
+    and subtract the "ASSISTANT:" prefix tokens to isolate the word tokens.
+    Returns None if the word tokenizes to != 1 token in this context.
     """
-    ids = processor.tokenizer.encode(" " + word, add_special_tokens=False)
+    prefix = "ASSISTANT:"
+    prefix_ids = processor.tokenizer.encode(prefix, add_special_tokens=False)
+    full_ids   = processor.tokenizer.encode(f"{prefix} {word}", add_special_tokens=False)
+    word_ids   = full_ids[len(prefix_ids):]
+    ids = word_ids
     if len(ids) == 1:
         return ids[0]
     return None
