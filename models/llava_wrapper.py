@@ -38,18 +38,33 @@ def _ensure_language_model(model):
                 print(f"[DEBUG] set model.language_model = model.{attr_name}")
                 return
 
-    # Case 2: lm_head is directly on the top-level model (transformers >= 4.46+)
+    # Case 2: lm_head is directly on the top-level model (transformers >= 4.46+).
+    # Structure: model.lm_head (Linear) + model.model (LlavaModel) which itself
+    # has a .language_model child (LlamaModel with .layers / .norm).
     if hasattr(model, 'lm_head') and hasattr(model, 'model'):
-        lm_sub = model.model
         lm_head = model.lm_head
+        llava_model = model.model  # LlavaModel
         print("[DEBUG] Case 2 proxy: lm_head on top-level model")
         print("[DEBUG]   model.lm_head type =", type(lm_head).__name__)
-        print("[DEBUG]   model.model type   =", type(lm_sub).__name__)
+        print("[DEBUG]   model.model type   =", type(llava_model).__name__)
         print("[DEBUG]   model.model children =",
-              [n for n, _ in lm_sub.named_children()])
+              [n for n, _ in llava_model.named_children()])
+
+        # Prefer LlavaModel.language_model (LlamaModel) as the decoder backbone
+        if hasattr(llava_model, 'language_model'):
+            lm_sub = llava_model.language_model
+            print("[DEBUG]   using model.model.language_model as decoder, type =",
+                  type(lm_sub).__name__)
+            print("[DEBUG]   decoder children =",
+                  [n for n, _ in lm_sub.named_children()])
+        else:
+            lm_sub = llava_model
+            print("[DEBUG]   no .language_model on LlavaModel, falling back to model.model")
+
         proxy = type('_LMProxy', (), {'lm_head': lm_head, 'model': lm_sub})()
         object.__setattr__(model, 'language_model', proxy)
-        print("[DEBUG] proxy set as model.language_model")
+        print("[DEBUG] proxy set: language_model.lm_head =", type(proxy.lm_head).__name__,
+              "| language_model.model =", type(proxy.model).__name__)
         return
 
     children = [n for n, _ in model.named_children()]
