@@ -117,23 +117,32 @@ def get_blank_image_inputs(processor, question_text, device="cuda"):
     return get_image_text_inputs(processor, blank, question_text, device)
 
 
-def _unbatch(tensor):
+def _get_hidden(output):
     """
-    Normalize decoder-layer outputs to (seq_len, hidden) numpy float32.
-    Transformers 5.0 removed the batch dim from intermediate tensors;
-    older versions return (batch, seq_len, hidden). Handles both.
+    Extract (seq_len, hidden) numpy float32 from a decoder-layer output.
+    Transformers 5.0: output is a plain Tensor (seq, hidden).
+    Older transformers: output is a tuple whose first element is (batch, seq, hidden).
     """
+    tensor = output[0] if isinstance(output, tuple) else output
     if tensor.dim() == 3:
         return tensor[0].detach().cpu().float().numpy()   # drop batch dim
-    return tensor.detach().cpu().float().numpy()          # already (seq, hidden)
+    return tensor.detach().cpu().float().numpy()
 
 
-def _patch_tensor(h, patch_positions, patch_vals):
-    """In-place patch of h at patch_positions. Handles 2-D and 3-D h."""
+def _patch_and_return(output, patch_positions, patch_vals_np):
+    """
+    Patch hidden states at patch_positions and return the correctly-typed output
+    (plain Tensor or tuple) so the forward pass continues unmodified structurally.
+    """
+    is_tuple = isinstance(output, tuple)
+    tensor = output[0] if is_tuple else output            # (batch, seq, h) or (seq, h)
+    h = tensor.clone()
+    pv = torch.tensor(patch_vals_np, dtype=h.dtype, device=h.device)
     if h.dim() == 3:
-        h[0, patch_positions, :] = patch_vals
+        h[0, patch_positions, :] = pv
     else:
-        h[patch_positions, :] = patch_vals
+        h[patch_positions, :] = pv
+    return (h,) + output[1:] if is_tuple else h
 
 
 def extract_residual_streams(model, inputs, layers):
@@ -146,7 +155,7 @@ def extract_residual_streams(model, inputs, layers):
 
     def make_hook(layer_idx):
         def hook_fn(module, inp, output):
-            residuals[layer_idx] = _unbatch(output[0])
+            residuals[layer_idx] = _get_hidden(output)
         return hook_fn
 
     try:
@@ -175,7 +184,7 @@ def extract_submodule_streams(model, inputs, layers, submodule):
     def make_hook(layer_idx):
         def hook_fn(module, inp, output):
             tensor = output[0] if isinstance(output, tuple) else output
-            cache[layer_idx] = _unbatch(tensor)
+            cache[layer_idx] = _get_hidden(tensor)
         return hook_fn
 
     try:
@@ -232,13 +241,10 @@ def patch_and_run(model, inputs_clean, inputs_corrupted, patch_layer, patch_posi
     final_hidden = {}
 
     def patch_hook(module, inp, output):
-        h = output[0].clone()
-        patch_vals = torch.tensor(corrupted_h[patch_positions], dtype=h.dtype, device=h.device)
-        _patch_tensor(h, patch_positions, patch_vals)
-        return (h,) + output[1:]
+        return _patch_and_return(output, patch_positions, corrupted_h[patch_positions])
 
     def capture_final_hook(module, inp, output):
-        final_hidden["layer31"] = _unbatch(output[0])
+        final_hidden["layer31"] = _get_hidden(output)
 
     hooks = []
     try:
@@ -285,7 +291,7 @@ def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, 
 
         def capture_hook(module, inp, output):
             tensor = output[0] if isinstance(output, tuple) else output
-            corrupted_sub_out["val"] = _unbatch(tensor)
+            corrupted_sub_out["val"] = _get_hidden(tensor)
 
         h_cap = sub.register_forward_hook(capture_hook)
         try:
@@ -299,15 +305,10 @@ def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, 
     final_hidden = {}
 
     def patch_hook(module, inp, output):
-        is_tuple = isinstance(output, tuple)
-        tensor = output[0] if is_tuple else output
-        h = tensor.clone()
-        patch_vals = torch.tensor(corrupted_val[patch_positions], dtype=h.dtype, device=h.device)
-        _patch_tensor(h, patch_positions, patch_vals)
-        return (h,) + output[1:] if is_tuple else h
+        return _patch_and_return(output, patch_positions, corrupted_val[patch_positions])
 
     def capture_final(module, inp, output):
-        final_hidden["val"] = _unbatch(output[0])
+        final_hidden["val"] = _get_hidden(output)
 
     hooks = []
     try:
