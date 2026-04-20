@@ -8,23 +8,49 @@ from models.constants import MODEL_ID
 
 def _ensure_language_model(model):
     """
-    Ensure model.language_model points to the sub-module that owns lm_head.
-    Uses an access test rather than hasattr so that broken properties (common
-    in some transformers versions) are caught and the fallback fires correctly.
+    Ensure model.language_model points to a sub-module (or proxy) that exposes
+    .lm_head and .model.layers/.model.norm, regardless of transformers version.
+    Uses an access test rather than hasattr so broken properties are caught.
     """
+    print("[DEBUG] _ensure_language_model: direct children =",
+          [n for n, _ in model.named_children()])
+
     # Test that the attribute both exists AND is usable
     try:
-        _ = model.language_model.lm_head
+        lm = model.language_model
+        _ = lm.lm_head
+        print("[DEBUG] model.language_model already usable, type =", type(lm).__name__)
+        print("[DEBUG]   .lm_head =", type(lm.lm_head).__name__)
+        print("[DEBUG]   children of language_model =",
+              [n for n, _ in lm.named_children()] if hasattr(lm, 'named_children') else "n/a")
         return
-    except AttributeError:
-        pass
+    except AttributeError as e:
+        print("[DEBUG] model.language_model not usable:", e)
 
-    # Search direct children for one that owns lm_head
+    # Case 1: a direct child owns lm_head (e.g. transformers < 4.40)
     for attr_name in ('model', 'text_model', 'llm', 'decoder', 'transformer'):
         candidate = getattr(model, attr_name, None)
-        if candidate is not None and hasattr(candidate, 'lm_head'):
-            model.language_model = candidate
-            return
+        if candidate is not None:
+            print(f"[DEBUG] checking child '{attr_name}': type={type(candidate).__name__}, "
+                  f"has lm_head={hasattr(candidate, 'lm_head')}")
+            if hasattr(candidate, 'lm_head'):
+                model.language_model = candidate
+                print(f"[DEBUG] set model.language_model = model.{attr_name}")
+                return
+
+    # Case 2: lm_head is directly on the top-level model (transformers >= 4.46+)
+    if hasattr(model, 'lm_head') and hasattr(model, 'model'):
+        lm_sub = model.model
+        lm_head = model.lm_head
+        print("[DEBUG] Case 2 proxy: lm_head on top-level model")
+        print("[DEBUG]   model.lm_head type =", type(lm_head).__name__)
+        print("[DEBUG]   model.model type   =", type(lm_sub).__name__)
+        print("[DEBUG]   model.model children =",
+              [n for n, _ in lm_sub.named_children()])
+        proxy = type('_LMProxy', (), {'lm_head': lm_head, 'model': lm_sub})()
+        object.__setattr__(model, 'language_model', proxy)
+        print("[DEBUG] proxy set as model.language_model")
+        return
 
     children = [n for n, _ in model.named_children()]
     raise AttributeError(
@@ -39,6 +65,8 @@ def load_model(device="cuda"):
     - model: LlavaForConditionalGeneration, float16, on `device`
     - processor: AutoProcessor for llava-hf/llava-1.5-7b-hf
     """
+    import transformers
+    print("[DEBUG] transformers version =", transformers.__version__)
     model = LlavaForConditionalGeneration.from_pretrained(
         MODEL_ID, torch_dtype=torch.float16, device_map=device
     )
