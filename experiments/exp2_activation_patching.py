@@ -41,34 +41,78 @@ print(f"[IO] Model output (en question, greedy): '{_gen_text}'")
 del _ex0, _img0, _inp_gen, _gen_ids, _gen_text
 print("[IO] ────────────────────────────────────────\n")
 
-# ── Patching sanity check (runs on 1 example, takes ~5 seconds) ──────────────
+# ── Patching sanity check ─────────────────────────────────────────────────────
 print("[SANITY] Verifying activation patching works...")
 _ex = examples[0]
 _img = Image.open(_ex["image_path"]).convert("RGB")
 _inputs_clean, _ans = get_image_text_inputs(processor, _img, _ex["questions"]["fr"])
 _inputs_corr,  _    = get_image_text_inputs(processor, _img, _ex["questions"]["en"])
 _lc, _lr = _inputs_clean["input_ids"].shape[1], _inputs_corr["input_ids"].shape[1]
+print(f"[SANITY] seq_len clean(fr)={_lc}  corrupted(en)={_lr}  answer_pos={_ans}")
 if _lc != _lr:
     _ml = min(_lc, _lr)
     for _k in ("input_ids", "attention_mask"):
         _inputs_clean[_k] = _inputs_clean[_k][:, :_ml]
         _inputs_corr[_k]  = _inputs_corr[_k][:, :_ml]
     _ans = _ml - 1
+    print(f"[SANITY] truncated to min_len={_ml}  new answer_pos={_ans}")
+
 _all_pos = list(range(_inputs_clean["input_ids"].shape[1]))
-_corr_cache = extract_residual_streams(model, _inputs_corr, [16])
-_clean_h31  = extract_residual_streams(model, _inputs_clean, [31])[31][_ans]
-_en_tid = _ex["token_ids"]["en"]
-_p_clean   = float(apply_logit_lens(model, _clean_h31)[_en_tid])
+_en_tid  = _ex["token_ids"]["en"]
+_fr_tid  = _ex["token_ids"].get("fr")
+print(f"[SANITY] en_tid={_en_tid}  fr_tid={_fr_tid}")
+
+# Step 1: check what the clean (French) run looks like at last layer
+_clean_cache = extract_residual_streams(model, _inputs_clean, [31])
+_clean_h31   = _clean_cache[31][_ans]
+_probs_clean = apply_logit_lens(model, _clean_h31)
+_top5_clean  = sorted(enumerate(_probs_clean), key=lambda x: -x[1])[:5]
+print(f"[SANITY] Clean run top-5 tokens at answer_pos:")
+for _tid, _tp in _top5_clean:
+    print(f"  id={_tid:6d}  p={_tp:.6f}  word='{processor.tokenizer.decode([_tid])}'")
+print(f"[SANITY] P(en='cat') in clean run = {float(_probs_clean[_en_tid]):.6f}")
+
+# Step 2: check corrupted (English) run hidden state at layer 16
+_corr_cache = extract_residual_streams(model, _inputs_corr, [16, 31])
+_corr_h16   = _corr_cache[16]
+_corr_h31   = _corr_cache[31][_ans]
+_probs_corr = apply_logit_lens(model, _corr_h31)
+print(f"[SANITY] P(en='cat') in corrupted (en) run = {float(_probs_corr[_en_tid]):.6f}")
+print(f"[SANITY] corrupted hidden state at layer 16: shape={_corr_h16.shape}  "
+      f"norm={float(np.linalg.norm(_corr_h16.mean(axis=0))):.4f}")
+
+# Step 3: verify the hidden states actually differ between clean and corrupted
+_clean_h16 = extract_residual_streams(model, _inputs_clean, [16])[16]
+_diff = np.abs(_clean_h16 - _corr_h16[:_clean_h16.shape[0]]).mean()
+print(f"[SANITY] Mean abs diff between clean/corrupted at layer 16: {_diff:.6f}  "
+      f"{'(ZERO — identical inputs?!)' if _diff < 1e-6 else '(non-zero, good)'}")
+
+# Step 4: test if the pre-hook fires at all using a flag
+_hook_fired = {"fired": False}
+def _test_pre_hook(module, args):
+    _hook_fired["fired"] = True
+    print(f"[SANITY] Pre-hook fired! args[0].shape={args[0].shape}  dim={args[0].dim()}")
+    return args
+_test_h = model.language_model.model.layers[17].register_forward_pre_hook(_test_pre_hook)
+with torch.no_grad():
+    model(**_inputs_clean)
+_test_h.remove()
+print(f"[SANITY] Pre-hook on layer 17 fired: {_hook_fired['fired']}")
+
+# Step 5: actual patch test
+_p_clean   = float(_probs_clean[_en_tid])
 _p_patched = float(patch_and_run(model, _inputs_clean, _inputs_corr, 16,
                                   _all_pos, corrupted_cache=_corr_cache)[_en_tid])
 _delta = _p_patched - _p_clean
 print(f"[SANITY] p_en clean={_p_clean:.6f}  patched={_p_patched:.6f}  delta={_delta:+.6f}")
 if abs(_delta) < 1e-5:
-    print("[SANITY] WARNING: delta ~0 — in-place patching may still not be working.")
+    print("[SANITY] WARNING: delta ~0 — patching still not working.")
 else:
     print("[SANITY] OK — patching produces non-zero effect, proceeding.")
-del _ex, _img, _inputs_clean, _inputs_corr, _corr_cache, _clean_h31, _all_pos
-del _lc, _lr, _en_tid, _p_clean, _p_patched, _delta
+
+del _ex, _img, _inputs_clean, _inputs_corr, _corr_cache, _clean_cache, _clean_h31
+del _clean_h16, _corr_h16, _corr_h31, _all_pos, _en_tid, _fr_tid
+del _lc, _lr, _ans, _p_clean, _p_patched, _delta, _diff, _hook_fired
 # ─────────────────────────────────────────────────────────────────────────────
 
 # WARNING: ~38k forward passes total. Expect 12-20h on A100.
