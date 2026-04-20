@@ -129,20 +129,21 @@ def _get_hidden(output):
     return tensor.detach().cpu().float().numpy()
 
 
-def _patch_and_return(output, patch_positions, patch_vals_np):
+def _patch_inplace(output, patch_positions, patch_vals_np):
     """
-    Patch hidden states at patch_positions and return the correctly-typed output
-    (plain Tensor or tuple) so the forward pass continues unmodified structurally.
+    Patch hidden states IN-PLACE at patch_positions.
+    In-place modification is required for transformers 5.0: GradientCheckpointingLayer
+    discards forward-hook return values, so returning a new tensor has no effect.
+    Since LlamaModel.forward holds a reference to the same tensor object via
+    `hidden_states = decoder_layer(...)`, in-place edits propagate to the next layer.
     """
-    is_tuple = isinstance(output, tuple)
-    tensor = output[0] if is_tuple else output            # (batch, seq, h) or (seq, h)
-    h = tensor.clone()
-    pv = torch.tensor(patch_vals_np, dtype=h.dtype, device=h.device)
-    if h.dim() == 3:
-        h[0, patch_positions, :] = pv
+    tensor = output[0] if isinstance(output, tuple) else output
+    pv = torch.tensor(patch_vals_np, dtype=tensor.dtype, device=tensor.device)
+    if tensor.dim() == 3:
+        tensor.data[0, patch_positions, :] = pv
     else:
-        h[patch_positions, :] = pv
-    return (h,) + output[1:] if is_tuple else h
+        tensor.data[patch_positions, :] = pv
+    # Return None — rely entirely on in-place modification, not hook return value.
 
 
 def extract_residual_streams(model, inputs, layers):
@@ -241,7 +242,7 @@ def patch_and_run(model, inputs_clean, inputs_corrupted, patch_layer, patch_posi
     final_hidden = {}
 
     def patch_hook(module, inp, output):
-        return _patch_and_return(output, patch_positions, corrupted_h[patch_positions])
+        _patch_inplace(output, patch_positions, corrupted_h[patch_positions])
 
     def capture_final_hook(module, inp, output):
         final_hidden["layer31"] = _get_hidden(output)
@@ -305,7 +306,7 @@ def patch_submodule_and_run(model, inputs_clean, inputs_corrupted, patch_layer, 
     final_hidden = {}
 
     def patch_hook(module, inp, output):
-        return _patch_and_return(output, patch_positions, corrupted_val[patch_positions])
+        _patch_inplace(output, patch_positions, corrupted_val[patch_positions])
 
     def capture_final(module, inp, output):
         final_hidden["val"] = _get_hidden(output)

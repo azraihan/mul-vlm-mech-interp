@@ -15,6 +15,31 @@ from models.constants import LANGUAGES, NUM_LAYERS, VISUAL_START, VISUAL_END
 os.makedirs("outputs/patching", exist_ok=True)
 model, processor = load_model()
 examples = json.load(open("data/probing_set/probing_set.json"))
+
+# ── Patching sanity check (runs on 1 example, takes ~5 seconds) ──────────────
+print("[SANITY] Verifying activation patching works...")
+_ex = examples[0]
+_img = Image.open(_ex["image_path"]).convert("RGB")
+_inputs_clean, _ans = get_image_text_inputs(processor, _img, _ex["questions"]["fr"])
+_inputs_corr,  _    = get_image_text_inputs(processor, _img, _ex["questions"]["en"])
+_corr_cache = extract_residual_streams(model, _inputs_corr, [16])
+_p_baseline  = apply_logit_lens(model,
+    extract_residual_streams(model, _inputs_clean, [31])[31][_ans])
+_p_patched   = patch_and_run(model, _inputs_clean, _inputs_corr, 16,
+                              list(range(_inputs_clean["input_ids"].shape[1])),
+                              corrupted_cache=_corr_cache)
+_delta = float(_p_patched[_ex["token_ids"]["en"]]) - float(
+         apply_logit_lens(model,
+             extract_residual_streams(model, _inputs_clean, [31])[31][_ans]
+         )[_ex["token_ids"]["en"]])
+print(f"[SANITY] Patch delta at layer 16 = {_delta:+.6f}")
+if abs(_delta) < 1e-5:
+    print("[SANITY] WARNING: delta is ~0 — patching may not be working!")
+else:
+    print("[SANITY] OK — patching produces non-zero effect.")
+del _ex, _img, _inputs_clean, _inputs_corr, _corr_cache, _p_baseline, _p_patched, _delta
+# ─────────────────────────────────────────────────────────────────────────────
+
 # WARNING: ~38k forward passes total. Expect 12-20h on A100.
 # To do a quick test run, replace examples with examples[:5].
 
@@ -101,8 +126,23 @@ np.save("outputs/patching/patching_visual.npy",   aie_visual)
 
 # Identify pivot layers from mean residual AIE across languages
 mean_aie = aie_residual.mean(axis=0)                   # shape (32,)
-threshold = 0.5 * mean_aie.max()
-pivot_layers = sorted([int(i) for i in np.where(mean_aie >= threshold)[0]])
+print("[DEBUG] mean AIE per layer:")
+for i, v in enumerate(mean_aie):
+    print(f"  layer {i:2d}: {v:+.6f}")
+print(f"[DEBUG] AIE range: min={mean_aie.min():.6f}  max={mean_aie.max():.6f}")
+
+peak = float(mean_aie.max())
+if peak > 0:
+    # Normal case: layers with AIE >= 50% of peak
+    threshold = 0.5 * peak
+    pivot_layers = sorted([int(i) for i in np.where(mean_aie >= threshold)[0]])
+else:
+    # All AIE non-positive → patching showed no benefit at any layer.
+    # Fall back to top-3 layers by AIE so downstream experiments can still run.
+    print("[WARNING] All mean AIE values are non-positive — no clear translation "
+          "layers found. Using top-3 layers as pivot_layers fallback.")
+    pivot_layers = sorted(int(i) for i in np.argsort(mean_aie)[-3:])
+
 json.dump(
     {"pivot_layers": pivot_layers, "mean_aie_per_layer": mean_aie.tolist()},
     open("outputs/pivot_layers.json", "w"), indent=2
