@@ -20,6 +20,33 @@ N = len(examples)
 en_probs = np.full((2, 4, N, NUM_LAYERS), np.nan, dtype=np.float32)
 tl_probs = np.full((2, 4, N, NUM_LAYERS), np.nan, dtype=np.float32)
 
+# ── Tokenization diagnostic ───────────────────────────────────────────────────
+print("\n[TOK] ── Tokenization diagnostic (all categories × all languages) ──")
+prefix = "ASSISTANT:"
+prefix_ids = processor.tokenizer.encode(prefix, add_special_tokens=False)
+seen_categories = {}
+for ex in examples:
+    cat = ex.get("category")
+    if cat in seen_categories:
+        continue
+    seen_categories[cat] = True
+    for lang in ["en", "fr", "ar", "zh", "bn"]:
+        word = ex["questions"].get(lang, "")
+        # re-tokenize the answer word directly (not the question)
+        from models.constants import TRANSLATIONS
+        answer_word = TRANSLATIONS.get(cat, {}).get(lang, "?")
+        full_ids  = processor.tokenizer.encode(f"{prefix} {answer_word}", add_special_tokens=False)
+        word_ids  = full_ids[len(prefix_ids):]
+        stripped  = [i for i in word_ids if i != 29871]
+        used_id   = stripped[0] if stripped else None
+        decoded_full    = [processor.tokenizer.decode([i]) for i in word_ids]
+        decoded_used    = processor.tokenizer.decode([used_id]) if used_id else "NONE"
+        multi_token_flag = "⚠ MULTI-TOKEN" if len(stripped) > 1 else ""
+        print(f"[TOK] {cat:<14} {lang}  word='{answer_word}'  "
+              f"all_tokens={decoded_full}  "
+              f"used='{decoded_used}' (id={used_id})  {multi_token_flag}")
+print("[TOK] ────────────────────────────────────────────────────────────────\n")
+
 for cond_idx, use_image in enumerate([True, False]):
     for lang_idx, lang in enumerate(LANGUAGES):
         for ex_idx, ex in enumerate(tqdm(examples, desc=f"cond={cond_idx} lang={lang}")):
