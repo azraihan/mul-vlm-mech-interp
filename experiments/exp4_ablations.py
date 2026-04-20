@@ -192,7 +192,7 @@ print("Saved outputs/ablations/visual_token_ablation.json")
 
 print("\n=== Ablation 4c: α Sensitivity ===")
 alpha_sensitivity = {"mmmb": {}, "xgqa": {}}
-alpha_values_str = ["0.0", "0.1", "0.2", "0.3", "0.4", "0.5", "1.0", "1.5", "2.0"]
+alpha_values_str = ["0.0", "0.1", "0.2", "0.3", "0.4", "0.5"]
 
 for dataset in ["mmmb", "xgqa"]:
     result_files = glob.glob(f"outputs/eval_results/results_{dataset}_*.json")
