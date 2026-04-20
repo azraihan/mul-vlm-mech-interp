@@ -48,8 +48,13 @@ def load_model(device="cuda"):
     - model: LlavaForConditionalGeneration, float16, on `device`
     - processor: AutoProcessor for llava-hf/llava-1.5-7b-hf
     """
+    import torch
+    n_gpus = torch.cuda.device_count()
+    device_map = "auto" if n_gpus > 1 else device
+    if n_gpus > 1:
+        print(f"[load_model] {n_gpus} GPUs detected — using device_map='auto'")
     model = LlavaForConditionalGeneration.from_pretrained(
-        MODEL_ID, torch_dtype=torch.float16, device_map=device
+        MODEL_ID, torch_dtype=torch.float16, device_map=device_map
     )
     model.eval()
     processor = AutoProcessor.from_pretrained(MODEL_ID)
