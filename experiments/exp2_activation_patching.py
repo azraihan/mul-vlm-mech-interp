@@ -177,8 +177,8 @@ for lang_idx, lang in enumerate(LANGUAGES):
             flag = " ← EN" if _tid == en_tid else ""
             print(f"    id={_tid:6d}  p={_p:.5f}  word='{processor.tokenizer.decode([_tid])}'{flag}")
         with torch.no_grad():
-            _gen_clean = model.generate(**inputs_clean, max_new_tokens=10, do_sample=False)
-            _gen_corr  = model.generate(**inputs_corr,  max_new_tokens=10, do_sample=False)
+            _gen_clean = model.generate(**inputs_clean, max_new_tokens=3, do_sample=False)
+            _gen_corr  = model.generate(**inputs_corr,  max_new_tokens=3, do_sample=False)
         _text_clean = processor.decode(
             _gen_clean[0][inputs_clean["input_ids"].shape[1]:], skip_special_tokens=True
         )
