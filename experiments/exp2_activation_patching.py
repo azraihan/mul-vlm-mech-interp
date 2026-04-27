@@ -23,10 +23,10 @@ _img0 = Image.open(_ex0["image_path"]).convert("RGB")
 print(f"[IO] Image path : {_ex0['image_path']}")
 print(f"[IO] Image size : {_img0.size}  (W×H)")
 print(f"[IO] Category   : {_ex0.get('category', 'n/a')}")
-for _lg in ["en", "fr", "ar", "zh", "bn"]:
+for _lg in ["en", "pt", "de", "ru"]:
     if _lg in _ex0.get("questions", {}):
         print(f"[IO] Question [{_lg}]: {_ex0['questions'][_lg]}")
-for _lg in ["en", "fr", "ar", "zh", "bn"]:
+for _lg in ["en", "pt", "de", "ru"]:
     if _lg in _ex0.get("token_ids", {}):
         _tid = _ex0["token_ids"][_lg]
         _word = processor.tokenizer.decode([_tid])
@@ -45,7 +45,7 @@ print("[IO] ──────────────────────�
 print("[SANITY] Verifying activation patching works...")
 _ex = examples[0]
 _img = Image.open(_ex["image_path"]).convert("RGB")
-_inputs_clean, _ans = get_image_text_inputs(processor, _img, _ex["questions"]["fr"])
+_inputs_clean, _ans = get_image_text_inputs(processor, _img, _ex["questions"]["pt"])
 _inputs_corr,  _    = get_image_text_inputs(processor, _img, _ex["questions"]["en"])
 _lc, _lr = _inputs_clean["input_ids"].shape[1], _inputs_corr["input_ids"].shape[1]
 _ml = min(_lc, _lr)
@@ -58,8 +58,8 @@ print(f"[SANITY] answer_pos kept at {_ans} (last token of ASSISTANT: in clean ru
 # Patch only positions that exist in both sequences
 _all_pos = list(range(_ml))
 _en_tid  = _ex["token_ids"]["en"]
-_fr_tid  = _ex["token_ids"].get("fr")
-print(f"[SANITY] en_tid={_en_tid}  fr_tid={_fr_tid}")
+_pt_tid  = _ex["token_ids"].get("pt")
+print(f"[SANITY] en_tid={_en_tid}  pt_tid={_pt_tid}")
 
 # Step 1: check what the clean (French) run looks like at last layer
 _clean_cache = extract_residual_streams(model, _inputs_clean, [31])
@@ -166,6 +166,28 @@ for lang_idx, lang in enumerate(LANGUAGES):
         probs_clean = apply_logit_lens(model, res_clean[NUM_LAYERS - 1][answer_pos])
         p_en_clean = float(probs_clean[en_tid])
 
+        # ── Clean-run diagnostic ──────────────────────────────────────────────
+        top5_clean = sorted(enumerate(probs_clean), key=lambda x: -x[1])[:5]
+        en_word = processor.tokenizer.decode([en_tid])
+        print(f"\n[DBG EX] lang={lang} | category={ex.get('category', '?')} "
+              f"| en_first_token='{en_word}'(id={en_tid})  p={p_en_clean:.6f}")
+        print(f"  Clean run top-5 at answer_pos:")
+        for _tid, _p in top5_clean:
+            flag = " ← EN" if _tid == en_tid else ""
+            print(f"    id={_tid:6d}  p={_p:.5f}  word='{processor.tokenizer.decode([_tid])}'{flag}")
+        with torch.no_grad():
+            _gen_clean = model.generate(**inputs_clean, max_new_tokens=10, do_sample=False)
+            _gen_corr  = model.generate(**inputs_corr,  max_new_tokens=10, do_sample=False)
+        _text_clean = processor.decode(
+            _gen_clean[0][inputs_clean["input_ids"].shape[1]:], skip_special_tokens=True
+        )
+        _text_corr = processor.decode(
+            _gen_corr[0][inputs_corr["input_ids"].shape[1]:], skip_special_tokens=True
+        )
+        print(f"  Model output (clean / {lang} Q): '{_text_clean}'")
+        print(f"  Model output (corrupted / en Q): '{_text_corr}'")
+        # ─────────────────────────────────────────────────────────────────────
+
         # Patch only positions that exist in both sequences
         all_positions    = list(range(min_len))
         visual_positions = list(range(VISUAL_START, min(VISUAL_END + 1, min_len)))
@@ -178,32 +200,52 @@ for lang_idx, lang in enumerate(LANGUAGES):
 
         torch.cuda.empty_cache()
 
+        ex_aie_residual = np.zeros(NUM_LAYERS, dtype=np.float32)
+        ex_aie_visual   = np.zeros(NUM_LAYERS, dtype=np.float32)
+        ex_aie_attn     = np.zeros(NUM_LAYERS, dtype=np.float32)
+        ex_aie_mlp      = np.zeros(NUM_LAYERS, dtype=np.float32)
+
         for L in range(NUM_LAYERS):
             # Full residual patch
             probs = patch_and_run(model, inputs_clean, inputs_corr, L, all_positions,
                                   corrupted_cache=corrupted_all)
-            aie_residual[lang_idx, L] += float(probs[en_tid]) - p_en_clean
+            ex_aie_residual[L] = float(probs[en_tid]) - p_en_clean
+            aie_residual[lang_idx, L] += ex_aie_residual[L]
 
             # Visual-only patch
             probs_vis = patch_and_run(model, inputs_clean, inputs_corr, L, visual_positions,
                                       corrupted_cache=corrupted_all)
-            aie_visual[lang_idx, L] += float(probs_vis[en_tid]) - p_en_clean
+            ex_aie_visual[L] = float(probs_vis[en_tid]) - p_en_clean
+            aie_visual[lang_idx, L] += ex_aie_visual[L]
 
             # Attention-output patch
             probs_attn = patch_submodule_and_run(
                 model, inputs_clean, inputs_corr, L, "attn", all_positions,
                 corrupted_cache=corrupted_attn
             )
-            aie_attn[lang_idx, L] += float(probs_attn[en_tid]) - p_en_clean
+            ex_aie_attn[L] = float(probs_attn[en_tid]) - p_en_clean
+            aie_attn[lang_idx, L] += ex_aie_attn[L]
 
             # MLP-output patch
             probs_mlp = patch_submodule_and_run(
                 model, inputs_clean, inputs_corr, L, "mlp", all_positions,
                 corrupted_cache=corrupted_mlp
             )
-            aie_mlp[lang_idx, L] += float(probs_mlp[en_tid]) - p_en_clean
+            ex_aie_mlp[L] = float(probs_mlp[en_tid]) - p_en_clean
+            aie_mlp[lang_idx, L] += ex_aie_mlp[L]
 
         counts[lang_idx] += 1
+
+        # ── Per-example AIE summary ───────────────────────────────────────────
+        top3 = np.argsort(ex_aie_residual)[-3:][::-1]
+        top3_str = "  ".join(f"L{l}({ex_aie_residual[l]:+.4f})" for l in top3)
+        vis_top3 = np.argsort(ex_aie_visual)[-3:][::-1]
+        vis_top3_str = "  ".join(f"L{l}({ex_aie_visual[l]:+.4f})" for l in vis_top3)
+        print(f"  [AIE] residual top-3: {top3_str}")
+        print(f"  [AIE] visual   top-3: {vis_top3_str}")
+        print(f"  [AIE] attn max: L{np.argmax(ex_aie_attn)}({ex_aie_attn.max():+.4f})  "
+              f"mlp max: L{np.argmax(ex_aie_mlp)}({ex_aie_mlp.max():+.4f})")
+        # ─────────────────────────────────────────────────────────────────────
 
 # Normalise by example count
 for i in range(4):

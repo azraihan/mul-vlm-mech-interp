@@ -35,7 +35,7 @@ baseline_log_probs = compute_pmi_baseline(model)   # (32000,)
 
 # STEP 1: Pick examples — for ar and bn, find the most severe English pivot
 chosen = {}
-for lang_label, lang in [("ar", "ar"), ("bn", "bn")]:
+for lang_label, lang in [("pt", "pt"), ("de", "de")]:
     lang_idx = LANGUAGES.index(lang)
     # max P(en) - max P(tl) across layers, for cond=0 (image present)
     en_max = en_probs_all[0, lang_idx, :, :].max(axis=1)   # (N,)
@@ -46,7 +46,7 @@ for lang_label, lang in [("ar", "ar"), ("bn", "bn")]:
 
 # STEP 2 & 3: Plot
 fig, axes = plt.subplots(2, 2, figsize=(14, 8))
-col_keys = ["ar", "bn"]
+col_keys = ["pt", "de"]
 
 # Accumulate curve data for serialization — lets you restyle without re-running the model.
 fig5_data = {}

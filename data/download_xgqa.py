@@ -37,6 +37,14 @@ if __name__ == "__main__":
         print(f"floschne/xgqa failed: {e}")
         ds = None
 
+    # Build en answer lookup so non-English splits can include answer_en for fair eval
+    en_answers = {}  # question_id -> english answer
+    if ds is not None and "en" in ds:
+        for ex in ds["en"]:
+            qid = str(ex.get("question_id", ""))
+            if qid:
+                en_answers[qid] = str(ex.get("answer", ex.get("full_answer", ""))).lower().strip()
+
     for lang in XGQA_LANGS:
         out_path = f"data/xgqa/xgqa_{lang}.json"
         examples = []
@@ -47,9 +55,10 @@ if __name__ == "__main__":
                 if len(examples) >= 200:
                     break
 
-                image_id = str(ex.get("image_id", ""))
+                image_id  = str(ex.get("image_id", ""))
                 question  = ex.get("question", "")
                 answer    = ex.get("answer", ex.get("full_answer", ""))
+                qid       = str(ex.get("question_id", ""))
 
                 # Save image to cache if not already there
                 cache_path = f"data/gqa_images/{image_id}.jpg"
@@ -63,12 +72,15 @@ if __name__ == "__main__":
                         except Exception as e:
                             print(f"  Warning: could not save image {image_id}: {e}")
 
-                examples.append({
-                    "question_id": str(ex.get("question_id", "")),
+                entry = {
+                    "question_id": qid,
                     "question":    question,
                     "answer":      answer,
                     "imageId":     image_id,
-                })
+                }
+                if lang != "en" and qid in en_answers:
+                    entry["answer_en"] = en_answers[qid]
+                examples.append(entry)
 
         else:
             # Fallback: xgqa_repo (text only, no images)

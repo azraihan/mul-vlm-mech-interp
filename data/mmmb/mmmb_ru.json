@@ -1,0 +1,1802 @@
+[
+  {
+    "question": "Обычно ли фрукт на картинке сладкий?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0000.jpg"
+  },
+  {
+    "question": "Фрукт на картинке обычно острый?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0001.jpg"
+  },
+  {
+    "question": "Обычно в этом районе, который показан на картинке, много машин?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0002.jpg"
+  },
+  {
+    "question": "Можно ли переходить дорогу прямо из места, показанного на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0003.jpg"
+  },
+  {
+    "question": "Животное на картинке обычно не видно зимой?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0004.jpg"
+  },
+  {
+    "question": "Животное на картинке обычно встречается зимой?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0005.jpg"
+  },
+  {
+    "question": "Это блок-схема программы. Я ввожу 3 и 6. Выводится \"Нет\"?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0006.jpg"
+  },
+  {
+    "question": "Это блок-схема программы. Я ввожу 3 и 6. Вывод будет 'Да'?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0007.jpg"
+  },
+  {
+    "question": "На перекрестке есть знак, могу ли я повернуть налево?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0008.jpg"
+  },
+  {
+    "question": "На перекрестке есть знак, могу ли я повернуть направо?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0009.jpg"
+  },
+  {
+    "question": "Витамин С очень полезен для здоровья человека. Обычно ли пища на картинке содержит витамин С?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0010.jpg"
+  },
+  {
+    "question": "Еда на картинке обычно используется для наращивания мышц?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0011.jpg"
+  },
+  {
+    "question": "На картинке показаны все яблоки. Мой брат и я делим яблоки поровну. Могу я взять одно яблоко?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0012.jpg"
+  },
+  {
+    "question": "На картинке показаны все яблоки. Мой брат и я делим яблоки поровну. Могу я взять два яблока?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0013.jpg"
+  },
+  {
+    "question": "Вот фотография, где я ем фрукты. Это я ем клубнику?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0014.jpg"
+  },
+  {
+    "question": "Вот фотография, где я ем фрукт. Это вишневый помидор у меня в руках?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0015.jpg"
+  },
+  {
+    "question": "Обычно ли у транспортного средства на картинке закрыты окна во время быстрой езды?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0016.jpg"
+  },
+  {
+    "question": "Обычно окна транспортного средства на картинке открыты во время быстрой езды?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0017.jpg"
+  },
+  {
+    "question": "Люди обычно используют предмет на картинке для макияжа в своей повседневной жизни?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0018.jpg"
+  },
+  {
+    "question": "Люди часто используют предмет на картинке для письма в повседневной жизни?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0019.jpg"
+  },
+  {
+    "question": "Это блок-схема программы. Когда на входе 5, на выходе получится 6?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0020.jpg"
+  },
+  {
+    "question": "Это блок-схема программы. Когда вводится число 6, будет ли результат 5?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0021.jpg"
+  },
+  {
+    "question": "Я хочу похудеть. Еда на картинке подходит для этого?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0022.jpg"
+  },
+  {
+    "question": "Я хочу набрать вес. Подходит ли еда на картинке для этого?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0023.jpg"
+  },
+  {
+    "question": "Машина на картинке собирается сделать правый поворот после проезда через прямой участок дороги?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0024.jpg"
+  },
+  {
+    "question": "Машина на картинке собирается совершить поворот налево после проезда через прямой участок дороги?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0025.jpg"
+  },
+  {
+    "question": "Можно ли мне спросить, выживут ли растения на картинке в воде?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0026.jpg"
+  },
+  {
+    "question": "Могу ли я спросить, выживут ли растения на картинке в почве?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0027.jpg"
+  },
+  {
+    "question": "Мужчина на картинке ест. Он ест лапшу?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0028.jpg"
+  },
+  {
+    "question": "Мужчина на картинке ест. Он ест рис?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0029.jpg"
+  },
+  {
+    "question": "Может ли предмет на картинке выдавать воду?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0030.jpg"
+  },
+  {
+    "question": "Можно ли использовать предмет на картинке для продувки воздуха?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0031.jpg"
+  },
+  {
+    "question": "Обычно ли транспортное средство на картинке движется быстрее лошади?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0032.jpg"
+  },
+  {
+    "question": "Обычно ли транспортное средство на картинке летает?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0033.jpg"
+  },
+  {
+    "question": "Нельзя мне курить здесь?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0034.jpg"
+  },
+  {
+    "question": "Можно мне здесь курить?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0035.jpg"
+  },
+  {
+    "question": "Эта круговая диаграмма показывает возрастное распределение в нашей компании. Доля людей в возрасте 30-50 лет составляет более 40%?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0036.jpg"
+  },
+  {
+    "question": "Эта круговая диаграмма показывает возрастное распределение в нашей компании. Доля людей в возрасте 40-50 лет превышает 30%?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0037.jpg"
+  },
+  {
+    "question": "Это гистограмма продаж фруктов сегодня. Покупают ли мужчины арбузов больше, чем женщины бананов?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0038.jpg"
+  },
+  {
+    "question": "Это гистограмма продаж фруктов сегодня. Покупают ли мужчины персики чаще, чем женщины яблоки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0039.jpg"
+  },
+  {
+    "question": "Инструмент на картинке распространен в высотных зданиях?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0040.jpg"
+  },
+  {
+    "question": "В случае пожара, уместно ли выбрать инструмент на картинке, чтобы спуститься вниз?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0041.jpg"
+  },
+  {
+    "question": "Сейчас за окном идет снег. Я хочу выйти на улицу. Подходит ли одевать одежду, которая на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0042.jpg"
+  },
+  {
+    "question": "На улице очень жарко. Я хочу выйти на улицу. Подходит ли надеть одежду, которая на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0043.jpg"
+  },
+  {
+    "question": "Является ли животное на картинке подходящим в качестве домашнего питомца?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0044.jpg"
+  },
+  {
+    "question": "Животное на фотографиях обычно сильнее взрослых тигров?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0045.jpg"
+  },
+  {
+    "question": "Я хочу играть в баскетбол. Место на картинке - хороший выбор?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0046.jpg"
+  },
+  {
+    "question": "Я хочу играть в футбол. Хороший ли это выбор места для игры, что на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0047.jpg"
+  },
+  {
+    "question": "Уместно ли носить пуховик в сезон, который изображён на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0048.jpg"
+  },
+  {
+    "question": "Уместно ли носить одежду с короткими рукавами в сезон, изображённый на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0049.jpg"
+  },
+  {
+    "question": "Я хочу взять с собой одну вещь в дождливый день. Подходит ли вещь на картинке для этого?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0050.jpg"
+  },
+  {
+    "question": "На улице идет дождь. Я в доме и мне не нужно выходить на улицу. Нужно ли мне пользоваться этим предметом, который на фотографии?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0051.jpg"
+  },
+  {
+    "question": "Мне очень жарко. Подходит ли инструмент на картинке для использования?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0052.jpg"
+  },
+  {
+    "question": "Мне очень холодно. Инструмент на картинке подходит для использования?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0053.jpg"
+  },
+  {
+    "question": "Вредно ли слишком часто есть еду, изображенную на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0054.jpg"
+  },
+  {
+    "question": "Еда на картинке обычно низкокалорийная?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0055.jpg"
+  },
+  {
+    "question": "Телефон на фото подключен к зарядному устройству?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0056.jpg"
+  },
+  {
+    "question": "Телефон на фото заряжается?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0057.jpg"
+  },
+  {
+    "question": "Я хочу закрутить винт. Инструмент на картинке обычно подходит для этого?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0058.jpg"
+  },
+  {
+    "question": "Инструмент на картинке обычно подходит для разгрызания грецких орехов?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0059.jpg"
+  },
+  {
+    "question": "Есть ли поезд на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0060.jpg"
+  },
+  {
+    "question": "На картинке изображено два поезда?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0061.jpg"
+  },
+  {
+    "question": "На изображении всего два человека?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0062.jpg"
+  },
+  {
+    "question": "На изображении только один человек?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0063.jpg"
+  },
+  {
+    "question": "На изображении только одна собака?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0064.jpg"
+  },
+  {
+    "question": "На изображении две собаки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0065.jpg"
+  },
+  {
+    "question": "На изображении всего две собаки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0066.jpg"
+  },
+  {
+    "question": "На изображении только одна собака?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0067.jpg"
+  },
+  {
+    "question": "На картинке три ноутбука?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0068.jpg"
+  },
+  {
+    "question": "На картинке четыре ноутбука?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0069.jpg"
+  },
+  {
+    "question": "На изображении всего два устройства отображения?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0070.jpg"
+  },
+  {
+    "question": "В изображении только одно устройство отображения?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0071.jpg"
+  },
+  {
+    "question": "На изображении два банана?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0072.jpg"
+  },
+  {
+    "question": "На изображении три банана?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0073.jpg"
+  },
+  {
+    "question": "На этом изображении две жирафы?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0074.jpg"
+  },
+  {
+    "question": "На этой картинке три жирафа?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0075.jpg"
+  },
+  {
+    "question": "На этом изображении появляются четыре человека?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0076.jpg"
+  },
+  {
+    "question": "На этом изображении видны только три человека?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0077.jpg"
+  },
+  {
+    "question": "На этом изображении всего три торта?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0078.jpg"
+  },
+  {
+    "question": "На этом изображении всего два торта?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0079.jpg"
+  },
+  {
+    "question": "На изображении видны два человека?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0080.jpg"
+  },
+  {
+    "question": "На изображении виден только один человек?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0081.jpg"
+  },
+  {
+    "question": "На этом изображении только одна миска?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0082.jpg"
+  },
+  {
+    "question": "На этом изображении есть две миски?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0083.jpg"
+  },
+  {
+    "question": "В этом изображении появляются три человека?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0084.jpg"
+  },
+  {
+    "question": "На этом изображении видны только два человека?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0085.jpg"
+  },
+  {
+    "question": "На этом изображении есть две миски?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0086.jpg"
+  },
+  {
+    "question": "На этом изображении три миски?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0087.jpg"
+  },
+  {
+    "question": "На этом изображении четыре человека?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0088.jpg"
+  },
+  {
+    "question": "На этом изображении пять человек?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0089.jpg"
+  },
+  {
+    "question": "Появляются ли на этом изображении четыре собаки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0090.jpg"
+  },
+  {
+    "question": "На этом изображении видно только три собаки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0091.jpg"
+  },
+  {
+    "question": "На картинке только один корабль?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0092.jpg"
+  },
+  {
+    "question": "На картинке изображено всего два корабля?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0093.jpg"
+  },
+  {
+    "question": "На этой картинке нет людей?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0094.jpg"
+  },
+  {
+    "question": "На этом изображении два человека?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0095.jpg"
+  },
+  {
+    "question": "Есть ли собака на картинке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0096.jpg"
+  },
+  {
+    "question": "На картинке всего две собаки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0097.jpg"
+  },
+  {
+    "question": "На этом изображении есть три пульта?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0098.jpg"
+  },
+  {
+    "question": "На этом изображении только два пульта?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0099.jpg"
+  },
+  {
+    "question": "Это изображение описывает место сборочной линии?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0100.jpg"
+  },
+  {
+    "question": "Это изображение описывает пивной сад?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0101.jpg"
+  },
+  {
+    "question": "Это изображение описывает место для кемпинга?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0102.jpg"
+  },
+  {
+    "question": "Это изображение описывает место лифтового шахта?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0103.jpg"
+  },
+  {
+    "question": "Это фото сделано внутри цветочного магазина?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0104.jpg"
+  },
+  {
+    "question": "Это фото сделано в суши-баре?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0105.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение место ипподрома?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0106.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение камбуз?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0107.jpg"
+  },
+  {
+    "question": "Это фото сделано на открытом воздухе в месте для содержания собак?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0108.jpg"
+  },
+  {
+    "question": "Это фото сделано в ванной комнате?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0109.jpg"
+  },
+  {
+    "question": "Этот снимок сделан в салоне автобуса?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0110.jpg"
+  },
+  {
+    "question": "Это фото сделано в поместье?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0111.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение гримерную?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0112.jpg"
+  },
+  {
+    "question": "Это изображение описывает химическую лабораторию?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0113.jpg"
+  },
+  {
+    "question": "Это изображение описывает место ветрофермы?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0114.jpg"
+  },
+  {
+    "question": "Это изображение описывает место уличного волейбольного корта?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0115.jpg"
+  },
+  {
+    "question": "Это фото сделано на автомобильном заводе?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0116.jpg"
+  },
+  {
+    "question": "Это фото сделано на деревянной ферме?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0117.jpg"
+  },
+  {
+    "question": "Это фото сделано на пляже?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0118.jpg"
+  },
+  {
+    "question": "Это фото сделано возле библиотеки на улице?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0119.jpg"
+  },
+  {
+    "question": "Это фото сделано в горах?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0120.jpg"
+  },
+  {
+    "question": "Это фото сделано в парке формального сада?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0121.jpg"
+  },
+  {
+    "question": "Это изображение описывает павильон?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0122.jpg"
+  },
+  {
+    "question": "Это изображение описывает место для конюшни?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0123.jpg"
+  },
+  {
+    "question": "Это изображение описывает дом на дереве?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0124.jpg"
+  },
+  {
+    "question": "Это изображение описывает место патио?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0125.jpg"
+  },
+  {
+    "question": "Это фото сделано в кофейне?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0126.jpg"
+  },
+  {
+    "question": "Это фото сделано в холле у лифтов?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0127.jpg"
+  },
+  {
+    "question": "Это фото сделано в месте, где находятся небоскребы?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0128.jpg"
+  },
+  {
+    "question": "Это фото сделано в лиственном лесу?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0129.jpg"
+  },
+  {
+    "question": "Это изображение описывает место на улице?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0130.jpg"
+  },
+  {
+    "question": "Это изображение описывает поле для гольфа?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0131.jpg"
+  },
+  {
+    "question": "Это фотография сделана в переулке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0132.jpg"
+  },
+  {
+    "question": "Этот снимок сделан в месте, где находится деревянная дорожка?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0133.jpg"
+  },
+  {
+    "question": "Это фото сделано в супермаркете?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0134.jpg"
+  },
+  {
+    "question": "Это фото сделано в месте у ручья?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0135.jpg"
+  },
+  {
+    "question": "Это фото сделано на арене хоккея?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0136.jpg"
+  },
+  {
+    "question": "Этот снимок сделан на горнолыжном склоне?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0137.jpg"
+  },
+  {
+    "question": "Это фото сделано в саду камней?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0138.jpg"
+  },
+  {
+    "question": "Это фотография сделана внутри базара?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0139.jpg"
+  },
+  {
+    "question": "Это фотография сделана внутри библиотеки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0140.jpg"
+  },
+  {
+    "question": "Это фотография сделана в саду?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0141.jpg"
+  },
+  {
+    "question": "Это фото сделано в помещении катка для фигурного катания?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0142.jpg"
+  },
+  {
+    "question": "Это фото сделано на ветряной ферме?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0143.jpg"
+  },
+  {
+    "question": "Это фото сделано на арене хоккея?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0144.jpg"
+  },
+  {
+    "question": "Это фото сделано на погрузочной платформе?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0145.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение место расположения шале?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0146.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение место с башней?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0147.jpg"
+  },
+  {
+    "question": "Это изображение описывает спальню?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0148.jpg"
+  },
+  {
+    "question": "Это изображение описывает место музыкальной студии?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0149.jpg"
+  },
+  {
+    "question": "Этот снимок сделан в ботаническом саду?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0150.jpg"
+  },
+  {
+    "question": "Это фото сделано в зале законодательного собрания?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0151.jpg"
+  },
+  {
+    "question": "Это изображение сделано на кухне галеры?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0152.jpg"
+  },
+  {
+    "question": "Это изображение сделано в физической лаборатории?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0153.jpg"
+  },
+  {
+    "question": "Это изображение описывает место отделения универмага?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0154.jpg"
+  },
+  {
+    "question": "Это изображение описывает место с висячим мостом?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0155.jpg"
+  },
+  {
+    "question": "Это фото сделано в школе?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0156.jpg"
+  },
+  {
+    "question": "Это фото сделано на улице у ангара?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0157.jpg"
+  },
+  {
+    "question": "Этот снимок сделан в публичном атриуме?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0158.jpg"
+  },
+  {
+    "question": "Это фото сделано на платформе станции метро?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0159.jpg"
+  },
+  {
+    "question": "Это фото сделано на плотине?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0160.jpg"
+  },
+  {
+    "question": "Это фото сделано в помещении катка для фигурного катания?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0161.jpg"
+  },
+  {
+    "question": "Это изображение описывает место военной базы?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0162.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение платформу железнодорожной станции?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0163.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение место заправочной станции?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0164.jpg"
+  },
+  {
+    "question": "Это изображение описывает внешний вид дверного проема?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0165.jpg"
+  },
+  {
+    "question": "Оп",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0166.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение поле кукурузы?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0167.jpg"
+  },
+  {
+    "question": "Это изображение описывает место биологической лаборатории?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0168.jpg"
+  },
+  {
+    "question": "Это изображение описывает место кондитерского магазина?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0169.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение место для кладовой?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0170.jpg"
+  },
+  {
+    "question": "Это изображение описывает место с маяком?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0171.jpg"
+  },
+  {
+    "question": "Это изображение сделано в парнике в помещении?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0172.jpg"
+  },
+  {
+    "question": "Это фото сделано на пастбище?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0173.jpg"
+  },
+  {
+    "question": "Это фото сделано в касбе?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0174.jpg"
+  },
+  {
+    "question": "Это фото сделано в месте для купания?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0175.jpg"
+  },
+  {
+    "question": "Это изображение сделано в мавзолее?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0176.jpg"
+  },
+  {
+    "question": "Эта фотография сделана в месте, похожем на альков?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0177.jpg"
+  },
+  {
+    "question": "Это фото сделано внутри кабинки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0178.jpg"
+  },
+  {
+    "question": "Это фотография сделана внутри базара?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0179.jpg"
+  },
+  {
+    "question": "Это фото сделано в молодежном хостеле?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0180.jpg"
+  },
+  {
+    "question": "Это фото сделано на свалке?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0181.jpg"
+  },
+  {
+    "question": "Описывает ли это изображение путь эвакуации в случае пожара?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0182.jpg"
+  },
+  {
+    "question": "Это изображение описывает игровую комнату?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0183.jpg"
+  },
+  {
+    "question": "Эта фотография сделана на рисовой плантации?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0184.jpg"
+  },
+  {
+    "question": "Это фото сделано внутри автобусной станции?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0185.jpg"
+  },
+  {
+    "question": "Это фото сделано в мавзолее?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0186.jpg"
+  },
+  {
+    "question": "Это фото сделано на платформе вокзала?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0187.jpg"
+  },
+  {
+    "question": "Это фото сделано в прихожей?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0188.jpg"
+  },
+  {
+    "question": "Это фото сделано в жилом районе?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0189.jpg"
+  },
+  {
+    "question": "Это фото сделано в пекарне?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0190.jpg"
+  },
+  {
+    "question": "Это фото сделано у входа на улице?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0191.jpg"
+  },
+  {
+    "question": "Это изображение описывает место с эскалатором внутри помещения?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0192.jpg"
+  },
+  {
+    "question": "Это изображение описывает место ледяной полки?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0193.jpg"
+  },
+  {
+    "question": "Это изображение сделано в шахте лифта?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0194.jpg"
+  },
+  {
+    "question": "Это изображение сделано в месте пожарной эвакуации?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0195.jpg"
+  },
+  {
+    "question": "Это фото сделано в промышленной зоне?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0196.jpg"
+  },
+  {
+    "question": "Это фото сделано в ботаническом саду?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0197.jpg"
+  },
+  {
+    "question": "Это фото сделано в помещении с эскалатором?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "A",
+    "image": "data/mmmb/images/ru_0198.jpg"
+  },
+  {
+    "question": "Это фото сделано в кофейне?",
+    "options": {
+      "A": "Да",
+      "B": "Нет"
+    },
+    "answer": "B",
+    "image": "data/mmmb/images/ru_0199.jpg"
+  }
+]

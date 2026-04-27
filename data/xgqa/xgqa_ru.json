@@ -1,0 +1,1202 @@
+[
+  {
+    "question_id": "",
+    "question": "Это пасмурная погода?",
+    "answer": "no",
+    "imageId": "n161313"
+  },
+  {
+    "question_id": "",
+    "question": "Какого роста стул в нижней части фотографии?",
+    "answer": "short",
+    "imageId": "n518912"
+  },
+  {
+    "question_id": "",
+    "question": "Какое устройство находится на столе?",
+    "answer": "keyboard",
+    "imageId": "n435808"
+  },
+  {
+    "question_id": "",
+    "question": "Над чем пролетает самолет?",
+    "answer": "ocean",
+    "imageId": "n414992"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета брюки?",
+    "answer": "red",
+    "imageId": "n446242"
+  },
+  {
+    "question_id": "",
+    "question": "Земля синяя или коричневая?",
+    "answer": "brown",
+    "imageId": "n168412"
+  },
+  {
+    "question_id": "",
+    "question": "Что вокруг открытого окна?",
+    "answer": "drapes",
+    "imageId": "n23181"
+  },
+  {
+    "question_id": "",
+    "question": "Что за окном?",
+    "answer": "drapes",
+    "imageId": "n23181"
+  },
+  {
+    "question_id": "",
+    "question": "Кто стоит за столом?",
+    "answer": "woman",
+    "imageId": "n52544"
+  },
+  {
+    "question_id": "",
+    "question": "Справа от кровати есть занавески?",
+    "answer": "yes",
+    "imageId": "n23181"
+  },
+  {
+    "question_id": "",
+    "question": "Что висит над доской?",
+    "answer": "picture",
+    "imageId": "n578564"
+  },
+  {
+    "question_id": "",
+    "question": "Торт на блюдечке?",
+    "answer": "no",
+    "imageId": "n437064"
+  },
+  {
+    "question_id": "",
+    "question": "Человек справа от чашки в джинсах?",
+    "answer": "yes",
+    "imageId": "n4777"
+  },
+  {
+    "question_id": "",
+    "question": "Какое устройство находится рядом с ковриком для мыши?",
+    "answer": "keyboard",
+    "imageId": "n435808"
+  },
+  {
+    "question_id": "",
+    "question": "Свитер выглядит открытым и синим?",
+    "answer": "yes",
+    "imageId": "n554880"
+  },
+  {
+    "question_id": "",
+    "question": "Пиджак с длинными рукавами и черным?",
+    "answer": "yes",
+    "imageId": "n151768"
+  },
+  {
+    "question_id": "",
+    "question": "Есть ли кровати рядом с маленькой розеткой?",
+    "answer": "yes",
+    "imageId": "n49438"
+  },
+  {
+    "question_id": "",
+    "question": "На какой стороне фотографии кожаная сумка?",
+    "answer": "right",
+    "imageId": "n313060"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется кухонная утварь, которая висит на крючке?",
+    "answer": "pan",
+    "imageId": "n578564"
+  },
+  {
+    "question_id": "",
+    "question": "Где стоит тощий человек?",
+    "answer": "table",
+    "imageId": "n52544"
+  },
+  {
+    "question_id": "",
+    "question": "Тарелки на верхушке оттоманы?",
+    "answer": "no",
+    "imageId": "n546616"
+  },
+  {
+    "question_id": "",
+    "question": "Морозильник у стены маленький или большой?",
+    "answer": "large",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "Какая еда слева от ребенка, который сидит на женщине?",
+    "answer": "marshmallow",
+    "imageId": "n546616"
+  },
+  {
+    "question_id": "",
+    "question": "Телефон и кофейная чашка одного цвета?",
+    "answer": "yes",
+    "imageId": "n315887"
+  },
+  {
+    "question_id": "",
+    "question": "Есть ли на картинке маленькие холодильники или микроволны?",
+    "answer": "no",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за шторы вокруг?",
+    "answer": "window",
+    "imageId": "n23181"
+  },
+  {
+    "question_id": "",
+    "question": "С какой стороны картинка?",
+    "answer": "left",
+    "imageId": "n314171"
+  },
+  {
+    "question_id": "",
+    "question": "Из какого материала сделан пешеходный переход перед магазинами?",
+    "answer": "concrete",
+    "imageId": "n115614"
+  },
+  {
+    "question_id": "",
+    "question": "Насколько велики посыпки, которые посыпаются на кексы?",
+    "answer": "small",
+    "imageId": "n296467"
+  },
+  {
+    "question_id": "",
+    "question": "Из какого материала сделан пешеходный переход возле уличного фонаря?",
+    "answer": "concrete",
+    "imageId": "n115614"
+  },
+  {
+    "question_id": "",
+    "question": "Какая одежда розового цвета?",
+    "answer": "tank top",
+    "imageId": "n274905"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется розовый предмет одежды?",
+    "answer": "tank top",
+    "imageId": "n274905"
+  },
+  {
+    "question_id": "",
+    "question": "Какая одежда не розовая?",
+    "answer": "hat",
+    "imageId": "n274905"
+  },
+  {
+    "question_id": "",
+    "question": "Этот вертолет включен или выключен?",
+    "answer": "off",
+    "imageId": "n250715"
+  },
+  {
+    "question_id": "",
+    "question": "Ты видишь кошек?",
+    "answer": "yes",
+    "imageId": "n16656"
+  },
+  {
+    "question_id": "",
+    "question": "Это туфля за собакой?",
+    "answer": "no",
+    "imageId": "n16656"
+  },
+  {
+    "question_id": "",
+    "question": "Какая одежда без рукавов?",
+    "answer": "tank top",
+    "imageId": "n274905"
+  },
+  {
+    "question_id": "",
+    "question": "Поле мягкое и снежное?",
+    "answer": "no",
+    "imageId": "n146522"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета рубашка?",
+    "answer": "white",
+    "imageId": "n488874"
+  },
+  {
+    "question_id": "",
+    "question": "Счастливый мужчина слева или справа от женщины в центре?",
+    "answer": "right",
+    "imageId": "n71728"
+  },
+  {
+    "question_id": "",
+    "question": "Кто носит браслет?",
+    "answer": "woman",
+    "imageId": "n126087"
+  },
+  {
+    "question_id": "",
+    "question": "С какой стороны маршрутизатор?",
+    "answer": "left",
+    "imageId": "n435808"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета брюки?",
+    "answer": "gray",
+    "imageId": "n518912"
+  },
+  {
+    "question_id": "",
+    "question": "Кто в рубашке?",
+    "answer": "girl",
+    "imageId": "n137182"
+  },
+  {
+    "question_id": "",
+    "question": "Кто в рубашке?",
+    "answer": "girl",
+    "imageId": "n137182"
+  },
+  {
+    "question_id": "",
+    "question": "Что он делает?",
+    "answer": "standing",
+    "imageId": "n243701"
+  },
+  {
+    "question_id": "",
+    "question": "Есть ли реки или океаны, которые не спокойны?",
+    "answer": "no",
+    "imageId": "n48494"
+  },
+  {
+    "question_id": "",
+    "question": "Какая еда не запечена?",
+    "answer": "cookies",
+    "imageId": "n296467"
+  },
+  {
+    "question_id": "",
+    "question": "Какое транспортное средство перед флагом?",
+    "answer": "van",
+    "imageId": "n256120"
+  },
+  {
+    "question_id": "",
+    "question": "Какое транспортное средство перед флагом?",
+    "answer": "van",
+    "imageId": "n256120"
+  },
+  {
+    "question_id": "",
+    "question": "Фургон перед шариком?",
+    "answer": "no",
+    "imageId": "n256120"
+  },
+  {
+    "question_id": "",
+    "question": "Шкафы под плитой деревянные и открытые?",
+    "answer": "no",
+    "imageId": "n501609"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется предмет мебели в клетку?",
+    "answer": "bed",
+    "imageId": "n95313"
+  },
+  {
+    "question_id": "",
+    "question": "Коробки справа от человека полные и квадратные?",
+    "answer": "yes",
+    "imageId": "n151768"
+  },
+  {
+    "question_id": "",
+    "question": "Лошадь рядом с другой лошадью и детская, и коричневая?",
+    "answer": "no",
+    "imageId": "n6309"
+  },
+  {
+    "question_id": "",
+    "question": "Река широкая или узкая?",
+    "answer": "narrow",
+    "imageId": "n477215"
+  },
+  {
+    "question_id": "",
+    "question": "Какой холодильник больше по размеру?",
+    "answer": "stove",
+    "imageId": "n64959"
+  },
+  {
+    "question_id": "",
+    "question": "Что внутри чаши справа от бобов?",
+    "answer": "cookies",
+    "imageId": "n296467"
+  },
+  {
+    "question_id": "",
+    "question": "Как думаешь, насколько чиста маска для лица, которую носит ловец?",
+    "answer": "clean",
+    "imageId": "n317260"
+  },
+  {
+    "question_id": "",
+    "question": "Где стоит кэтчер?",
+    "answer": "field",
+    "imageId": "n570181"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета перчатка?",
+    "answer": "black",
+    "imageId": "n317260"
+  },
+  {
+    "question_id": "",
+    "question": "Одеяло выглядит мягким и белым?",
+    "answer": "yes",
+    "imageId": "n470920"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета ящики?",
+    "answer": "light brown",
+    "imageId": "n35676"
+  },
+  {
+    "question_id": "",
+    "question": "Слева от плиты есть холодильники?",
+    "answer": "yes",
+    "imageId": "n278312"
+  },
+  {
+    "question_id": "",
+    "question": "Какая одежда яркая?",
+    "answer": "gown",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Рядом с человеком в пальто есть слон?",
+    "answer": "no",
+    "imageId": "n571179"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за женщина?",
+    "answer": "gloves",
+    "imageId": "n571179"
+  },
+  {
+    "question_id": "",
+    "question": "Как ты думаешь, что это за стоящий человек рядом с мужчиной в одежде?",
+    "answer": "gloves",
+    "imageId": "n571179"
+  },
+  {
+    "question_id": "",
+    "question": "Какой тип одежды розовый?",
+    "answer": "gown",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за человек, который сидит сверху?",
+    "answer": "stairs",
+    "imageId": "n566028"
+  },
+  {
+    "question_id": "",
+    "question": "Что стоит на полу?",
+    "answer": "shelf",
+    "imageId": "n500209"
+  },
+  {
+    "question_id": "",
+    "question": "Какие предметы мебели слева от мальчика?",
+    "answer": "tables",
+    "imageId": "n531359"
+  },
+  {
+    "question_id": "",
+    "question": "Что перед стеной не короткое?",
+    "answer": "shelf",
+    "imageId": "n500209"
+  },
+  {
+    "question_id": "",
+    "question": "Насколько широкая парковка сделана из цемента?",
+    "answer": "wide",
+    "imageId": "n259949"
+  },
+  {
+    "question_id": "",
+    "question": "Что за устройство перед плоским компьютером?",
+    "answer": "phone",
+    "imageId": "n315887"
+  },
+  {
+    "question_id": "",
+    "question": "Что сидит на полу?",
+    "answer": "gift",
+    "imageId": "n554880"
+  },
+  {
+    "question_id": "",
+    "question": "Справа от желтого напитка есть блендер?",
+    "answer": "yes",
+    "imageId": "n37274"
+  },
+  {
+    "question_id": "",
+    "question": "Подарок сидит на полу?",
+    "answer": "yes",
+    "imageId": "n554880"
+  },
+  {
+    "question_id": "",
+    "question": "Из какого материала состоят круглые стекла, стекло или проволока?",
+    "answer": "glass",
+    "imageId": "n250715"
+  },
+  {
+    "question_id": "",
+    "question": "Из чего сделаны очки?",
+    "answer": "glass",
+    "imageId": "n250715"
+  },
+  {
+    "question_id": "",
+    "question": "Какое животное на диване?",
+    "answer": "dog",
+    "imageId": "n14087"
+  },
+  {
+    "question_id": "",
+    "question": "Каков цвет устройства, которое находится слева от фотографии?",
+    "answer": "black",
+    "imageId": "n367944"
+  },
+  {
+    "question_id": "",
+    "question": "Нож справа от мужчины?",
+    "answer": "no",
+    "imageId": "n369313"
+  },
+  {
+    "question_id": "",
+    "question": "Какое устройство находится над клавиатурой?",
+    "answer": "monitor",
+    "imageId": "n315887"
+  },
+  {
+    "question_id": "",
+    "question": "Что делает мужчина слева от очков?",
+    "answer": "resting",
+    "imageId": "n318684"
+  },
+  {
+    "question_id": "",
+    "question": "Из чего сделан телефон?",
+    "answer": "plastic",
+    "imageId": "n315887"
+  },
+  {
+    "question_id": "",
+    "question": "Есть красные пожарные машины?",
+    "answer": "no",
+    "imageId": "n309148"
+  },
+  {
+    "question_id": "",
+    "question": "Шорты большие и синие?",
+    "answer": "no",
+    "imageId": "n298104"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета сервировочный поднос, который выглядит прямоугольным?",
+    "answer": "white",
+    "imageId": "n55058"
+  },
+  {
+    "question_id": "",
+    "question": "Устройство под рамкой выглядит черным?",
+    "answer": "no",
+    "imageId": "n398257"
+  },
+  {
+    "question_id": "",
+    "question": "Из какого материала изготовлены брюки, из ткани или кожи?",
+    "answer": "cloth",
+    "imageId": "n526228"
+  },
+  {
+    "question_id": "",
+    "question": "Кто этот пиджак?",
+    "answer": "man",
+    "imageId": "n342511"
+  },
+  {
+    "question_id": "",
+    "question": "Ты видишь лыжи?",
+    "answer": "yes",
+    "imageId": "n315859"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется предмет мебели справа от леди, которая смотрит вниз на торт?",
+    "answer": "table",
+    "imageId": "n111390"
+  },
+  {
+    "question_id": "",
+    "question": "Мужчина слева от исполнителя - брюнетка или блондинка?",
+    "answer": "blond",
+    "imageId": "n429883"
+  },
+  {
+    "question_id": "",
+    "question": "Посуда рядом с кастрюлей имеет черный цвет и небольшой размер?",
+    "answer": "no",
+    "imageId": "n184385"
+  },
+  {
+    "question_id": "",
+    "question": "Мячи слева от другого мяча выглядят светлыми?",
+    "answer": "yes",
+    "imageId": "n146522"
+  },
+  {
+    "question_id": "",
+    "question": "Какого пола купальник?",
+    "answer": "male",
+    "imageId": "n222297"
+  },
+  {
+    "question_id": "",
+    "question": "Тостер справа от холодильника?",
+    "answer": "no",
+    "imageId": "n314630"
+  },
+  {
+    "question_id": "",
+    "question": "Деревья на поле голые или пышные?",
+    "answer": "lush",
+    "imageId": "n494677"
+  },
+  {
+    "question_id": "",
+    "question": "Сеть перед человеком?",
+    "answer": "yes",
+    "imageId": "n66756"
+  },
+  {
+    "question_id": "",
+    "question": "Погода пасмурная?",
+    "answer": "yes",
+    "imageId": "n494677"
+  },
+  {
+    "question_id": "",
+    "question": "Что общего у двери и у котенка?",
+    "answer": "color",
+    "imageId": "n567860"
+  },
+  {
+    "question_id": "",
+    "question": "Куртка из хлопка большая или маленькая?",
+    "answer": "small",
+    "imageId": "n67005"
+  },
+  {
+    "question_id": "",
+    "question": "Серый стул слева или справа от дивана на фотографии?",
+    "answer": "right",
+    "imageId": "n527290"
+  },
+  {
+    "question_id": "",
+    "question": "Футболист, который слева от мяча женский или мужской?",
+    "answer": "male",
+    "imageId": "n259002"
+  },
+  {
+    "question_id": "",
+    "question": "Было ли железо использовано для изготовления забора?",
+    "answer": "no",
+    "imageId": "n171169"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета волосы?",
+    "answer": "black",
+    "imageId": "n324908"
+  },
+  {
+    "question_id": "",
+    "question": "Шляпа мокрая?",
+    "answer": "no",
+    "imageId": "n39114"
+  },
+  {
+    "question_id": "",
+    "question": "Кто бежит?",
+    "answer": "soccer player",
+    "imageId": "n259002"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется это большое устройство?",
+    "answer": "keyboard",
+    "imageId": "n282436"
+  },
+  {
+    "question_id": "",
+    "question": "Что под микроволновкой?",
+    "answer": "dishwasher",
+    "imageId": "n386682"
+  },
+  {
+    "question_id": "",
+    "question": "Рубашка в платье серая или чешуйчатая?",
+    "answer": "teal",
+    "imageId": "n234683"
+  },
+  {
+    "question_id": "",
+    "question": "На какой стороне фотографии туалетная щетка?",
+    "answer": "left",
+    "imageId": "n59147"
+  },
+  {
+    "question_id": "",
+    "question": "На чем мальчик?",
+    "answer": "bike",
+    "imageId": "n262929"
+  },
+  {
+    "question_id": "",
+    "question": "Вы видите какие-нибудь контейнеры или ловушки снов?",
+    "answer": "no",
+    "imageId": "n59147"
+  },
+  {
+    "question_id": "",
+    "question": "Молодой человек на велосипеде?",
+    "answer": "yes",
+    "imageId": "n262929"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется предмет одежды, который является военно-морским?",
+    "answer": "jacket",
+    "imageId": "n512257"
+  },
+  {
+    "question_id": "",
+    "question": "Что перед плакатом?",
+    "answer": "monitor",
+    "imageId": "n513429"
+  },
+  {
+    "question_id": "",
+    "question": "На этом снимке есть и девушки, и футбольные мячи?",
+    "answer": "no",
+    "imageId": "n350732"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за еда слева от ребенка?",
+    "answer": "marshmallow",
+    "imageId": "n546616"
+  },
+  {
+    "question_id": "",
+    "question": "На какой предмет мебели опирается туалетная бумага справа от туалета?",
+    "answer": "chair",
+    "imageId": "n59147"
+  },
+  {
+    "question_id": "",
+    "question": "На что опирается туалетная бумага справа от унитаза?",
+    "answer": "chair",
+    "imageId": "n59147"
+  },
+  {
+    "question_id": "",
+    "question": "Есть ли скейтбордисты или сноубордисты, которые прыгают?",
+    "answer": "no",
+    "imageId": "n352479"
+  },
+  {
+    "question_id": "",
+    "question": "Какая форма скамейки?",
+    "answer": "rectangular",
+    "imageId": "n39114"
+  },
+  {
+    "question_id": "",
+    "question": "Коричневое поле кажется большим и грязным?",
+    "answer": "yes",
+    "imageId": "n66756"
+  },
+  {
+    "question_id": "",
+    "question": "Кто стоит?",
+    "answer": "snowboarder",
+    "imageId": "n352479"
+  },
+  {
+    "question_id": "",
+    "question": "Какая мебель сделана из дерева?",
+    "answer": "coffee table",
+    "imageId": "n181355"
+  },
+  {
+    "question_id": "",
+    "question": "Какая мебель деревянная?",
+    "answer": "coffee table",
+    "imageId": "n181355"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется мебель, сделанная из дерева?",
+    "answer": "coffee table",
+    "imageId": "n181355"
+  },
+  {
+    "question_id": "",
+    "question": "Кто смотрит вверх?",
+    "answer": "spectator",
+    "imageId": "n259002"
+  },
+  {
+    "question_id": "",
+    "question": "Какая мебель синяя?",
+    "answer": "sofa",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за монитор перед ним?",
+    "answer": "poster",
+    "imageId": "n513429"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за мебель, шкаф или диван?",
+    "answer": "sofa",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Как ты думаешь, что делает этот зритель?",
+    "answer": "looking up",
+    "imageId": "n259002"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за мебель?",
+    "answer": "sofa",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за контейнер из стекла, сидящий сверху?",
+    "answer": "shelf",
+    "imageId": "n500209"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется гладкий кусок одежды?",
+    "answer": "robe",
+    "imageId": "n433532"
+  },
+  {
+    "question_id": "",
+    "question": "На какой стороне фотографии стулья?",
+    "answer": "right",
+    "imageId": "n429883"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета рубашка, которую носит женщина?",
+    "answer": "white",
+    "imageId": "n557666"
+  },
+  {
+    "question_id": "",
+    "question": "Бутылка мыла и часы имеют одинаковый цвет?",
+    "answer": "yes",
+    "imageId": "n140421"
+  },
+  {
+    "question_id": "",
+    "question": "Что сидит на полке?",
+    "answer": "jar",
+    "imageId": "n500209"
+  },
+  {
+    "question_id": "",
+    "question": "Автомобиль за зебрами выглядит черным?",
+    "answer": "no",
+    "imageId": "n497789"
+  },
+  {
+    "question_id": "",
+    "question": "Как ты думаешь, какого роста этот человек?",
+    "answer": "tall",
+    "imageId": "n23762"
+  },
+  {
+    "question_id": "",
+    "question": "Деревянный пол какого цвета?",
+    "answer": "dark brown",
+    "imageId": "n276011"
+  },
+  {
+    "question_id": "",
+    "question": "Коричневое печенье справа от картинки?",
+    "answer": "yes",
+    "imageId": "n238266"
+  },
+  {
+    "question_id": "",
+    "question": "Какое устройство перед стеной?",
+    "answer": "refrigerator",
+    "imageId": "n500308"
+  },
+  {
+    "question_id": "",
+    "question": "Перед стеной есть холодильник из дерева?",
+    "answer": "yes",
+    "imageId": "n500308"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется предмет мебели перед забором?",
+    "answer": "chair",
+    "imageId": "n513100"
+  },
+  {
+    "question_id": "",
+    "question": "Что перед забором?",
+    "answer": "chair",
+    "imageId": "n513100"
+  },
+  {
+    "question_id": "",
+    "question": "Насколько чисты стены, на которых находится окно?",
+    "answer": "clean",
+    "imageId": "n192021"
+  },
+  {
+    "question_id": "",
+    "question": "Какая мебель перед забором?",
+    "answer": "chair",
+    "imageId": "n513100"
+  },
+  {
+    "question_id": "",
+    "question": "Какое животное стоит против травы?",
+    "answer": "cow",
+    "imageId": "n524855"
+  },
+  {
+    "question_id": "",
+    "question": "Кто в шортах?",
+    "answer": "skateboarder",
+    "imageId": "n65202"
+  },
+  {
+    "question_id": "",
+    "question": "Кружки справа от пластиковой посуды?",
+    "answer": "yes",
+    "imageId": "n280089"
+  },
+  {
+    "question_id": "",
+    "question": "С какой стороны фотографии находится кэтчер?",
+    "answer": "left",
+    "imageId": "n508641"
+  },
+  {
+    "question_id": "",
+    "question": "Что в корзине?",
+    "answer": "broccoli",
+    "imageId": "n429961"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за раковина?",
+    "answer": "countertop",
+    "imageId": "n141939"
+  },
+  {
+    "question_id": "",
+    "question": "Игрок справа от фрисби выглядит белым?",
+    "answer": "yes",
+    "imageId": "n260762"
+  },
+  {
+    "question_id": "",
+    "question": "Вы видите забор перед деревом, который стоит перед школой?",
+    "answer": "no",
+    "imageId": "n346247"
+  },
+  {
+    "question_id": "",
+    "question": "Разве корзины, которые не пустые, выглядят красочно?",
+    "answer": "yes",
+    "imageId": "n119944"
+  },
+  {
+    "question_id": "",
+    "question": "Есть ли какая-нибудь кровать или стол не темно-коричневого цвета?",
+    "answer": "no",
+    "imageId": "n432591"
+  },
+  {
+    "question_id": "",
+    "question": "Какое устройство находится слева от лампы?",
+    "answer": "laptop",
+    "imageId": "n433692"
+  },
+  {
+    "question_id": "",
+    "question": "Обогреватель рядом с туалетом выглядит белым и большим?",
+    "answer": "no",
+    "imageId": "n98544"
+  },
+  {
+    "question_id": "",
+    "question": "Похоже, что он сидит?",
+    "answer": "no",
+    "imageId": "n119944"
+  },
+  {
+    "question_id": "",
+    "question": "Что находится на столе?",
+    "answer": "flowers",
+    "imageId": "n276011"
+  },
+  {
+    "question_id": "",
+    "question": "Тумбочка, которая не выглядит большой деревянной и длинной?",
+    "answer": "no",
+    "imageId": "n283587"
+  },
+  {
+    "question_id": "",
+    "question": "Из чего сделана крышка?",
+    "answer": "plastic",
+    "imageId": "n546884"
+  },
+  {
+    "question_id": "",
+    "question": "Человек возле травы сидит на скамейке?",
+    "answer": "yes",
+    "imageId": "n302358"
+  },
+  {
+    "question_id": "",
+    "question": "Что припарковано рядом с сараем?",
+    "answer": "ambulance",
+    "imageId": "n480253"
+  },
+  {
+    "question_id": "",
+    "question": "Какой автомобиль металлический?",
+    "answer": "truck",
+    "imageId": "n557666"
+  },
+  {
+    "question_id": "",
+    "question": "Скорая помощь слева от рабочих припаркована рядом с сараем?",
+    "answer": "yes",
+    "imageId": "n480253"
+  },
+  {
+    "question_id": "",
+    "question": "Какая машина припаркована рядом с сараем?",
+    "answer": "ambulance",
+    "imageId": "n480253"
+  },
+  {
+    "question_id": "",
+    "question": "Флаги треугольные и красные?",
+    "answer": "no",
+    "imageId": "n279173"
+  },
+  {
+    "question_id": "",
+    "question": "Что находится под зебрами, рядом с которыми сидит камень?",
+    "answer": "grass",
+    "imageId": "n196058"
+  },
+  {
+    "question_id": "",
+    "question": "Что находится под зеброй, которая не велика?",
+    "answer": "grass",
+    "imageId": "n196058"
+  },
+  {
+    "question_id": "",
+    "question": "Бейсбольная рукавица яркая?",
+    "answer": "yes",
+    "imageId": "n570181"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется устройство, которое держит в руках молодой человек рядом с подарком?",
+    "answer": "cell phone",
+    "imageId": "n554880"
+  },
+  {
+    "question_id": "",
+    "question": "Какое устройство не освещено?",
+    "answer": "speaker",
+    "imageId": "n77818"
+  },
+  {
+    "question_id": "",
+    "question": "Что лежит на мраморной стойке?",
+    "answer": "books",
+    "imageId": "n499081"
+  },
+  {
+    "question_id": "",
+    "question": "Книги слева или справа от деревянного шкафа?",
+    "answer": "left",
+    "imageId": "n499081"
+  },
+  {
+    "question_id": "",
+    "question": "Кружка перед чашкой зеленая и маленькая?",
+    "answer": "no",
+    "imageId": "n28572"
+  },
+  {
+    "question_id": "",
+    "question": "На фотографии есть тюлени или кролики?",
+    "answer": "no",
+    "imageId": "n493357"
+  },
+  {
+    "question_id": "",
+    "question": "Что это за большой автомобиль?",
+    "answer": "truck",
+    "imageId": "n557666"
+  },
+  {
+    "question_id": "",
+    "question": "Как называется не маленький предмет мебели?",
+    "answer": "shelf",
+    "imageId": "n525901"
+  },
+  {
+    "question_id": "",
+    "question": "Какая мебель не маленькая?",
+    "answer": "shelf",
+    "imageId": "n525901"
+  },
+  {
+    "question_id": "",
+    "question": "Видишь какие-нибудь вилки?",
+    "answer": "no",
+    "imageId": "n55058"
+  },
+  {
+    "question_id": "",
+    "question": "Какая игрушка мягкая?",
+    "answer": "stuffed bear",
+    "imageId": "n549922"
+  },
+  {
+    "question_id": "",
+    "question": "Что за красочная игрушка на картинке?",
+    "answer": "stuffed bear",
+    "imageId": "n549922"
+  },
+  {
+    "question_id": "",
+    "question": "Кресло выглядит большим?",
+    "answer": "yes",
+    "imageId": "n250715"
+  },
+  {
+    "question_id": "",
+    "question": "Контейнер сделан из пластика светло-синего цвета?",
+    "answer": "no",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "Какой тон имеет контейнер из пластика?",
+    "answer": "light",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "На какой стороне картинки пластиковый контейнер, справа или слева?",
+    "answer": "right",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "Какой это фрукт?",
+    "answer": "pear",
+    "imageId": "n541854"
+  },
+  {
+    "question_id": "",
+    "question": "Какая одежда не имеет длинных рукавов?",
+    "answer": "baseball mitt",
+    "imageId": "n9856"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета полотенца из ткани, черного или белого?",
+    "answer": "black",
+    "imageId": "n153293"
+  },
+  {
+    "question_id": "",
+    "question": "Какого цвета шорты, которые носит мужчина?",
+    "answer": "brown",
+    "imageId": "n37274"
+  },
+  {
+    "question_id": "",
+    "question": "Кто в рубашке?",
+    "answer": "woman",
+    "imageId": "n468864"
+  },
+  {
+    "question_id": "",
+    "question": "Есть новые посудомоечные машины?",
+    "answer": "yes",
+    "imageId": "n35676"
+  },
+  {
+    "question_id": "",
+    "question": "Насколько большая раковина?",
+    "answer": "small",
+    "imageId": "n499081"
+  }
+]

@@ -5,6 +5,8 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.constants import LANGUAGES, LANG_NAMES
 
+N_LANGS = len(LANGUAGES)
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -26,18 +28,18 @@ patching_mlp      = np.load("outputs/patching/patching_mlp.npy")        # (4, 32
 arrays = [patching_residual, patching_attn, patching_mlp]
 col_titles = ["Residual Stream", "Attention Output", "MLP Output"]
 
-fig, axes = plt.subplots(4, 3, figsize=(16, 10))
+fig, axes = plt.subplots(N_LANGS, 3, figsize=(16, 2.5 * N_LANGS))
 
 # Colorbar axes: one per column
 cbar_axes = [fig.add_axes([0.92 + 0.025 * c, 0.11, 0.01, 0.77]) for c in range(1)]
 
 for col, (arr, col_title) in enumerate(zip(arrays, col_titles)):
-    for lang_idx in range(4):
+    for lang_idx in range(N_LANGS):
         ax = axes[lang_idx, col]
         data = arr[lang_idx, :].reshape(1, 32)
 
         # Only draw the colorbar once — on the last column, last row.
-        draw_cbar = (col == 2 and lang_idx == 3)
+        draw_cbar = (col == 2 and lang_idx == N_LANGS - 1)
         sns.heatmap(
             data, ax=ax, cmap="RdBu_r", center=0, vmin=-0.05, vmax=0.3,
             cbar=draw_cbar,

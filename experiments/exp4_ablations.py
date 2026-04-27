@@ -1,11 +1,24 @@
 import os
 import json
+import re
 import sys
 import torch
 import numpy as np
 from PIL import Image
 from tqdm import tqdm
 import glob
+
+try:
+    from IPython.display import display as _ipy_display
+    _ipy_ok = True
+except ImportError:
+    _ipy_ok = False
+
+def _dbg_image(img):
+    if _ipy_ok:
+        _ipy_display(img)
+    else:
+        print("  [IMG] (IPython not available — save image to view)")
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.llava_wrapper import (load_model, get_image_text_inputs, get_blank_image_inputs,
@@ -50,7 +63,7 @@ def eval_mmmb(lang, method_name, sv, layers, use_blank=False):
 
     correct = 0
     total = 0
-    for ex in mmmb:
+    for ex_idx, ex in enumerate(mmmb):
         try:
             if use_blank:
                 img = Image.new("RGB", (336, 336), color=(255, 255, 255))
@@ -67,7 +80,7 @@ def eval_mmmb(lang, method_name, sv, layers, use_blank=False):
              "\nB. " + opts.get("B", "") +
              "\nC. " + opts.get("C", "") +
              "\nD. " + opts.get("D", "") +
-             "\nAnswer with one letter only.")
+             "\nAnswer with only the correct option letter (A, B, C, or D).")
 
         if use_blank:
             inputs, _ = get_blank_image_inputs(processor, q)
@@ -82,10 +95,23 @@ def eval_mmmb(lang, method_name, sv, layers, use_blank=False):
             new_tok = generate_with_steering(model, inputs, sv, alpha=1.0, pivot_layers=layers)
 
         decoded = processor.decode(new_tok, skip_special_tokens=True).strip()
-        predicted = decoded[0].upper() if decoded else ""
-        if predicted == str(ex.get("answer", "")).upper():
+        match = re.search(r'\b([ABCD])\b', decoded.upper())
+        predicted = match.group(1) if match else ""
+        gold_answer = str(ex.get("answer", "")).upper()
+        is_correct = predicted == gold_answer
+        if is_correct:
             correct += 1
         total += 1
+
+        print(f"\n[DBG MMMB] ex={ex_idx}  lang={lang}  method={method_name}  "
+              f"{'blank' if use_blank else 'image'}")
+        _dbg_image(img)
+        print(f"  Q       : {ex['question']}")
+        print(f"  Opts    : A={opts.get('A','')}  B={opts.get('B','')}  "
+              f"C={opts.get('C','')}  D={opts.get('D','')}")
+        print(f"  Model   : '{decoded}'  →  predicted='{predicted}'")
+        print(f"  Gold    : '{gold_answer}'  |  {'✓ CORRECT' if is_correct else '✗ WRONG'}  "
+              f"(running acc={correct}/{total}={correct/total:.3f})")
 
     return correct / total if total > 0 else 0.0
 
@@ -104,7 +130,7 @@ all_ranges["ours"] = pivot_layers
 ALL_LAYERS = list(range(32))
 cached_residuals = {}  # {lang: {"lang": [{layer: array(4096,)}], "en": [...]}}
 
-for lang in ["zh", "ar"]:
+for lang in ["pt", "ru"]:
     mmmb_path = f"data/mmmb/mmmb_{lang}.json"
     if not os.path.exists(mmmb_path) or len(json.load(open(mmmb_path))) == 0:
         print(f"  Skipping [{lang}]: no MMMB data, skipping residual pre-extraction")
@@ -126,7 +152,7 @@ for lang in ["zh", "ar"]:
 for range_name, layers_to_use in all_ranges.items():
     print(f"  Range: {range_name} = {layers_to_use}")
     layer_range_results[range_name] = {}
-    for lang in ["zh", "ar"]:
+    for lang in ["pt", "ru"]:
         if lang not in cached_residuals:
             print(f"  Skipping {lang} (no MMMB data)")
             layer_range_results[range_name][f"{lang}_mmmb"] = None
@@ -149,7 +175,7 @@ print("Saved outputs/ablations/layer_range_ablation.json")
 print("\n=== Ablation 4b: Visual Token Ablation ===")
 visual_ablation = {"with_image": {}, "without_image": {}}
 
-for lang in ["zh", "ar"]:
+for lang in ["pt", "ru"]:
     mmmb_path = f"data/mmmb/mmmb_{lang}.json"
     if not os.path.exists(mmmb_path) or len(json.load(open(mmmb_path))) == 0:
         print(f"  Skipping {lang} (no MMMB data)")
@@ -219,8 +245,8 @@ print("Saved outputs/ablations/alpha_sensitivity.json")
 print("\n=== Ablation 4d: Cross-Lingual Transfer ===")
 cross_lingual = {}
 
-# Pairs: (source, target) — run on MMMB for zh and ar
-pairs = [("zh", "ar"), ("ar", "zh"), ("fr", "zh"), ("fr", "ar")]
+# Pairs: (source, target) — run on MMMB for pt and ru
+pairs = [("pt", "ru"), ("ru", "pt"), ("de", "pt"), ("de", "ru")]
 
 for src_lang, tgt_lang in pairs:
     sv_path = f"outputs/steering_vectors/steering_vec_{src_lang}.pt"

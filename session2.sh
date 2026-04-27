@@ -57,27 +57,13 @@ echo "[1/5] Installing dependencies (only packages not already in Kaggle)..."
 # protobuf, huggingface_hub etc. as downgrading them breaks the environment.
 pip install -q pycocotools einops sentencepiece
 
-echo "[1b/5] Re-downloading MMMB (source moved to AIDC-AI/Parrot-dataset)..."
-rm -rf data/mmmb/mmmb_*.json data/mmmb/images/
-python data/download_mmmb.py
+echo "[1b/5] Skipping MMMB re-download (dataset already present in data/mmmb/)..."
+# rm -rf data/mmmb/mmmb_*.json data/mmmb/images/
+# python data/download_mmmb.py
 
-echo "[1c/5] Re-downloading xGQA with images (source: floschne/xgqa)..."
-rm -rf data/xgqa/xgqa_*.json data/gqa_images/
-python data/download_xgqa.py || true  # HF streaming GIL crash on exit is harmless
-python - <<'PYEOF'
-import json, os, sys
-for lang in ["en", "zh", "bn"]:
-    p = f"data/xgqa/xgqa_{lang}.json"
-    n = len(json.load(open(p))) if os.path.exists(p) else 0
-    print(f"  xgqa_{lang}: {n} examples")
-    if n == 0:
-        print(f"  ERROR: xgqa_{lang} is empty — download failed"); sys.exit(1)
-cached = len([f for f in os.listdir("data/gqa_images") if f.endswith(".jpg")])
-print(f"  gqa_images cache: {cached} images")
-if cached == 0:
-    print("  ERROR: no images cached"); sys.exit(1)
-print("  xGQA data verified.")
-PYEOF
+echo "[1c/5] Skipping xGQA re-download (dataset already present in data/xgqa/)..."
+# rm -rf data/xgqa/xgqa_*.json data/gqa_images/
+# python data/download_xgqa.py
 
 echo "[2/5] Experiment 3: Steering Vectors + Evaluation (~3–4h on H100)..."
 python experiments/exp3_steering.py
@@ -107,10 +93,9 @@ required = [
     "outputs/patching/patching_mlp.npy",
     "outputs/patching/patching_visual.npy",
     "outputs/pivot_layers.json",
-    "outputs/steering_vectors/steering_vec_fr.pt",
-    "outputs/steering_vectors/steering_vec_ar.pt",
-    "outputs/steering_vectors/steering_vec_zh.pt",
-    "outputs/steering_vectors/steering_vec_bn.pt",
+    "outputs/steering_vectors/steering_vec_pt.pt",
+    "outputs/steering_vectors/steering_vec_de.pt",
+    "outputs/steering_vectors/steering_vec_ru.pt",
     "outputs/ablations/layer_range_ablation.json",
     "outputs/ablations/visual_token_ablation.json",
     "outputs/ablations/alpha_sensitivity.json",

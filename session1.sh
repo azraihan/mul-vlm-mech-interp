@@ -22,10 +22,10 @@ echo "[1/4] Installing dependencies (only packages not already in Kaggle)..."
 # protobuf, huggingface_hub etc. as downgrading them breaks the environment.
 pip install -q pycocotools einops sentencepiece
 
-echo "[2/4] Downloading and preparing data..."
-python data/build_probing_set.py
-python data/download_xgqa.py
-python data/download_mmmb.py
+echo "[2/4] Skipping data download (dataset already present in data/)..."
+# python data/build_probing_set.py
+# python data/download_xgqa.py
+# python data/download_mmmb.py
 
 echo "[3/4] Experiment 1: Logit Lens (~2–3h on H100)..."
 python experiments/exp1_logit_lens.py

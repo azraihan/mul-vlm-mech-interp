@@ -1,0 +1,1202 @@
+[
+  {
+    "question_id": "",
+    "question": "Está nublado?",
+    "answer": "no",
+    "imageId": "n161313"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a altura da cadeira na parte inferior da foto?",
+    "answer": "short",
+    "imageId": "n518912"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de dispositivo está em cima da mesa?",
+    "answer": "keyboard",
+    "imageId": "n435808"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o avião voando acima?",
+    "answer": "ocean",
+    "imageId": "n414992"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a cor das calças?",
+    "answer": "red",
+    "imageId": "n446242"
+  },
+  {
+    "question_id": "",
+    "question": "O chão é azul ou marrom?",
+    "answer": "brown",
+    "imageId": "n168412"
+  },
+  {
+    "question_id": "",
+    "question": "O que está ao redor da janela aberta?",
+    "answer": "drapes",
+    "imageId": "n23181"
+  },
+  {
+    "question_id": "",
+    "question": "O que há ao redor da janela?",
+    "answer": "drapes",
+    "imageId": "n23181"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está à mesa?",
+    "answer": "woman",
+    "imageId": "n52544"
+  },
+  {
+    "question_id": "",
+    "question": "Há cortinas à direita da cama?",
+    "answer": "yes",
+    "imageId": "n23181"
+  },
+  {
+    "question_id": "",
+    "question": "O que está pendurado acima do quadro-negro?",
+    "answer": "picture",
+    "imageId": "n578564"
+  },
+  {
+    "question_id": "",
+    "question": "O bolo está em uma travessa?",
+    "answer": "no",
+    "imageId": "n437064"
+  },
+  {
+    "question_id": "",
+    "question": "A pessoa à direita do copo está usando jeans?",
+    "answer": "yes",
+    "imageId": "n4777"
+  },
+  {
+    "question_id": "",
+    "question": "Qual dispositivo está ao lado do mouse pad?",
+    "answer": "keyboard",
+    "imageId": "n435808"
+  },
+  {
+    "question_id": "",
+    "question": "O suéter parece aberto e azul?",
+    "answer": "yes",
+    "imageId": "n554880"
+  },
+  {
+    "question_id": "",
+    "question": "O casaco é de manga comprida e preto?",
+    "answer": "yes",
+    "imageId": "n151768"
+  },
+  {
+    "question_id": "",
+    "question": "Há camas ao lado da pequena tomada?",
+    "answer": "yes",
+    "imageId": "n49438"
+  },
+  {
+    "question_id": "",
+    "question": "Em que lado da foto está a bolsa de couro?",
+    "answer": "right",
+    "imageId": "n313060"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o nome do utensílio de cozinha que fica pendurado no gancho?",
+    "answer": "pan",
+    "imageId": "n578564"
+  },
+  {
+    "question_id": "",
+    "question": "Onde está a pessoa magricela?",
+    "answer": "table",
+    "imageId": "n52544"
+  },
+  {
+    "question_id": "",
+    "question": "Os pratos estão em cima de um pufe?",
+    "answer": "no",
+    "imageId": "n546616"
+  },
+  {
+    "question_id": "",
+    "question": "O freezer perto da parede é pequeno ou grande?",
+    "answer": "large",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de comida está à esquerda do bebê que está sentado em cima da mulher?",
+    "answer": "marshmallow",
+    "imageId": "n546616"
+  },
+  {
+    "question_id": "",
+    "question": "O telefone e a xícara de café são da mesma cor?",
+    "answer": "yes",
+    "imageId": "n315887"
+  },
+  {
+    "question_id": "",
+    "question": "Há pequenos refrigeradores ou microondas na foto?",
+    "answer": "no",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "Do que são feitas as cortinas?",
+    "answer": "window",
+    "imageId": "n23181"
+  },
+  {
+    "question_id": "",
+    "question": "De que lado está a imagem?",
+    "answer": "left",
+    "imageId": "n314171"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o material da faixa de pedestres em frente às lojas?",
+    "answer": "concrete",
+    "imageId": "n115614"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o tamanho dos granulados que são espalhados nos cupcakes?",
+    "answer": "small",
+    "imageId": "n296467"
+  },
+  {
+    "question_id": "",
+    "question": "De que tipo de material é feita a faixa de pedestres próxima ao poste de luz?",
+    "answer": "concrete",
+    "imageId": "n115614"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de roupa é rosa?",
+    "answer": "tank top",
+    "imageId": "n274905"
+  },
+  {
+    "question_id": "",
+    "question": "Como se chama a peça de roupa rosa?",
+    "answer": "tank top",
+    "imageId": "n274905"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de roupa não é rosa?",
+    "answer": "hat",
+    "imageId": "n274905"
+  },
+  {
+    "question_id": "",
+    "question": "Este helicóptero está ligado ou desligado?",
+    "answer": "off",
+    "imageId": "n250715"
+  },
+  {
+    "question_id": "",
+    "question": "Você vê algum gato?",
+    "answer": "yes",
+    "imageId": "n16656"
+  },
+  {
+    "question_id": "",
+    "question": "Esse sapato está atrás de um cachorro?",
+    "answer": "no",
+    "imageId": "n16656"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de roupa é sem mangas?",
+    "answer": "tank top",
+    "imageId": "n274905"
+  },
+  {
+    "question_id": "",
+    "question": "O campo é macio e nevado?",
+    "answer": "no",
+    "imageId": "n146522"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a cor da camisa?",
+    "answer": "white",
+    "imageId": "n488874"
+  },
+  {
+    "question_id": "",
+    "question": "O homem feliz está à esquerda ou à direita da mulher no centro?",
+    "answer": "right",
+    "imageId": "n71728"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está usando uma pulseira?",
+    "answer": "woman",
+    "imageId": "n126087"
+  },
+  {
+    "question_id": "",
+    "question": "De que lado está o roteador?",
+    "answer": "left",
+    "imageId": "n435808"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a cor das calças?",
+    "answer": "gray",
+    "imageId": "n518912"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está vestindo a camisa?",
+    "answer": "girl",
+    "imageId": "n137182"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está vestindo uma camisa?",
+    "answer": "girl",
+    "imageId": "n137182"
+  },
+  {
+    "question_id": "",
+    "question": "O que o homem está fazendo?",
+    "answer": "standing",
+    "imageId": "n243701"
+  },
+  {
+    "question_id": "",
+    "question": "Existem rios ou oceanos que não são calmos?",
+    "answer": "no",
+    "imageId": "n48494"
+  },
+  {
+    "question_id": "",
+    "question": "Que comida não é assada?",
+    "answer": "cookies",
+    "imageId": "n296467"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de veículo está na frente da bandeira?",
+    "answer": "van",
+    "imageId": "n256120"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o veículo que está na frente da bandeira?",
+    "answer": "van",
+    "imageId": "n256120"
+  },
+  {
+    "question_id": "",
+    "question": "A van está na frente de um balão?",
+    "answer": "no",
+    "imageId": "n256120"
+  },
+  {
+    "question_id": "",
+    "question": "Os armários abaixo do fogão são de madeira e estão abertos?",
+    "answer": "no",
+    "imageId": "n501609"
+  },
+  {
+    "question_id": "",
+    "question": "Como é chamado o móvel que é xadrez?",
+    "answer": "bed",
+    "imageId": "n95313"
+  },
+  {
+    "question_id": "",
+    "question": "As caixas, que estão à direita do homem, estão cheias e são quadradas?",
+    "answer": "yes",
+    "imageId": "n151768"
+  },
+  {
+    "question_id": "",
+    "question": "O cavalo ao lado do outro cavalo é bebê e marrom?",
+    "answer": "no",
+    "imageId": "n6309"
+  },
+  {
+    "question_id": "",
+    "question": "O rio é largo ou é estreito?",
+    "answer": "narrow",
+    "imageId": "n477215"
+  },
+  {
+    "question_id": "",
+    "question": "Qual aparelho é maior que o refrigerador?",
+    "answer": "stove",
+    "imageId": "n64959"
+  },
+  {
+    "question_id": "",
+    "question": "O que está dentro da tigela à direita do feijão?",
+    "answer": "cookies",
+    "imageId": "n296467"
+  },
+  {
+    "question_id": "",
+    "question": "Quão limpa você acha que está a máscara facial que o apanhador está usando?",
+    "answer": "clean",
+    "imageId": "n317260"
+  },
+  {
+    "question_id": "",
+    "question": "Onde está o apanhador de pé?",
+    "answer": "field",
+    "imageId": "n570181"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a cor da luva?",
+    "answer": "black",
+    "imageId": "n317260"
+  },
+  {
+    "question_id": "",
+    "question": "O cobertor parece macio e branco?",
+    "answer": "yes",
+    "imageId": "n470920"
+  },
+  {
+    "question_id": "",
+    "question": "Qual a cor das gavetas?",
+    "answer": "light brown",
+    "imageId": "n35676"
+  },
+  {
+    "question_id": "",
+    "question": "Há geladeiras à esquerda do fogão?",
+    "answer": "yes",
+    "imageId": "n278312"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de roupa é brilhante?",
+    "answer": "gown",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Existe um elefante perto da pessoa que está vestindo um casaco?",
+    "answer": "no",
+    "imageId": "n571179"
+  },
+  {
+    "question_id": "",
+    "question": "O que a mulher está vestindo?",
+    "answer": "gloves",
+    "imageId": "n571179"
+  },
+  {
+    "question_id": "",
+    "question": "O que você acha que a pessoa de pé perto do homem está vestindo?",
+    "answer": "gloves",
+    "imageId": "n571179"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de roupa é rosa?",
+    "answer": "gown",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a pessoa que está sentada em cima?",
+    "answer": "stairs",
+    "imageId": "n566028"
+  },
+  {
+    "question_id": "",
+    "question": "O que está parado no chão?",
+    "answer": "shelf",
+    "imageId": "n500209"
+  },
+  {
+    "question_id": "",
+    "question": "Quais são os móveis à esquerda do menino?",
+    "answer": "tables",
+    "imageId": "n531359"
+  },
+  {
+    "question_id": "",
+    "question": "O que há na frente da parede que não seja curto?",
+    "answer": "shelf",
+    "imageId": "n500209"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a largura do estacionamento feito de cimento?",
+    "answer": "wide",
+    "imageId": "n259949"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o dispositivo na frente do computador plano?",
+    "answer": "phone",
+    "imageId": "n315887"
+  },
+  {
+    "question_id": "",
+    "question": "O que está sentado no chão?",
+    "answer": "gift",
+    "imageId": "n554880"
+  },
+  {
+    "question_id": "",
+    "question": "Há um liquidificador à direita da bebida amarela?",
+    "answer": "yes",
+    "imageId": "n37274"
+  },
+  {
+    "question_id": "",
+    "question": "O presente está no chão?",
+    "answer": "yes",
+    "imageId": "n554880"
+  },
+  {
+    "question_id": "",
+    "question": "Que material compõe os copos redondos, vidro ou arame?",
+    "answer": "glass",
+    "imageId": "n250715"
+  },
+  {
+    "question_id": "",
+    "question": "De que são feitos os copos?",
+    "answer": "glass",
+    "imageId": "n250715"
+  },
+  {
+    "question_id": "",
+    "question": "O sofá está atrás de qual animal?",
+    "answer": "dog",
+    "imageId": "n14087"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a cor do dispositivo que se encontra à esquerda da foto?",
+    "answer": "black",
+    "imageId": "n367944"
+  },
+  {
+    "question_id": "",
+    "question": "A faca está à direita de um homem?",
+    "answer": "no",
+    "imageId": "n369313"
+  },
+  {
+    "question_id": "",
+    "question": "Que dispositivo está acima do teclado?",
+    "answer": "monitor",
+    "imageId": "n315887"
+  },
+  {
+    "question_id": "",
+    "question": "O que o homem à esquerda dos óculos está fazendo?",
+    "answer": "resting",
+    "imageId": "n318684"
+  },
+  {
+    "question_id": "",
+    "question": "De que é feito o telefone?",
+    "answer": "plastic",
+    "imageId": "n315887"
+  },
+  {
+    "question_id": "",
+    "question": "Há caminhões vermelhos de bombeiros?",
+    "answer": "no",
+    "imageId": "n309148"
+  },
+  {
+    "question_id": "",
+    "question": "Os shorts são grandes e azuis?",
+    "answer": "no",
+    "imageId": "n298104"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a cor da bandeja de serviço que parece retangular?",
+    "answer": "white",
+    "imageId": "n55058"
+  },
+  {
+    "question_id": "",
+    "question": "O dispositivo sob a moldura da foto parece preto?",
+    "answer": "no",
+    "imageId": "n398257"
+  },
+  {
+    "question_id": "",
+    "question": "De que material são feitas as calças, tecido ou couro?",
+    "answer": "cloth",
+    "imageId": "n526228"
+  },
+  {
+    "question_id": "",
+    "question": "Por quem o casaco é usado?",
+    "answer": "man",
+    "imageId": "n342511"
+  },
+  {
+    "question_id": "",
+    "question": "Você vê algum esqui?",
+    "answer": "yes",
+    "imageId": "n315859"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o nome do móvel à direita da senhora que está olhando para o bolo?",
+    "answer": "table",
+    "imageId": "n111390"
+  },
+  {
+    "question_id": "",
+    "question": "O homem à esquerda do artista é moreno ou loiro?",
+    "answer": "blond",
+    "imageId": "n429883"
+  },
+  {
+    "question_id": "",
+    "question": "O utensílio ao lado da panela tem cor preta e tamanho pequeno?",
+    "answer": "no",
+    "imageId": "n184385"
+  },
+  {
+    "question_id": "",
+    "question": "As bolas à esquerda da outra bola parecem leves?",
+    "answer": "yes",
+    "imageId": "n146522"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o gênero do maiô?",
+    "answer": "male",
+    "imageId": "n222297"
+  },
+  {
+    "question_id": "",
+    "question": "A torradeira está à direita de uma geladeira?",
+    "answer": "no",
+    "imageId": "n314630"
+  },
+  {
+    "question_id": "",
+    "question": "As árvores no campo estão nuas ou exuberantes?",
+    "answer": "lush",
+    "imageId": "n494677"
+  },
+  {
+    "question_id": "",
+    "question": "A rede está na frente do homem?",
+    "answer": "yes",
+    "imageId": "n66756"
+  },
+  {
+    "question_id": "",
+    "question": "O tempo está nublado?",
+    "answer": "yes",
+    "imageId": "n494677"
+  },
+  {
+    "question_id": "",
+    "question": "O que é comum para a porta e para o gatinho?",
+    "answer": "color",
+    "imageId": "n567860"
+  },
+  {
+    "question_id": "",
+    "question": "A jaqueta de algodão é grande ou pequena?",
+    "answer": "small",
+    "imageId": "n67005"
+  },
+  {
+    "question_id": "",
+    "question": "A cadeira cinza está à esquerda ou à direita do sofá na foto?",
+    "answer": "right",
+    "imageId": "n527290"
+  },
+  {
+    "question_id": "",
+    "question": "O jogador de futebol que está à esquerda da bola é feminino ou masculino?",
+    "answer": "male",
+    "imageId": "n259002"
+  },
+  {
+    "question_id": "",
+    "question": "Ferro foi usado para fazer a cerca?",
+    "answer": "no",
+    "imageId": "n171169"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a cor do cabelo?",
+    "answer": "black",
+    "imageId": "n324908"
+  },
+  {
+    "question_id": "",
+    "question": "O chapéu está molhado?",
+    "answer": "no",
+    "imageId": "n39114"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está correndo?",
+    "answer": "soccer player",
+    "imageId": "n259002"
+  },
+  {
+    "question_id": "",
+    "question": "Como se chama o grande dispositivo?",
+    "answer": "keyboard",
+    "imageId": "n282436"
+  },
+  {
+    "question_id": "",
+    "question": "O que está embaixo do microondas?",
+    "answer": "dishwasher",
+    "imageId": "n386682"
+  },
+  {
+    "question_id": "",
+    "question": "A camisa é cinza ou azul-petróleo?",
+    "answer": "teal",
+    "imageId": "n234683"
+  },
+  {
+    "question_id": "",
+    "question": "Em que lado da foto está a escova sanitária?",
+    "answer": "left",
+    "imageId": "n59147"
+  },
+  {
+    "question_id": "",
+    "question": "O que o garoto está fazendo?",
+    "answer": "bike",
+    "imageId": "n262929"
+  },
+  {
+    "question_id": "",
+    "question": "Você vê algum recipiente ou apanhadores de sonhos?",
+    "answer": "no",
+    "imageId": "n59147"
+  },
+  {
+    "question_id": "",
+    "question": "O jovem está na bicicleta?",
+    "answer": "yes",
+    "imageId": "n262929"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o nome da peça de roupa que é marinho?",
+    "answer": "jacket",
+    "imageId": "n512257"
+  },
+  {
+    "question_id": "",
+    "question": "O que está em frente ao cartaz?",
+    "answer": "monitor",
+    "imageId": "n513429"
+  },
+  {
+    "question_id": "",
+    "question": "Existem meninas e bolas de futebol nesta imagem?",
+    "answer": "no",
+    "imageId": "n350732"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de comida está à esquerda do bebê?",
+    "answer": "marshmallow",
+    "imageId": "n546616"
+  },
+  {
+    "question_id": "",
+    "question": "Em que móveis repousa o papel higiênico à direita do vaso sanitário?",
+    "answer": "chair",
+    "imageId": "n59147"
+  },
+  {
+    "question_id": "",
+    "question": "O papel higiênico à direita do vaso sanitário está apoiado em quê?",
+    "answer": "chair",
+    "imageId": "n59147"
+  },
+  {
+    "question_id": "",
+    "question": "Há algum skatista ou snowboarder que está pulando?",
+    "answer": "no",
+    "imageId": "n352479"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a forma do banco?",
+    "answer": "rectangular",
+    "imageId": "n39114"
+  },
+  {
+    "question_id": "",
+    "question": "O campo marrom parece ser grande e sujo?",
+    "answer": "yes",
+    "imageId": "n66756"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está de pé?",
+    "answer": "snowboarder",
+    "imageId": "n352479"
+  },
+  {
+    "question_id": "",
+    "question": "Que móvel é feito de madeira?",
+    "answer": "coffee table",
+    "imageId": "n181355"
+  },
+  {
+    "question_id": "",
+    "question": "Que móvel é de madeira?",
+    "answer": "coffee table",
+    "imageId": "n181355"
+  },
+  {
+    "question_id": "",
+    "question": "Como se chama o móvel de madeira?",
+    "answer": "coffee table",
+    "imageId": "n181355"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está olhando para cima?",
+    "answer": "spectator",
+    "imageId": "n259002"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de mobília é azul?",
+    "answer": "sofa",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Aquele monitor está na frente do quê?",
+    "answer": "poster",
+    "imageId": "n513429"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de móvel é esse, um armário ou um sofá?",
+    "answer": "sofa",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "O que você acha que o espectador está fazendo?",
+    "answer": "looking up",
+    "imageId": "n259002"
+  },
+  {
+    "question_id": "",
+    "question": "Que móvel é esse?",
+    "answer": "sofa",
+    "imageId": "n88933"
+  },
+  {
+    "question_id": "",
+    "question": "Sobre o que o recipiente de vidro foi colocado?",
+    "answer": "shelf",
+    "imageId": "n500209"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o nome da peça de roupa lisa?",
+    "answer": "robe",
+    "imageId": "n433532"
+  },
+  {
+    "question_id": "",
+    "question": "Em que lado da foto estão as cadeiras?",
+    "answer": "right",
+    "imageId": "n429883"
+  },
+  {
+    "question_id": "",
+    "question": "De que cor é a camisa que a mulher veste?",
+    "answer": "white",
+    "imageId": "n557666"
+  },
+  {
+    "question_id": "",
+    "question": "O recipiente de sabão e o relógio têm a mesma cor?",
+    "answer": "yes",
+    "imageId": "n140421"
+  },
+  {
+    "question_id": "",
+    "question": "O que está em cima da prateleira?",
+    "answer": "jar",
+    "imageId": "n500209"
+  },
+  {
+    "question_id": "",
+    "question": "O veículo atrás das zebras parece preto?",
+    "answer": "no",
+    "imageId": "n497789"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é a altura da pessoa?",
+    "answer": "tall",
+    "imageId": "n23762"
+  },
+  {
+    "question_id": "",
+    "question": "O piso de madeira é de que cor?",
+    "answer": "dark brown",
+    "imageId": "n276011"
+  },
+  {
+    "question_id": "",
+    "question": "Os biscoitos marrons estão à direita da foto?",
+    "answer": "yes",
+    "imageId": "n238266"
+  },
+  {
+    "question_id": "",
+    "question": "Que aparelho está em frente à parede?",
+    "answer": "refrigerator",
+    "imageId": "n500308"
+  },
+  {
+    "question_id": "",
+    "question": "Existe um refrigerador na frente da parede feita de madeira?",
+    "answer": "yes",
+    "imageId": "n500308"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o nome do móvel em frente à cerca?",
+    "answer": "chair",
+    "imageId": "n513100"
+  },
+  {
+    "question_id": "",
+    "question": "O que há em frente à cerca?",
+    "answer": "chair",
+    "imageId": "n513100"
+  },
+  {
+    "question_id": "",
+    "question": "Quão limpas estão as paredes da janela?",
+    "answer": "clean",
+    "imageId": "n192021"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de móveis estão em frente à cerca?",
+    "answer": "chair",
+    "imageId": "n513100"
+  },
+  {
+    "question_id": "",
+    "question": "Que animal está parado contra a grama?",
+    "answer": "cow",
+    "imageId": "n524855"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está usando shorts?",
+    "answer": "skateboarder",
+    "imageId": "n65202"
+  },
+  {
+    "question_id": "",
+    "question": "As canecas estão à direita dos utensílios de plástico?",
+    "answer": "yes",
+    "imageId": "n280089"
+  },
+  {
+    "question_id": "",
+    "question": "Em que lado da foto está o apanhador?",
+    "answer": "left",
+    "imageId": "n508641"
+  },
+  {
+    "question_id": "",
+    "question": "O que está na cesta?",
+    "answer": "broccoli",
+    "imageId": "n429961"
+  },
+  {
+    "question_id": "",
+    "question": "Em que está a pia?",
+    "answer": "countertop",
+    "imageId": "n141939"
+  },
+  {
+    "question_id": "",
+    "question": "O jogador está à direita do frisbee que parece branco?",
+    "answer": "yes",
+    "imageId": "n260762"
+  },
+  {
+    "question_id": "",
+    "question": "Você vê uma cerca na frente da árvore que está na frente da escola?",
+    "answer": "no",
+    "imageId": "n346247"
+  },
+  {
+    "question_id": "",
+    "question": "As cestas que não estão vazias parecem coloridas?",
+    "answer": "yes",
+    "imageId": "n119944"
+  },
+  {
+    "question_id": "",
+    "question": "Existe alguma cama ou mesa que não seja marrom escuro?",
+    "answer": "no",
+    "imageId": "n432591"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de dispositivo está à esquerda da lâmpada?",
+    "answer": "laptop",
+    "imageId": "n433692"
+  },
+  {
+    "question_id": "",
+    "question": "O aquecedor ao lado do vaso sanitário parece branco e grande?",
+    "answer": "no",
+    "imageId": "n98544"
+  },
+  {
+    "question_id": "",
+    "question": "O homem parece estar sentado?",
+    "answer": "no",
+    "imageId": "n119944"
+  },
+  {
+    "question_id": "",
+    "question": "O que está localizado em cima da mesa?",
+    "answer": "flowers",
+    "imageId": "n276011"
+  },
+  {
+    "question_id": "",
+    "question": "A mesa lateral que não é grande parece de madeira e longa?",
+    "answer": "no",
+    "imageId": "n283587"
+  },
+  {
+    "question_id": "",
+    "question": "De que é feita a tampa?",
+    "answer": "plastic",
+    "imageId": "n546884"
+  },
+  {
+    "question_id": "",
+    "question": "A pessoa perto da grama está sentada em um banco?",
+    "answer": "yes",
+    "imageId": "n302358"
+  },
+  {
+    "question_id": "",
+    "question": "O que está estacionado ao lado do celeiro?",
+    "answer": "ambulance",
+    "imageId": "n480253"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de veículo é metálico?",
+    "answer": "truck",
+    "imageId": "n557666"
+  },
+  {
+    "question_id": "",
+    "question": "A ambulância que está à esquerda dos trabalhadores está estacionada ao lado do celeiro?",
+    "answer": "yes",
+    "imageId": "n480253"
+  },
+  {
+    "question_id": "",
+    "question": "Que veículo está estacionado ao lado do celeiro?",
+    "answer": "ambulance",
+    "imageId": "n480253"
+  },
+  {
+    "question_id": "",
+    "question": "As bandeiras são triangulares e vermelhas?",
+    "answer": "no",
+    "imageId": "n279173"
+  },
+  {
+    "question_id": "",
+    "question": "O que está abaixo das zebras ao lado da rocha?",
+    "answer": "grass",
+    "imageId": "n196058"
+  },
+  {
+    "question_id": "",
+    "question": "O que há sob a zebra que não é grande?",
+    "answer": "grass",
+    "imageId": "n196058"
+  },
+  {
+    "question_id": "",
+    "question": "A luva de beisebol é brilhante?",
+    "answer": "yes",
+    "imageId": "n570181"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o nome do dispositivo que o jovem perto do presente está segurando?",
+    "answer": "cell phone",
+    "imageId": "n554880"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de dispositivo não é iluminado?",
+    "answer": "speaker",
+    "imageId": "n77818"
+  },
+  {
+    "question_id": "",
+    "question": "O que está sobre o balcão de mármore?",
+    "answer": "books",
+    "imageId": "n499081"
+  },
+  {
+    "question_id": "",
+    "question": "Os livros estão à esquerda ou à direita do armário de madeira?",
+    "answer": "left",
+    "imageId": "n499081"
+  },
+  {
+    "question_id": "",
+    "question": "A caneca em frente ao copo é verde e pequena?",
+    "answer": "no",
+    "imageId": "n28572"
+  },
+  {
+    "question_id": "",
+    "question": "Há focas ou coelhos na foto?",
+    "answer": "no",
+    "imageId": "n493357"
+  },
+  {
+    "question_id": "",
+    "question": "O que é o veículo grande?",
+    "answer": "truck",
+    "imageId": "n557666"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o nome do móvel que não é pequeno?",
+    "answer": "shelf",
+    "imageId": "n525901"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de móveis não são pequenos?",
+    "answer": "shelf",
+    "imageId": "n525901"
+  },
+  {
+    "question_id": "",
+    "question": "Você vê algum garfo?",
+    "answer": "no",
+    "imageId": "n55058"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de brinquedo é macio?",
+    "answer": "stuffed bear",
+    "imageId": "n549922"
+  },
+  {
+    "question_id": "",
+    "question": "O que é o brinquedo colorido na foto?",
+    "answer": "stuffed bear",
+    "imageId": "n549922"
+  },
+  {
+    "question_id": "",
+    "question": "A cadeira parece grande?",
+    "answer": "yes",
+    "imageId": "n250715"
+  },
+  {
+    "question_id": "",
+    "question": "O recipiente é feito de plástico leve e azul?",
+    "answer": "no",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "Qual a tonalidade do recipiente de plástico?",
+    "answer": "light",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "De que lado da imagem está o recipiente plástico, do lado direito ou do lado esquerdo?",
+    "answer": "right",
+    "imageId": "n579256"
+  },
+  {
+    "question_id": "",
+    "question": "Que tipo de fruta é?",
+    "answer": "pear",
+    "imageId": "n541854"
+  },
+  {
+    "question_id": "",
+    "question": "Qual peça de roupa não tem mangas compridas?",
+    "answer": "baseball mitt",
+    "imageId": "n9856"
+  },
+  {
+    "question_id": "",
+    "question": "De que cor são as toalhas de pano, pretas ou brancas?",
+    "answer": "black",
+    "imageId": "n153293"
+  },
+  {
+    "question_id": "",
+    "question": "De que cor são os shorts que o homem está vestindo?",
+    "answer": "brown",
+    "imageId": "n37274"
+  },
+  {
+    "question_id": "",
+    "question": "Quem está vestindo a camisa?",
+    "answer": "woman",
+    "imageId": "n468864"
+  },
+  {
+    "question_id": "",
+    "question": "Existem novas máquinas de lavar louça?",
+    "answer": "yes",
+    "imageId": "n35676"
+  },
+  {
+    "question_id": "",
+    "question": "Qual é o tamanho da pia?",
+    "answer": "small",
+    "imageId": "n499081"
+  }
+]

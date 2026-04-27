@@ -33,18 +33,19 @@ print("\\begin{table}[t]")
 print("\\centering")
 print("\\caption{Main results. Accuracy on MMMB and xGQA benchmarks.}")
 print("\\label{tab:main}")
-print("\\begin{tabular}{lcccccc}")
+print("\\begin{tabular}{lccccccc}")
 print("\\toprule")
-print("Method & EN-MMMB & ZH-MMMB & AR-MMMB & AR-xGQA & BN-xGQA & Avg \\\\")
+print("Method & EN-MMMB & PT-MMMB & RU-MMMB & DE-xGQA & PT-xGQA & RU-xGQA & Avg \\\\")
 print("\\midrule")
 
 # Collect numbers
 configs = [
     ("EN-MMMB",  "mmmb",  "en"),
-    ("ZH-MMMB",  "mmmb",  "zh"),
-    ("AR-MMMB",  "mmmb",  "ar"),
-    ("AR-xGQA",  "xgqa",  "ar"),
-    ("BN-xGQA",  "xgqa",  "bn"),
+    ("PT-MMMB",  "mmmb",  "pt"),
+    ("RU-MMMB",  "mmmb",  "ru"),
+    ("DE-xGQA",  "xgqa",  "de"),
+    ("PT-xGQA",  "xgqa",  "pt"),
+    ("RU-xGQA",  "xgqa",  "ru"),
 ]
 
 rows = {}
@@ -86,7 +87,7 @@ print("\\caption{Layer range ablation on MMMB (\\alpha=1.0).}")
 print("\\label{tab:layer_range}")
 print("\\begin{tabular}{lcc}")
 print("\\toprule")
-print("Layer Range & ZH-MMMB & AR-MMMB \\\\")
+print("Layer Range & PT-MMMB & RU-MMMB \\\\")
 print("\\midrule")
 
 lr_path = "outputs/ablations/layer_range_ablation.json"
@@ -94,16 +95,16 @@ if os.path.exists(lr_path):
     lr = json.load(open(lr_path))
     range_labels = {"early": "Early (0--10)", "mid": "Mid (11--21)",
                     "late": "Late (22--31)", "ours": "Ours (mech.\\ identified)"}
-    all_zh = [lr.get(k, {}).get("zh_mmmb") for k in ["early", "mid", "late", "ours"]]
-    all_ar = [lr.get(k, {}).get("ar_mmmb") for k in ["early", "mid", "late", "ours"]]
-    best_zh = max((v for v in all_zh if v is not None), default=None)
-    best_ar = max((v for v in all_ar if v is not None), default=None)
+    all_pt = [lr.get(k, {}).get("pt_mmmb") for k in ["early", "mid", "late", "ours"]]
+    all_ru = [lr.get(k, {}).get("ru_mmmb") for k in ["early", "mid", "late", "ours"]]
+    best_pt = max((v for v in all_pt if v is not None), default=None)
+    best_ru = max((v for v in all_ru if v is not None), default=None)
     for i, (k, label) in enumerate(range_labels.items()):
-        zh = lr.get(k, {}).get("zh_mmmb")
-        ar = lr.get(k, {}).get("ar_mmmb")
-        zh_s = bold(zh, zh == best_zh)
-        ar_s = bold(ar, ar == best_ar)
-        print(f"{label} & {zh_s} & {ar_s} \\\\")
+        pt = lr.get(k, {}).get("pt_mmmb")
+        ru = lr.get(k, {}).get("ru_mmmb")
+        pt_s = bold(pt, pt == best_pt)
+        ru_s = bold(ru, ru == best_ru)
+        print(f"{label} & {pt_s} & {ru_s} \\\\")
 else:
     print("\\multicolumn{3}{c}{Results not yet available} \\\\")
 
@@ -121,7 +122,7 @@ print("\\caption{Effect of removing visual tokens (blank image) on steering.}")
 print("\\label{tab:visual_ablation}")
 print("\\begin{tabular}{lcccc}")
 print("\\toprule")
-print("Condition & ZH Base & ZH Steered & AR Base & AR Steered \\\\")
+print("Condition & PT Base & PT Steered & RU Base & RU Steered \\\\")
 print("\\midrule")
 
 va_path = "outputs/ablations/visual_token_ablation.json"
@@ -129,12 +130,12 @@ if os.path.exists(va_path):
     va = json.load(open(va_path))
     for cond_key, cond_label in [("with_image", "With image"), ("without_image", "Without image (blank)")]:
         cond_data = va.get(cond_key, {})
-        zh_base    = cond_data.get("zh", {}).get("baseline")
-        zh_steered = cond_data.get("zh", {}).get("steered")
-        ar_base    = cond_data.get("ar", {}).get("baseline")
-        ar_steered = cond_data.get("ar", {}).get("steered")
+        pt_base    = cond_data.get("pt", {}).get("baseline")
+        pt_steered = cond_data.get("pt", {}).get("steered")
+        ru_base    = cond_data.get("ru", {}).get("baseline")
+        ru_steered = cond_data.get("ru", {}).get("steered")
         def fs(v): return f"{v:.3f}" if v is not None else "n/a"
-        print(f"{cond_label} & {fs(zh_base)} & {fs(zh_steered)} & {fs(ar_base)} & {fs(ar_steered)} \\\\")
+        print(f"{cond_label} & {fs(pt_base)} & {fs(pt_steered)} & {fs(ru_base)} & {fs(ru_steered)} \\\\")
 else:
     print("\\multicolumn{5}{c}{Results not yet available} \\\\")
 

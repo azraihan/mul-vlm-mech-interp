@@ -6,6 +6,8 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.constants import LANGUAGES, LANG_NAMES
 
+N_LANGS = len(LANGUAGES)
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -24,12 +26,12 @@ mean_en = np.load("outputs/logit_lens/logit_lens_mean_en.npy")   # (2, 4, 32)
 mean_tl = np.load("outputs/logit_lens/logit_lens_mean_tl.npy")   # (2, 4, 32)
 pivot_layers = json.load(open("outputs/pivot_layers.json"))["pivot_layers"]
 
-fig, axes = plt.subplots(2, 4, figsize=(16, 8), sharey=True)
+fig, axes = plt.subplots(2, N_LANGS, figsize=(4 * N_LANGS, 8), sharey=True)
 layers = list(range(32))
 
 handles = []
 for cond in range(2):
-    for lang in range(4):
+    for lang in range(N_LANGS):
         ax = axes[cond, lang]
         en_curve = mean_en[cond, lang, :]
         tl_curve = mean_tl[cond, lang, :]

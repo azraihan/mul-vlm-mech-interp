@@ -5,6 +5,8 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.constants import LANGUAGES, LANG_NAMES
 
+N_LANGS = len(LANGUAGES)
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -21,10 +23,10 @@ os.makedirs("outputs/figures", exist_ok=True)
 residual = np.load("outputs/patching/patching_residual.npy")   # (4, 32)
 visual   = np.load("outputs/patching/patching_visual.npy")     # (4, 32)
 
-fig, axes = plt.subplots(1, 4, figsize=(16, 4), sharey=True)
+fig, axes = plt.subplots(1, N_LANGS, figsize=(4 * N_LANGS, 4), sharey=True)
 layers = list(range(32))
 
-for lang_idx in range(4):
+for lang_idx in range(N_LANGS):
     ax = axes[lang_idx]
     ax.plot(layers, residual[lang_idx], color="#2166ac", linewidth=2, label="Full patch")
     ax.plot(layers, visual[lang_idx],   color="#4dac26", linewidth=2, linestyle="--",

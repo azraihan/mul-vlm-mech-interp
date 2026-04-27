@@ -1,15 +1,30 @@
 import os
 import json
+import re
 import sys
 import torch
 import numpy as np
 from PIL import Image
 from tqdm import tqdm
+from sacrebleu.metrics import CHRF
+from bert_score import BERTScorer
+
+try:
+    from IPython.display import display as _ipy_display
+    _ipy_ok = True
+except ImportError:
+    _ipy_ok = False
+
+def _dbg_image(img):
+    if _ipy_ok:
+        _ipy_display(img)
+    else:
+        print("  [IMG] (IPython not available — save image to view)")
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.llava_wrapper import (load_model, get_image_text_inputs,
                                    extract_residual_streams, generate_with_steering)
-from models.constants import LANGUAGES
+from models.constants import LANGUAGES, LANG_NAMES
 
 os.makedirs("outputs/steering_vectors", exist_ok=True)
 os.makedirs("outputs/eval_results", exist_ok=True)
@@ -64,7 +79,7 @@ print("DONE: Steering vector extraction")
 
 import PIL.Image as PILImage
 
-MMMB_LANGS = [lang for lang in ["en", "zh", "ar"]
+MMMB_LANGS = [lang for lang in ["en", "pt", "ru"]
                if os.path.exists(f"data/mmmb/mmmb_{lang}.json") and
                len(json.load(open(f"data/mmmb/mmmb_{lang}.json"))) > 0]
 
@@ -87,7 +102,7 @@ for lang in MMMB_LANGS:
 
         correct = 0
         total = 0
-        for ex in tqdm(mmmb, desc=f"MMMB {lang} {method}"):
+        for ex_idx, ex in enumerate(tqdm(mmmb, desc=f"MMMB {lang} {method}")):
             # Load image
             try:
                 if isinstance(ex["image"], str) and ex["image"] and os.path.exists(ex["image"]):
@@ -108,7 +123,7 @@ for lang in MMMB_LANGS:
                  "\nB. " + opts.get("B", "") +
                  "\nC. " + opts.get("C", "") +
                  "\nD. " + opts.get("D", "") +
-                 "\nAnswer with one letter only.")
+                 "\nAnswer with only the correct option letter (A, B, C, or D).")
             inputs, _ = get_image_text_inputs(processor, img, q)
 
             if method == "baseline":
@@ -120,10 +135,19 @@ for lang in MMMB_LANGS:
                 new_tok = generate_with_steering(model, inputs, sv, alpha, pivot_layers)
 
             decoded = processor.decode(new_tok, skip_special_tokens=True).strip()
-            predicted = decoded[0].upper() if decoded else ""
-            if predicted == str(ex.get("answer", "")).upper():
+            match = re.search(r'\b([ABCD])\b', decoded.upper())
+            predicted = match.group(1) if match else ""
+            gold_answer = str(ex.get("answer", "")).upper()
+            is_correct = predicted == gold_answer
+            if is_correct:
                 correct += 1
             total += 1
+
+            print(f"\n[DBG MMMB] ex={ex_idx}  lang={lang}  method={method}")
+            _dbg_image(img)
+            print(f"  Q       : {q}")
+            print(f"  Model   : '{decoded}'  →  predicted='{predicted}'")
+            print(f"  Gold    : '{gold_answer}'  |  {'✓ CORRECT' if is_correct else '✗ WRONG'}")
 
         acc = correct / total if total > 0 else 0.0
         result = {
@@ -134,9 +158,36 @@ for lang in MMMB_LANGS:
         json.dump(result, open(fname, "w"), indent=2)
         print(f"  {fname}: accuracy={acc:.3f}")
 
+# ─── xGQA metric helpers (preloaded once) ────────────────────────────────────
+
+_ARTICLES = {
+    "en": re.compile(r"^(a|an|the)\s+"),
+    "pt": re.compile(r"^(o|a|os|as|um|uma|uns|umas)\s+"),
+    "de": re.compile(r"^(der|die|das|des|dem|den|ein|eine|einer|einem|einen|eines)\s+"),
+    "ru": None,  # Russian has no articles
+}
+
+def _normalize(text, lang="en"):
+    text = re.sub(r"[^\w\s]", "", text.lower().strip())
+    pat = _ARTICLES.get(lang)
+    if pat:
+        text = pat.sub("", text)
+    return text.strip()
+
+_chrf = CHRF()
+
+print("[xGQA] Loading BERTScorer (bert-base-multilingual-cased)...")
+_bert_scorer = BERTScorer(
+    model_type="bert-base-multilingual-cased",
+    num_layers=9,
+    rescale_with_baseline=False,
+    device="cuda" if torch.cuda.is_available() else "cpu",
+)
+print("[xGQA] BERTScorer ready.")
+
 # ─── xGQA evaluation ──────────────────────────────────────────────────────────
 
-XGQA_LANGS_EVAL = [lang for lang in ["en", "zh", "ar", "bn"]
+XGQA_LANGS_EVAL = [lang for lang in ["en", "de", "pt", "ru"]
                    if os.path.exists(f"data/xgqa/xgqa_{lang}.json") and
                    len(json.load(open(f"data/xgqa/xgqa_{lang}.json"))) > 0]
 
@@ -170,11 +221,13 @@ for lang in XGQA_LANGS_EVAL:
         else:
             sv = None
 
-        correct = 0
+        em_sum = 0
+        chrf_sum = 0.0
+        bertscore_sum = 0.0
         total = 0
         img_failures = 0
         empty_questions = 0
-        for ex in tqdm(xgqa, desc=f"xGQA {lang} {method}"):
+        for ex_idx, ex in enumerate(tqdm(xgqa, desc=f"xGQA {lang} {method}")):
             image_id = ex.get("imageId", "")
             img = download_gqa_image(image_id)
             if img is None:
@@ -184,6 +237,7 @@ for lang in XGQA_LANGS_EVAL:
             question = ex.get("question", "")
             if not question.strip():
                 empty_questions += 1
+            question = question + f"\nAnswer in a single word only, in {LANG_NAMES.get(lang, lang)}."
 
             inputs, _ = get_image_text_inputs(processor, img, question)
 
@@ -197,11 +251,38 @@ for lang in XGQA_LANGS_EVAL:
                                                  max_new_tokens=10)
 
             decoded = processor.decode(new_tok, skip_special_tokens=True).strip()
-            predicted = decoded.lower().strip().split()[0] if decoded.strip() else ""
-            gold = str(ex.get("answer", "")).lower().strip()
-            if predicted == gold:
-                correct += 1
+            pred_raw = decoded.lower().strip().split()[0] if decoded.strip() else ""
+            gold_raw = str(ex.get("answer", ""))
+            gold_en_raw = str(ex.get("answer_en", ""))
+
+            pred_norm    = _normalize(pred_raw, lang)
+            gold_norm    = _normalize(gold_raw, lang)
+            gold_en_norm = _normalize(gold_en_raw, "en")
+
+            # Normalized exact match (accept target-lang or English gold)
+            em = int(pred_norm == gold_norm or (gold_en_norm and pred_norm == gold_en_norm))
+            em_sum += em
+
+            # chrF (0–100 → 0–1); use target-lang gold
+            ex_chrf = _chrf.sentence_score(pred_norm, [gold_norm]).score / 100.0
+            chrf_sum += ex_chrf
+
+            # BERTScore F1 with preloaded multilingual model
+            ref = gold_norm if gold_norm else gold_en_norm
+            ex_bs = 0.0
+            if pred_norm and ref:
+                _, _, F1 = _bert_scorer.score([pred_norm], [ref])
+                ex_bs = F1[0].item()
+            bertscore_sum += ex_bs
+
             total += 1
+
+            print(f"\n[DBG xGQA] ex={ex_idx}  lang={lang}  method={method}")
+            _dbg_image(img)
+            print(f"  Q       : {ex.get('question', '')}")
+            print(f"  Model   : '{decoded}'  →  predicted='{pred_norm}'")
+            print(f"  Gold    : '{gold_norm}'" + (f"  (en: '{gold_en_norm}')" if gold_en_norm else ""))
+            print(f"  EM={em}  chrF={ex_chrf:.3f}  BERTScore={ex_bs:.3f}")
 
         if img_failures > 0:
             print(f"  [WARN] xGQA {lang} {method}: {img_failures}/{total} images failed to download — used blank fallback")
@@ -210,15 +291,22 @@ for lang in XGQA_LANGS_EVAL:
         if img_failures == 0 and empty_questions == 0:
             print(f"  [OK] xGQA {lang} {method}: all {total} images and questions present")
 
-        acc = correct / total if total > 0 else 0.0
+        n = total or 1
+        exact_match  = em_sum / n
+        chrf_avg     = chrf_sum / n
+        bertscore_f1 = bertscore_sum / n
         result = {
-            "accuracy": acc, "correct": correct, "total": total,
+            "accuracy":     exact_match,   # kept for exp4 compatibility
+            "exact_match":  exact_match,
+            "chrf":         chrf_avg,
+            "bertscore_f1": bertscore_f1,
+            "total": total,
             "img_failures": img_failures, "empty_questions": empty_questions,
             "images_valid": _images_available,
             "method": method, "lang": lang, "dataset": "xgqa"
         }
         fname = f"outputs/eval_results/results_xgqa_{lang}_{method}.json"
         json.dump(result, open(fname, "w"), indent=2)
-        print(f"  {fname}: accuracy={acc:.3f}")
+        print(f"  {fname}: EM={exact_match:.3f}  chrF={chrf_avg:.3f}  BERTScore={bertscore_f1:.3f}")
 
 print("DONE: Experiment 3")

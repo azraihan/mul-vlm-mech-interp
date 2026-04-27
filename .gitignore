@@ -1,11 +1,7 @@
 *.ipynb
 *.md
+**__pycache__**
 
 **.DS_Store**
-
+paper
 outputs
-data/gqa_images
-data/mmmb
-data/probing_set
-data/xgqa
-data/xgqa_repo

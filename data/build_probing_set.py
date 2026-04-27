@@ -124,7 +124,7 @@ for category in CATEGORIES:
     # 5a: Store first-token IDs for all languages (PMI normalization handles ambiguity).
     # English must resolve to at least one token; all other languages always will.
     token_ids = {}
-    for lang in ["en", "fr", "ar", "zh", "bn"]:
+    for lang in ["en", "pt", "de", "ru"]:
         word = TRANSLATIONS[category][lang]
         tid = get_token_id(processor, word)
         if tid is None:
@@ -161,7 +161,7 @@ for category in CATEGORIES:
             "image_path": dst_path,
             "category": category,
             "answers":   {lang: TRANSLATIONS[category][lang]
-                          for lang in ["en", "fr", "ar", "zh", "bn"]},
+                          for lang in ["en", "pt", "de", "ru"]},
             "token_ids": token_ids,
             "questions": QUESTIONS,
         })

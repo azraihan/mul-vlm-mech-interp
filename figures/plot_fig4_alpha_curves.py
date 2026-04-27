@@ -20,8 +20,8 @@ os.makedirs("outputs/figures", exist_ok=True)
 
 alpha_sensitivity = json.load(open("outputs/ablations/alpha_sensitivity.json"))
 
-colors  = {"zh": "#2166ac", "ar": "#d6604d", "bn": "#4dac26", "fr": "#762a83", "en": "#808080"}
-markers = {"zh": "o",       "ar": "s",       "bn": "^",       "fr": "D",       "en": "x"}
+colors  = {"pt": "#2166ac", "de": "#d6604d", "ru": "#4dac26", "en": "#808080"}
+markers = {"pt": "o",       "de": "s",       "ru": "^",       "en": "x"}
 alphas_x = [0.0, 0.5, 1.0, 1.5, 2.0]
 datasets = ["mmmb", "xgqa"]
 titles   = ["Dataset: MMMB", "Dataset: xGQA"]

@@ -2,8 +2,21 @@ import os
 import json
 import sys
 import numpy as np
+import torch
 from PIL import Image
 from tqdm import tqdm
+
+try:
+    from IPython.display import display as _ipy_display
+    _ipy_ok = True
+except ImportError:
+    _ipy_ok = False
+
+def _dbg_image(img):
+    if _ipy_ok:
+        _ipy_display(img)
+    else:
+        print("  [IMG] (IPython not available — save image to view)")
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.llava_wrapper import (load_model, get_image_text_inputs, get_blank_image_inputs,
@@ -30,7 +43,7 @@ for ex in examples:
     if cat in seen_categories:
         continue
     seen_categories[cat] = True
-    for lang in ["en", "fr", "ar", "zh", "bn"]:
+    for lang in ["en", "pt", "de", "ru"]:
         word = ex["questions"].get(lang, "")
         # re-tokenize the answer word directly (not the question)
         from models.constants import TRANSLATIONS
@@ -71,6 +84,13 @@ for cond_idx, use_image in enumerate([True, False]):
 
             residuals = extract_residual_streams(model, inputs, layers=list(range(NUM_LAYERS)))
 
+            with torch.no_grad():
+                gen_ids = model.generate(**inputs, max_new_tokens=10, do_sample=False)
+            gen_text = processor.decode(
+                gen_ids[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True
+            )
+            print(f"  Model output ({'image' if use_image else 'blank'}): '{gen_text}'")
+
             for layer in range(NUM_LAYERS):
                 h = residuals[layer][answer_pos]             # (4096,)
                 probs = apply_logit_lens(model, h)           # (32000,)
@@ -80,6 +100,31 @@ for cond_idx, use_image in enumerate([True, False]):
                     log_probs[en_tid] - baseline_log_probs[en_tid])
                 tl_probs[cond_idx, lang_idx, ex_idx, layer] = (
                     log_probs[tl_tid] - baseline_log_probs[tl_tid])
+
+            # ── Per-example debug ─────────────────────────────────────────────
+            if cond_idx == 0:
+                _dbg_image(img)   # only display real image once per (example, lang)
+
+            en_lp = en_probs[cond_idx, lang_idx, ex_idx, :]   # (32,) PMI values
+            tl_lp = tl_probs[cond_idx, lang_idx, ex_idx, :]
+            en_peak = int(np.nanargmax(en_lp))
+            tl_peak = int(np.nanargmax(tl_lp))
+            print(f"  [LENS] en_peak=L{en_peak}({en_lp[en_peak]:.3f})  "
+                  f"tl_peak=L{tl_peak}({tl_lp[tl_peak]:.3f})  "
+                  f"en@L31={en_lp[31]:.3f}  tl@L31={tl_lp[31]:.3f}")
+
+            # Top-5 tokens at key layers to see what the model "thinks" at each depth
+            for kl in [7, 15, 23, 31]:
+                h_kl = residuals[kl][answer_pos]
+                p_kl = apply_logit_lens(model, h_kl)
+                top5 = sorted(enumerate(p_kl), key=lambda x: -x[1])[:5]
+                top5_str = "  ".join(
+                    f"'{processor.tokenizer.decode([tid])}'({p:.4f})" for tid, p in top5
+                )
+                en_flag = "  ←EN" if any(tid == en_tid for tid, _ in top5) else ""
+                tl_flag = "  ←TL" if any(tid == tl_tid for tid, _ in top5) else ""
+                print(f"  [L{kl:02d}] {top5_str}{en_flag}{tl_flag}")
+            # ─────────────────────────────────────────────────────────────────
 
 np.save("outputs/logit_lens/logit_lens_en_prob.npy", en_probs)
 np.save("outputs/logit_lens/logit_lens_tl_prob.npy", tl_probs)
