@@ -87,10 +87,11 @@ with torch.no_grad():
     _en_resp_ids = model.generate(**_inputs_corr, max_new_tokens=1, do_sample=False)
 _en_resp_tid = int(_en_resp_ids[0, -1])
 with torch.no_grad():
-    _fr_resp_ids = model.generate(**_inputs_clean, max_new_tokens=1, do_sample=False)
-_fr_resp_tid = int(_fr_resp_ids[0, -1])
+    _pt_resp_ids = model.generate(**_inputs_clean, max_new_tokens=1, do_sample=False)
+_pt_resp_tid = int(_pt_resp_ids[0, -1])
 print(f"[SANITY] English first response token: id={_en_resp_tid}  word='{processor.tokenizer.decode([_en_resp_tid])}'")
-print(f"[SANITY] French  first response token: id={_fr_resp_tid}  word='{processor.tokenizer.decode([_fr_resp_tid])}'")
+print(f"[SANITY] PT/clean first response token: id={_pt_resp_tid}  word='{processor.tokenizer.decode([_pt_resp_tid])}'")
+
 print(f"[SANITY] P(en_first_token) in clean run   = {float(_probs_clean[_en_resp_tid]):.6f}")
 print(f"[SANITY] P(en_first_token) in corrupt run = {float(_probs_corr[_en_resp_tid]):.6f}")
 
@@ -124,9 +125,9 @@ else:
     print("[SANITY] OK — patching produces non-zero effect, proceeding.")
 
 del _ex, _img, _inputs_clean, _inputs_corr, _corr_cache, _clean_cache, _clean_h31
-del _clean_h16, _corr_h16, _corr_h31, _all_pos, _en_tid, _fr_tid
+del _clean_h16, _corr_h16, _corr_h31, _all_pos, _en_tid, _pt_tid
 del _lc, _lr, _ans, _p_clean, _p_patched, _delta, _diff, _hook_fired
-del _en_resp_tid, _fr_resp_tid, _en_resp_ids, _fr_resp_ids, _ml
+del _en_resp_tid, _pt_resp_tid, _en_resp_ids, _pt_resp_ids, _ml
 # ─────────────────────────────────────────────────────────────────────────────
 
 # WARNING: ~38k forward passes total. Expect 12-20h on A100.
