@@ -16,6 +16,18 @@ os.makedirs("outputs/patching", exist_ok=True)
 model, processor = load_model()
 examples = json.load(open("data/probing_set/probing_set.json"))
 
+# Cap at 5 images per category
+_cat_count = {}
+_filtered = []
+for _ex in examples:
+    _cat = _ex.get("category", "")
+    _cat_count[_cat] = _cat_count.get(_cat, 0)
+    if _cat_count[_cat] < 5:
+        _filtered.append(_ex)
+        _cat_count[_cat] += 1
+examples = _filtered
+print(f"[EXP2] Using {len(examples)} examples (max 5 per category, {len(_cat_count)} categories)")
+
 # ── Example I/O diagnostic ────────────────────────────────────────────────────
 print("\n[IO] ── Example input/output diagnostic ──")
 _ex0 = examples[0]
