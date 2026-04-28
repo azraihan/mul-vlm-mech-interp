@@ -37,6 +37,11 @@ pivot_layers = pivot_data["pivot_layers"]
 # ─── PART A: Extract steering vectors ─────────────────────────────────────────
 
 for lang in LANGUAGES:
+    sv_path = f"outputs/steering_vectors/steering_vec_{lang}.pt"
+    if os.path.exists(sv_path):
+        print(f"[SKIP] Steering vector for [{lang}] already exists — skipping extraction.")
+        continue
+
     h_lang = {L: [] for L in pivot_layers}
     h_en   = {L: [] for L in pivot_layers}
 
@@ -70,7 +75,7 @@ for lang in LANGUAGES:
             status = "OK" if cos >= 0.85 else "WARN (unstable — consider more examples)"
             print(f"  [{lang}] layer {L}: cosine stability = {cos:.3f}  {status}")
 
-    torch.save(steering_vec, f"outputs/steering_vectors/steering_vec_{lang}.pt")
+    torch.save(steering_vec, sv_path)
     print(f"Saved steering vector for [{lang}]")
 
 print("DONE: Steering vector extraction")
@@ -99,6 +104,11 @@ for lang in MMMB_LANGS:
             sv = torch.load(f"outputs/steering_vectors/steering_vec_{sv_lang}.pt", map_location="cuda")
         else:
             sv = None
+
+        fname = f"outputs/eval_results/results_mmmb_{lang}_{method}.json"
+        if os.path.exists(fname):
+            print(f"[SKIP] {fname} already exists — skipping.")
+            continue
 
         correct = 0
         total = 0
@@ -154,7 +164,6 @@ for lang in MMMB_LANGS:
             "accuracy": acc, "correct": correct, "total": total,
             "method": method, "lang": lang, "dataset": "mmmb"
         }
-        fname = f"outputs/eval_results/results_mmmb_{lang}_{method}.json"
         json.dump(result, open(fname, "w"), indent=2)
         print(f"  {fname}: accuracy={acc:.3f}")
 
@@ -221,6 +230,11 @@ for lang in XGQA_LANGS_EVAL:
         else:
             sv = None
 
+        fname = f"outputs/eval_results/results_xgqa_{lang}_{method}.json"
+        if os.path.exists(fname):
+            print(f"[SKIP] {fname} already exists — skipping.")
+            continue
+
         em_sum = 0
         chrf_sum = 0.0
         bertscore_sum = 0.0
@@ -260,7 +274,7 @@ for lang in XGQA_LANGS_EVAL:
             gold_en_norm = _normalize(gold_en_raw, "en")
 
             # Normalized exact match (accept target-lang or English gold)
-            em = int(pred_norm == gold_norm or (gold_en_norm and pred_norm == gold_en_norm))
+            em = int(pred_norm == gold_norm or (bool(gold_en_norm) and pred_norm == gold_en_norm))
             em_sum += em
 
             # chrF (0–100 → 0–1); use target-lang gold
@@ -305,7 +319,6 @@ for lang in XGQA_LANGS_EVAL:
             "images_valid": _images_available,
             "method": method, "lang": lang, "dataset": "xgqa"
         }
-        fname = f"outputs/eval_results/results_xgqa_{lang}_{method}.json"
         json.dump(result, open(fname, "w"), indent=2)
         print(f"  {fname}: EM={exact_match:.3f}  chrF={chrf_avg:.3f}  BERTScore={bertscore_f1:.3f}")
 

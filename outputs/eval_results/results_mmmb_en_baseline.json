@@ -1,0 +1,8 @@
+{
+  "accuracy": 0.575,
+  "correct": 115,
+  "total": 200,
+  "method": "baseline",
+  "lang": "en",
+  "dataset": "mmmb"
+}
