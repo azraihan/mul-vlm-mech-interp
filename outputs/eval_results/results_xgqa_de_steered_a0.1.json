@@ -1,0 +1,13 @@
+{
+  "accuracy": 0.05,
+  "exact_match": 0.05,
+  "chrf": 0.14591602414652846,
+  "bertscore_f1": 0.7849006021022796,
+  "total": 200,
+  "img_failures": 0,
+  "empty_questions": 0,
+  "images_valid": true,
+  "method": "steered_a0.1",
+  "lang": "de",
+  "dataset": "xgqa"
+}
