@@ -55,7 +55,7 @@ EOF
 echo "[1/5] Installing dependencies (only packages not already in Kaggle)..."
 # Only install what Kaggle doesn't provide — do NOT touch transformers, numpy,
 # protobuf, huggingface_hub etc. as downgrading them breaks the environment.
-pip install -q pycocotools einops sentencepiece sacrebleu
+pip install -q pycocotools einops sentencepiece sacrebleu bert-score
 
 echo "[1b/5] Skipping MMMB re-download (dataset already present in data/mmmb/)..."
 # rm -rf data/mmmb/mmmb_*.json data/mmmb/images/
