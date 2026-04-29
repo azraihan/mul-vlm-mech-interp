@@ -410,23 +410,27 @@ else:
 # ─── ABLATION 4c: α Sensitivity ──────────────────────────────────────────────
 
 print("\n=== Ablation 4c: α Sensitivity ===")
-alpha_sensitivity = {"mmmb": {}, "xgqa": {}}
 
-for dataset in ["mmmb", "xgqa"]:
-    for rf in glob.glob(f"outputs/eval_results/results_{dataset}_*.json"):
-        data = json.load(open(rf))
-        lang   = data["lang"]
-        method = data["method"]
-        acc    = data["accuracy"]
-        if lang not in alpha_sensitivity[dataset]:
-            alpha_sensitivity[dataset][lang] = {}
-        if method == "baseline":
-            alpha_sensitivity[dataset][lang]["0.0"] = acc
-        elif method.startswith("steered_a"):
-            alpha_sensitivity[dataset][lang][method.replace("steered_a", "")] = acc
+if os.path.exists("outputs/ablations/alpha_sensitivity.json"):
+    print("[SKIP] alpha_sensitivity.json already exists — skipping.")
+else:
+    alpha_sensitivity = {"mmmb": {}, "xgqa": {}}
 
-json.dump(alpha_sensitivity, open("outputs/ablations/alpha_sensitivity.json", "w"), indent=2)
-print("Saved outputs/ablations/alpha_sensitivity.json")
+    for dataset in ["mmmb", "xgqa"]:
+        for rf in glob.glob(f"outputs/eval_results/results_{dataset}_*.json"):
+            data = json.load(open(rf))
+            lang   = data["lang"]
+            method = data["method"]
+            acc    = data["accuracy"]
+            if lang not in alpha_sensitivity[dataset]:
+                alpha_sensitivity[dataset][lang] = {}
+            if method == "baseline":
+                alpha_sensitivity[dataset][lang]["0.0"] = acc
+            elif method.startswith("steered_a"):
+                alpha_sensitivity[dataset][lang][method.replace("steered_a", "")] = acc
+
+    json.dump(alpha_sensitivity, open("outputs/ablations/alpha_sensitivity.json", "w"), indent=2)
+    print("Saved outputs/ablations/alpha_sensitivity.json")
 
 
 # ─── ABLATION 4d: Cross-Lingual Transfer ─────────────────────────────────────
