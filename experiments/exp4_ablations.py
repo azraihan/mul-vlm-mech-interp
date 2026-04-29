@@ -1,3 +1,4 @@
+import gc
 import os
 import json
 import re
@@ -290,7 +291,7 @@ else:
             continue
         print(f"  Pre-extracting all-layer residuals for [{lang}]...")
         res_lang_list, res_en_list = [], []
-        for ex in examples:
+        for ex_i, ex in enumerate(examples):
             img = Image.open(ex["image_path"]).convert("RGB")
             inputs_lang, ans_pos    = get_image_text_inputs(processor, img, ex["questions"][lang])
             inputs_en,   ans_pos_en = get_image_text_inputs(processor, img, ex["questions"]["en"])
@@ -298,7 +299,13 @@ else:
             res_en   = extract_residual_streams(model, inputs_en,   ALL_LAYERS)
             res_lang_list.append({L: res_lang[L][ans_pos]    for L in ALL_LAYERS})
             res_en_list.append(  {L: res_en[L][ans_pos_en]   for L in ALL_LAYERS})
+            del res_lang, res_en   # free ~315 MB of (seq_len, 4096) arrays immediately
+            if ex_i % 10 == 9:
+                gc.collect()
+                torch.cuda.empty_cache()
         cached_residuals[lang] = {"lang": res_lang_list, "en": res_en_list}
+        gc.collect()
+        torch.cuda.empty_cache()
         print(f"  Done [{lang}]: {len(res_lang_list)} examples × 32 layers")
 
     def _sv_from_cache(lang, layers_to_use):
