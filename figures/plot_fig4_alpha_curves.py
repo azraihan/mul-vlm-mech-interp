@@ -22,7 +22,7 @@ alpha_sensitivity = json.load(open("outputs/ablations/alpha_sensitivity.json"))
 
 colors  = {"pt": "#2166ac", "de": "#d6604d", "ru": "#4dac26", "en": "#808080"}
 markers = {"pt": "o",       "de": "s",       "ru": "^",       "en": "x"}
-alphas_x = [0.0, 0.5, 1.0, 1.5, 2.0]
+alphas_x = [0.0, 0.01, 0.02, 0.05, 0.07, 0.1, 0.2, 0.3, 0.4, 0.5]
 datasets = ["mmmb", "xgqa"]
 titles   = ["Dataset: MMMB", "Dataset: xGQA"]
 
@@ -48,6 +48,7 @@ for ax, dataset, title in zip(axes, datasets, titles):
     ax.set_title(title)
     ax.legend()
     ax.set_xticks(alphas_x)
+    ax.set_xticklabels([str(a) for a in alphas_x], rotation=45, ha="right")
 
 fig.tight_layout()
 
