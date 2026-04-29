@@ -98,6 +98,7 @@ def extract_steering_vec(lang, layers_to_use):
         for L in layers_to_use:
             h_lang[L].append(torch.tensor(res_lang[L][ans_pos]))
             h_en[L].append(  torch.tensor(res_en[L][ans_pos_en]))
+        del res_lang, res_en
     sv = {}
     for L in layers_to_use:
         sv[L] = torch.stack(h_lang[L]).mean(0) - torch.stack(h_en[L]).mean(0)
@@ -278,83 +279,47 @@ else:
     all_ranges = dict(LAYER_RANGES)
     all_ranges["ours"] = pivot_layers
 
-    ALL_LAYERS = list(range(32))
-    cached_residuals = {}
-
-    # Pre-extract all-layer residuals once for all LANGUAGES (reused across all ranges)
-    for lang in LANGUAGES:
-        has_mmmb = (os.path.exists(f"data/mmmb/mmmb_{lang}.json") and
-                    len(json.load(open(f"data/mmmb/mmmb_{lang}.json"))) > 0)
-        has_xgqa = lang in XGQA_LANGS
-        if not has_mmmb and not has_xgqa:
-            print(f"  Skipping [{lang}]: no MMMB or xGQA data")
-            continue
-        print(f"  Pre-extracting all-layer residuals for [{lang}]...")
-        res_lang_list, res_en_list = [], []
-        for ex_i, ex in enumerate(examples):
-            img = Image.open(ex["image_path"]).convert("RGB")
-            inputs_lang, ans_pos    = get_image_text_inputs(processor, img, ex["questions"][lang])
-            inputs_en,   ans_pos_en = get_image_text_inputs(processor, img, ex["questions"]["en"])
-            res_lang = extract_residual_streams(model, inputs_lang, ALL_LAYERS)
-            res_en   = extract_residual_streams(model, inputs_en,   ALL_LAYERS)
-            res_lang_list.append({L: res_lang[L][ans_pos]    for L in ALL_LAYERS})
-            res_en_list.append(  {L: res_en[L][ans_pos_en]   for L in ALL_LAYERS})
-            del res_lang, res_en   # free ~315 MB of (seq_len, 4096) arrays immediately
-            if ex_i % 10 == 9:
-                gc.collect()
-                torch.cuda.empty_cache()
-        cached_residuals[lang] = {"lang": res_lang_list, "en": res_en_list}
-        gc.collect()
-        torch.cuda.empty_cache()
-        print(f"  Done [{lang}]: {len(res_lang_list)} examples × 32 layers")
-
-    def _sv_from_cache(lang, layers_to_use):
-        sv = {}
-        for L in layers_to_use:
-            lang_vecs = torch.stack([torch.tensor(r[L]) for r in cached_residuals[lang]["lang"]])
-            en_vecs   = torch.stack([torch.tensor(r[L]) for r in cached_residuals[lang]["en"]])
-            sv[L] = lang_vecs.mean(0) - en_vecs.mean(0)
-        return sv
-
     for range_name, layers_to_use in all_ranges.items():
         print(f"\n  Range: {range_name} = {layers_to_use}")
         layer_range_results[range_name] = {}
 
         # ── MMMB ──
         for lang in ["pt", "ru"]:
-            if lang not in cached_residuals:
-                print(f"  Skipping {lang} MMMB (no cached residuals)")
+            if not (os.path.exists(f"data/mmmb/mmmb_{lang}.json") and
+                    len(json.load(open(f"data/mmmb/mmmb_{lang}.json"))) > 0):
+                print(f"  Skipping {lang} MMMB (no data)")
                 layer_range_results[range_name][f"{lang}_mmmb"] = None
                 continue
-            sv = _sv_from_cache(lang, layers_to_use)
+            print(f"  [{range_name}] Extracting steering vec for {lang} MMMB...")
+            sv = extract_steering_vec(lang, layers_to_use)
             alpha_results = {}
             alpha_results["0.0"] = eval_mmmb(lang, f"{range_name}_baseline", None, layers_to_use)
             for alpha in ALPHA_VALUES:
                 acc = eval_mmmb(lang, f"{range_name}_a{alpha}", sv, layers_to_use, alpha=alpha)
                 alpha_results[str(alpha)] = acc
-                print(f"  [{range_name}] {lang} MMMB α={alpha}: "
-                      f"{acc:.3f}" if acc is not None else "N/A")
+                print(f"  [{range_name}] {lang} MMMB α={alpha}: " +
+                      (f"{acc:.3f}" if acc is not None else "N/A"))
             layer_range_results[range_name][f"{lang}_mmmb"] = alpha_results
+            del sv
+            gc.collect()
+            torch.cuda.empty_cache()
 
         # ── xGQA ──
         for lang in [l for l in XGQA_LANGS if l in LANGUAGES]:
-            sv_lang = lang
             alpha_results = {}
-
-            if sv_lang not in cached_residuals:
-                print(f"  Skipping {lang} xGQA (no cached residuals)")
-                layer_range_results[range_name][f"{lang}_xgqa"] = None
-                continue
-
-            sv = _sv_from_cache(sv_lang, layers_to_use)
+            print(f"  [{range_name}] Extracting steering vec for {lang} xGQA...")
+            sv = extract_steering_vec(lang, layers_to_use)
             alpha_results["0.0"] = eval_xgqa(lang, f"{range_name}_baseline", None, layers_to_use)
             for alpha in ALPHA_VALUES:
                 acc = eval_xgqa(lang, f"{range_name}_a{alpha}", sv, layers_to_use, alpha=alpha)
                 alpha_results[str(alpha)] = acc
                 em = acc["exact_match"] if isinstance(acc, dict) else acc
-                print(f"  [{range_name}] {lang} xGQA α={alpha}: "
-                      + (f"EM={em:.3f}" if em is not None else "N/A"))
+                print(f"  [{range_name}] {lang} xGQA α={alpha}: " +
+                      (f"EM={em:.3f}" if em is not None else "N/A"))
             layer_range_results[range_name][f"{lang}_xgqa"] = alpha_results
+            del sv
+            gc.collect()
+            torch.cuda.empty_cache()
 
     json.dump(layer_range_results, open("outputs/ablations/layer_range_ablation.json", "w"), indent=2)
     print("Saved outputs/ablations/layer_range_ablation.json")
