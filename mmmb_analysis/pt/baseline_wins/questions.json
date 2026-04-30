@@ -1,0 +1,66 @@
+[
+  {
+    "question": "Quantas pessoas estão presentes na imagem?",
+    "options": {
+      "A": "0",
+      "B": "1",
+      "C": "2",
+      "D": "3"
+    },
+    "answer": "C",
+    "image": "images/pt_0025.jpg"
+  },
+  {
+    "question": "Qual é o assunto principal da imagem?",
+    "options": {
+      "A": "Várias fábricas e chaminés",
+      "B": "Um prédio emitindo fumaça",
+      "C": "Um céu nublado",
+      "D": "Um tanque à distância"
+    },
+    "answer": "A",
+    "image": "images/pt_0048.jpg"
+  },
+  {
+    "question": "O que você pode encontrar no canto superior direito da imagem?",
+    "options": {
+      "A": "Uma folha",
+      "B": "Uma árvore fina e alta",
+      "C": "Um ramo",
+      "D": "Uma girafa"
+    },
+    "answer": "A",
+    "image": "images/pt_0056.jpg"
+  },
+  {
+    "question": "Qual é a cor da fita da medalha usada por um dos integrantes da equipe?",
+    "options": {
+      "A": "Azul",
+      "B": "Branco",
+      "C": "Vermelho",
+      "D": "Preto"
+    },
+    "answer": "C",
+    "image": "images/pt_0098.jpg"
+  },
+  {
+    "question": "Selecione a melhor resposta.\nQual propriedade esses três objetos têm em comum?",
+    "options": {
+      "A": "escorregadio",
+      "B": "transparente",
+      "C": "amarelo"
+    },
+    "answer": "C",
+    "image": "images/pt_0120.jpg"
+  },
+  {
+    "question": "Selecione a melhor resposta.\nQual propriedade esses três objetos têm em comum?",
+    "options": {
+      "A": "brilhante",
+      "B": "escorregadio",
+      "C": "duro"
+    },
+    "answer": "C",
+    "image": "images/pt_0158.jpg"
+  }
+]

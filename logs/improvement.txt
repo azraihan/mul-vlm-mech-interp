@@ -1,0 +1,13 @@
+🇧🇷 Portuguese (PT)
+Steered ✓, Baseline ✗ → 8 questions (serial numbers):
+16, 23, 61, 68, 76, 116, 190, 200
+Baseline ✓, Steered ✗ → 6 questions (serial numbers):
+26, 49, 57, 99, 121, 159
+Net gain: +2 (8 gained − 6 lost = 128 vs 126 correct)
+
+🇷🇺 Russian (RU)
+Steered ✓, Baseline ✗ → 14 questions (serial numbers):
+50, 64, 95, 110, 114, 122, 132, 142, 154, 172, 174, 186, 192, 198
+Baseline ✓, Steered ✗ → 1 question (serial number):
+3
+Net gain: +13 (14 gained − 1 lost = 116 vs 103 correct)
