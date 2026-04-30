@@ -1,0 +1,109 @@
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Brinkmann et~al.(2025)}]{brinkmann-etal-2025-large}
+Johannes Brinkmann and 1 others. 2025.
+\newblock Large language models are not robust multilingual learners: Language
+  ordering hurts in-context learning.
+\newblock In \emph{Proceedings of NAACL}.
+
+\bibitem[{Conneau et~al.(2020)Conneau, Khandelwal
+  et~al.}]{conneau-etal-2020-unsupervised}
+Alexis Conneau, Kartikay Khandelwal, and 1 others. 2020.
+\newblock \href {https://arxiv.org/abs/1911.02116} {Unsupervised cross-lingual
+  representation learning at scale}.
+\newblock \emph{Preprint}, arXiv:1911.02116.
+
+\bibitem[{Dumas et~al.(2024)Dumas, Malvar, Biderman
+  et~al.}]{dumas-etal-2024-llamas}
+Pierre Dumas, Alex Malvar, Stella Biderman, and 1 others. 2024.
+\newblock \href {https://arxiv.org/abs/2402.00543} {{LLaMA}s process languages
+  similarly despite surface differences}.
+\newblock \emph{Preprint}, arXiv:2402.00543.
+
+\bibitem[{Fan et~al.(2025)}]{fan-etal-2025-plast}
+Zhengping Fan and 1 others. 2025.
+\newblock {PLAST}: Plug-and-play language-steering for multilingual {VLM}s.
+\newblock In \emph{Proceedings of EMNLP Findings}.
+
+\bibitem[{Ferrando and
+  Costa-juss{\`a}(2024)}]{ferrando-costa-jussa-2024-similarity}
+Javier Ferrando and Marta~R. Costa-juss{\`a}. 2024.
+\newblock Is it good to be similar? investigating the role of language
+  similarity in multilingual transformers.
+\newblock In \emph{Proceedings of EMNLP Findings}.
+
+\bibitem[{Geva et~al.(2022)Geva, Caciularu, Wang, and
+  Goldberg}]{geva-etal-2022-transformer}
+Mor Geva, Avi Caciularu, Kevin~Ro Wang, and Yoav Goldberg. 2022.
+\newblock \href {https://arxiv.org/abs/2203.14680} {Transformer feed-forward
+  layers build predictions by promoting concepts in the vocabulary space}.
+\newblock \emph{Preprint}, arXiv:2203.14680.
+
+\bibitem[{Golovanevsky et~al.(2025)}]{golovanevsky-etal-2025-notice}
+Milana Golovanevsky and 1 others. 2025.
+\newblock What you see is what you get? probing {LLaVA} for visual robustness
+  via circuit analysis.
+\newblock In \emph{Proceedings of NAACL}.
+
+\bibitem[{Lin et~al.(2014)Lin, Maire, Belongie
+  et~al.}]{lin-etal-2014-microsoft}
+Tsung-Yi Lin, Michael Maire, Serge Belongie, and 1 others. 2014.
+\newblock Microsoft {COCO}: Common objects in context.
+\newblock In \emph{Proceedings of ECCV}.
+
+\bibitem[{Liu et~al.(2024)Liu, Li, Li, and Lee}]{liu-etal-2024-improved}
+Haotian Liu, Chunyuan Li, Yuheng Li, and Yong~Jae Lee. 2024.
+\newblock Improved baselines with visual instruction tuning.
+\newblock In \emph{Proceedings of CVPR}.
+\newblock LLaVA-1.5.
+
+\bibitem[{Meng et~al.(2022)Meng, Bau, Andonian, and
+  Belinkov}]{meng-etal-2022-locating}
+Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov. 2022.
+\newblock Locating and editing factual associations in {GPT}.
+\newblock In \emph{Advances in NeurIPS}.
+
+\bibitem[{nostalgebraist(2020)}]{nostalgebraist-2020}
+nostalgebraist. 2020.
+\newblock Interpreting {GPT}: the logit lens.
+\newblock
+  \url{https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens}.
+
+\bibitem[{Nyandwi et~al.(2025)}]{nyandwi-etal-2025-grounding}
+Bahati Nyandwi and 1 others. 2025.
+\newblock {CulturalPangea}: Grounding multilingual {VLM}s in cultural context.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[{Resck et~al.(2025)}]{resck-etal-2025-explainability}
+Lucas Resck and 1 others. 2025.
+\newblock Explainability of multilingual {LLM}s via activation patching.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[{Song et~al.(2025)}]{song-etal-2025-missing}
+Bohao Song and 1 others. 2025.
+\newblock What is missing in multilingual visual reasoning?
+\newblock In \emph{Proceedings of NAACL}.
+
+\bibitem[{Sun et~al.(2023)}]{sun-etal-2023-mmmb}
+Jihai Sun and 1 others. 2023.
+\newblock {MMMB}: A multilingual multimodal benchmark.
+\newblock arXiv preprint.
+\newblock TODO: verify arXiv ID and full author list before submission.
+
+\bibitem[{Wendler et~al.(2024)Wendler, Veselovsky, Monea, and
+  West}]{wendler-etal-2024-llamas}
+Chris Wendler, Veniamin Veselovsky, Giovanni Monea, and Robert West. 2024.
+\newblock {LLaMA}s know more than they show: On the intrinsic representation of
+  {LLM} factual knowledge.
+\newblock In \emph{Proceedings of ACL}.
+\newblock Introduces the three-phase English-pivot model for LLaMA.
+
+\bibitem[{Zou et~al.(2023)Zou, Phan, Chen
+  et~al.}]{zou-etal-2023-representation}
+Andy Zou, Long Phan, Sarah Chen, and 1 others. 2023.
+\newblock \href {https://arxiv.org/abs/2310.01405} {Representation engineering:
+  A top-down approach to {AI} transparency}.
+\newblock \emph{Preprint}, arXiv:2310.01405.
+
+\end{thebibliography}

@@ -43,6 +43,36 @@ handles, labels = axes[0].get_legend_handles_labels()
 fig.legend(handles, labels, loc="lower center", ncol=3, bbox_to_anchor=(0.5, -0.06))
 fig.tight_layout()
 
+# Inset on Russian subplot: zoom into visual-only curve
+from matplotlib.patches import ConnectionPatch
+ru_idx = LANGUAGES.index("ru")
+ax_ru = axes[ru_idx]
+vis_ru = visual[ru_idx]
+
+inset_pos = [0.63, 0.62, 0.33, 0.25]  # top-right
+inset = ax_ru.inset_axes(inset_pos)
+inset.plot(layers, vis_ru, color="#4dac26", linewidth=1.2)
+inset.axhline(0, color="black", linewidth=0.5, linestyle=":")
+inset.set_xlim(0, 31)
+inset.set_ylim(-0.0002, 0.0002)
+inset.set_yticks([-0.0001, 0, 0.0001])
+inset.set_yticklabels(["-1e-4", "0", "1e-4"], fontsize=7)
+inset.set_xticks([0, 16, 31])
+inset.set_xticklabels(["0", "16", "31"], fontsize=7)
+inset.set_title("Visual only (zoomed)", fontsize=7, pad=3)
+
+# Both connector lines converge to the peak of the visual signal in the main plot
+focus_layer = int(np.argmax(np.abs(vis_ru)))
+ix0, iy0, iw, ih = inset_pos
+for corner_x in [ix0, ix0 + iw]:
+    con = ConnectionPatch(
+        xyA=(corner_x, iy0), coordsA="axes fraction",
+        xyB=(focus_layer, 0.0), coordsB="data",
+        axesA=ax_ru, axesB=ax_ru,
+        color="gray", alpha=0.5, linewidth=0.8,
+    )
+    ax_ru.add_patch(con)
+
 plt.savefig("outputs/figures/fig3_visual_contribution.pdf", bbox_inches="tight")
 plt.savefig("outputs/figures/fig3_visual_contribution.png", bbox_inches="tight", dpi=150)
 plt.close()
