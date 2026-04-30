@@ -1,0 +1,2538 @@
+MMMB pt baseline:   0%|                                 | 0/200 [00:00<?, ?it/s]
+[DBG MMMB] ex=0  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x373 at 0x7BE992060980>
+  Q       : Quantas pessoas no palco estão tocando teclado?
+Options:
+A. Nenhum
+B. Um
+C. Dois
+D. Três
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:   0%|▏                        | 1/200 [00:00<02:28,  1.34it/s]
+[DBG MMMB] ex=1  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=384x512 at 0x7BE9916A8500>
+  Q       : Qual é a cor dominante das roupas da pessoa na imagem?
+Options:
+A. Vermelho
+B. Azul
+C. Amarelo
+D. Branco
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:   1%|▎                        | 2/200 [00:01<02:26,  1.35it/s]
+[DBG MMMB] ex=2  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991D2F350>
+  Q       : Quantas janelas há na sala?
+Options:
+A. Nenhum
+B. Dois
+C. Um
+D. Três
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:   2%|▍                        | 3/200 [00:02<02:16,  1.44it/s]
+[DBG MMMB] ex=3  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=378x512 at 0x7BE99203D040>
+  Q       : Quantas pessoas estão na imagem?
+Options:
+A. Um
+B. Três
+C. Dois
+D. Quatro
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:   2%|▌                        | 4/200 [00:02<02:10,  1.50it/s]
+[DBG MMMB] ex=4  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=410x512 at 0x7BE991267E30>
+  Q       : Quantos bancos estão visíveis na imagem?
+Options:
+A. 0
+B. 1
+C. 3
+D. 2
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:   2%|▋                        | 5/200 [00:03<02:16,  1.43it/s]
+[DBG MMMB] ex=5  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x371 at 0x7BE991826300>
+  Q       : Qual é a cor do prédio na imagem?
+Options:
+A. Branco
+B. Cinza
+C. Preto
+D. Azul
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:   3%|▊                        | 6/200 [00:04<02:18,  1.40it/s]
+[DBG MMMB] ex=6  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x377 at 0x7BE991CDD040>
+  Q       : Qual é o meio de transporte mostrado na imagem?
+Options:
+A. Bicicleta
+B. Trem
+C. Carro
+D. Ônibus
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:   4%|▉                        | 7/200 [00:04<02:20,  1.38it/s]
+[DBG MMMB] ex=7  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x420 at 0x7BE99203D040>
+  Q       : Quantos pés estão visíveis na imagem?
+Options:
+A. Um
+B. Três
+C. Dois
+D. Quatro
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:   4%|█                        | 8/200 [00:05<02:19,  1.37it/s]
+[DBG MMMB] ex=8  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991B780B0>
+  Q       : Que tipo de objeto é detectado várias vezes nas detecções de atributos?
+Options:
+A. Teto
+B. Porta
+C. Parede
+D. Janela
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:   4%|█▏                       | 9/200 [00:06<02:19,  1.37it/s]
+[DBG MMMB] ex=9  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=338x512 at 0x7BE991CDC590>
+  Q       : Qual é a cor da camisa que o homem está vestindo?
+Options:
+A. Preto
+B. Branco
+C. Vermelho
+D. Azul
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:   5%|█▏                      | 10/200 [00:07<02:19,  1.36it/s]
+[DBG MMMB] ex=10  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x512 at 0x7BE991D286B0>
+  Q       : Quantas pessoas estão no supermercado?
+Options:
+A. Uma pessoa
+B. Duas pessoas
+C. Quatro pessoas
+D. Três pessoas
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:   6%|█▎                      | 11/200 [00:07<02:19,  1.35it/s]
+[DBG MMMB] ex=11  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x512 at 0x7BE99201A7E0>
+  Q       : Quantas pessoas estão no palco no show?
+Options:
+A. Três
+B. Dois
+C. Um
+D. Quatro
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:   6%|█▍                      | 12/200 [00:08<02:12,  1.42it/s]
+[DBG MMMB] ex=12  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x342 at 0x7BE9918F8BC0>
+  Q       : De que cor são as cadeiras do estádio?
+Options:
+A. Preto.
+B. Cinza.
+C. Verde.
+D. Não pode ser determinado.
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:   6%|█▌                      | 13/200 [00:09<02:14,  1.39it/s]
+[DBG MMMB] ex=13  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=409x512 at 0x7BE9918F8890>
+  Q       : Que tipo de calçado o jogador de beisebol usa?
+Options:
+A. Tênis Nike preto
+B. Tênis vermelho
+C. Botas pretas
+D. Sandálias brancas
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:   7%|█▋                      | 14/200 [00:10<02:14,  1.38it/s]
+[DBG MMMB] ex=14  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=341x512 at 0x7BE99191D790>
+  Q       : Quantas pessoas estão visíveis na imagem?
+Options:
+A. 1
+B. mais de 3
+C. 3
+D. 2
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:   8%|█▊                      | 15/200 [00:10<02:14,  1.37it/s]
+[DBG MMMB] ex=15  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=341x512 at 0x7BE9918F3F50>
+  Q       : Qual é a cor da banheira?
+Options:
+A. Limpar
+B. Bege
+C. Porcelana
+D. Branco
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:   8%|█▉                      | 16/200 [00:11<02:08,  1.44it/s]
+[DBG MMMB] ex=16  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x401 at 0x7BE992019400>
+  Q       : Qual é a cor dos cavalos na frente da imagem?
+Options:
+A. Marrom
+B. Branco
+C. Preto
+D. Cinza
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:   8%|██                      | 17/200 [00:12<02:09,  1.41it/s]
+[DBG MMMB] ex=17  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=341x512 at 0x7BE991BD4740>
+  Q       : De que cor são as chuteiras do jogador de futebol que levanta o troféu?
+Options:
+A. Branco
+B. Verde
+C. Preto
+D. Vermelho
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'A'  |  ✗ WRONG
+MMMB pt baseline:   9%|██▏                     | 18/200 [00:12<02:11,  1.39it/s]
+[DBG MMMB] ex=18  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=409x512 at 0x7BE9918F4FB0>
+  Q       : Qual é a cor do capacete do jogador de futebol?
+Options:
+A. Cinza
+B. Preto
+C. Branco
+D. Prata
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  10%|██▎                     | 19/200 [00:13<02:11,  1.37it/s]
+[DBG MMMB] ex=19  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991CE3E60>
+  Q       : Qual é a cor do prato onde está o bolo?
+Options:
+A. Marrom
+B. Amarelo
+C. Verde
+D. Branco
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  10%|██▍                     | 20/200 [00:14<02:11,  1.37it/s]
+[DBG MMMB] ex=20  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x377 at 0x7BE9918F4050>
+  Q       : Quantas pessoas estão na imagem?
+Options:
+A. Um
+B. Dois
+C. Três
+D. Quatro
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  10%|██▌                     | 21/200 [00:15<02:05,  1.43it/s]
+[DBG MMMB] ex=21  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x348 at 0x7BE991942750>
+  Q       : Qual a cor da camisa de futebol do atleta que marcou gol?
+Options:
+A. Vermelho
+B. Azul
+C. Verde
+D. Não é possível determinar pela imagem
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  11%|██▋                     | 22/200 [00:15<02:07,  1.40it/s]
+[DBG MMMB] ex=22  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=384x512 at 0x7BE991C7D670>
+  Q       : Quantas pessoas estão na rua ao fundo?
+Options:
+A. Nenhum
+B. Muitos
+C. Um pouco
+D. Demais para contar
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  12%|██▊                     | 23/200 [00:16<02:08,  1.38it/s]
+[DBG MMMB] ex=23  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=382x512 at 0x7BE991787B00>
+  Q       : Qual é a cor do gato da imagem?
+Options:
+A. Cinza
+B. Marrom
+C. Preto
+D. Branco
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  12%|██▉                     | 24/200 [00:17<02:02,  1.44it/s]
+[DBG MMMB] ex=24  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x288 at 0x7BE991C7D670>
+  Q       : Que tipo de lugar é mostrado na imagem?
+Options:
+A. Um parque
+B. Um shopping center
+C. Um aeroporto
+D. Um museu
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  12%|███                     | 25/200 [00:17<02:04,  1.41it/s]
+[DBG MMMB] ex=25  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE9918F5670>
+  Q       : Quantas pessoas estão presentes na imagem?
+Options:
+A. 0
+B. 1
+C. 2
+D. 3
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  13%|███                     | 26/200 [00:18<02:05,  1.39it/s]
+[DBG MMMB] ex=26  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x342 at 0x7BE9918B86B0>
+  Q       : Qual é a cor da cortina do palco atrás da banda?
+Options:
+A. Azul
+B. Vermelho
+C. Verde
+D. Amarelo
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  14%|███▏                    | 27/200 [00:19<02:06,  1.37it/s]
+[DBG MMMB] ex=27  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x375 at 0x7BE9918F6210>
+  Q       : Quantos ônibus podem ser vistos na imagem?
+Options:
+A. 1
+B. 2
+C. 3
+D. 4
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  14%|███▎                    | 28/200 [00:20<02:06,  1.36it/s]
+[DBG MMMB] ex=28  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x375 at 0x7BE9918F9640>
+  Q       : Qual é a cor do céu na imagem?
+Options:
+A. Laranja e rosa
+B. Nublado e cinza
+C. Claro e azul
+D. Escuro e estrelado
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  14%|███▍                    | 29/200 [00:20<02:06,  1.36it/s]
+[DBG MMMB] ex=29  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE99179C560>
+  Q       : Quantas pessoas estão presentes na imagem?
+Options:
+A. Dois
+B. Três
+C. Quatro
+D. Cinco
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  15%|███▌                    | 30/200 [00:21<02:06,  1.35it/s]
+[DBG MMMB] ex=30  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE991776300>
+  Q       : Quantas pessoas estão presentes na imagem?
+Options:
+A. Um
+B. Nenhum
+C. Dois
+D. Três
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  16%|███▋                    | 31/200 [00:22<02:05,  1.35it/s]
+[DBG MMMB] ex=31  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE992063920>
+  Q       : Quantas árvores caídas estão presentes na imagem?
+Options:
+A. 1
+B. 0
+C. 2
+D. 3
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  16%|███▊                    | 32/200 [00:23<02:05,  1.34it/s]
+[DBG MMMB] ex=32  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=384x512 at 0x7BE991F980E0>
+  Q       : Quais acomodações para dormir estão presentes neste quarto?
+Options:
+A. Um beliche
+B. Duas camas separadas
+C. Uma cama queen
+D. Uma cama de solteiro
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  16%|███▉                    | 33/200 [00:23<02:05,  1.33it/s]
+[DBG MMMB] ex=33  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x512 at 0x7BE99191CF20>
+  Q       : Quantos sacos estão na mesa?
+Options:
+A. Um
+B. Dois
+C. Três
+D. Quatro
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  17%|████                    | 34/200 [00:24<01:58,  1.40it/s]
+[DBG MMMB] ex=34  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE991776300>
+  Q       : Que tipo de jogo as pessoas estão jogando na imagem?
+Options:
+A. tênis
+B. Futebol
+C. Abóbora
+D. Beisebol
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  18%|████▏                   | 35/200 [00:25<01:59,  1.38it/s]
+[DBG MMMB] ex=35  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x377 at 0x7BE991EAF950>
+  Q       : Quantos edifícios existem na imagem?
+Options:
+A. 1
+B. 4
+C. 3
+D. 2
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'A'  |  ✗ WRONG
+MMMB pt baseline:  18%|████▎                   | 36/200 [00:26<01:59,  1.37it/s]
+[DBG MMMB] ex=36  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=384x512 at 0x7BE991ECC5F0>
+  Q       : Como está o clima na imagem?
+Options:
+A. Chuvoso
+B. Nublado
+C. Enevoado
+D. Ensolarado
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  18%|████▍                   | 37/200 [00:26<01:59,  1.36it/s]
+[DBG MMMB] ex=37  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE99191CF20>
+  Q       : Qual é a cor da geladeira da cozinha?
+Options:
+A. Preto
+B. Branco
+C. Prata
+D. Marrom
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  19%|████▌                   | 38/200 [00:27<01:59,  1.36it/s]
+[DBG MMMB] ex=38  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x339 at 0x7BE9918F4500>
+  Q       : Que tipo de evento está acontecendo na imagem?
+Options:
+A. Um jogo de esportes
+B. Um concerto musical
+C. Uma cerimônia de formatura
+D. Um comício político
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  20%|████▋                   | 39/200 [00:28<01:59,  1.35it/s]
+[DBG MMMB] ex=39  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x342 at 0x7BE991ECD520>
+  Q       : Qual é o objeto principal presente na imagem?
+Options:
+A. Um vaso
+B. Uma mesa
+C. Uma cama
+D. Um interruptor de luz
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  20%|████▊                   | 40/200 [00:28<01:58,  1.35it/s]
+[DBG MMMB] ex=40  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=384x512 at 0x7BE9918F6C60>
+  Q       : Qual é a cor principal da imagem?
+Options:
+A. Vermelho
+B. Verde
+C. Preto
+D. Branco
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  20%|████▉                   | 41/200 [00:29<01:53,  1.41it/s]
+[DBG MMMB] ex=41  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=319x512 at 0x7BE991ECC170>
+  Q       : Qual é o material da construção mostrada na imagem?
+Options:
+A. Concreto
+B. Tijolo
+C. Pedra
+D. Madeira
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  21%|█████                   | 42/200 [00:30<01:54,  1.38it/s]
+[DBG MMMB] ex=42  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=462x512 at 0x7BE99179FB60>
+  Q       : Quantas cadeiras estão presentes na imagem?
+Options:
+A. 5
+B. 3
+C. 4
+D. 2
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  22%|█████▏                  | 43/200 [00:31<01:54,  1.37it/s]
+[DBG MMMB] ex=43  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE99179CA10>
+  Q       : Qual é o tipo de edifício mais proeminente na imagem?
+Options:
+A. Edifícios de tijolos
+B. Grandes edifícios brancos
+C. Edifícios imponentes
+D. Edifícios amarelos
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  22%|█████▎                  | 44/200 [00:31<01:54,  1.36it/s]
+[DBG MMMB] ex=44  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=363x512 at 0x7BE991F39FD0>
+  Q       : Qual é a cor da bandana da mulher com cabelo trançado?
+Options:
+A. Rosa
+B. Branco
+C. Azul
+D. Ouro
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  22%|█████▍                  | 45/200 [00:32<01:54,  1.36it/s]
+[DBG MMMB] ex=45  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x381 at 0x7BE991841490>
+  Q       : Quantas pessoas estão na imagem?
+Options:
+A. 4
+B. 2
+C. 3
+D. 1
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  23%|█████▌                  | 46/200 [00:33<01:48,  1.42it/s]
+[DBG MMMB] ex=46  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x342 at 0x7BE991ECDA00>
+  Q       : Qual é a hora aproximada do dia na imagem?
+Options:
+A. Noite
+B. Tarde
+C. Noite
+D. De manhã cedo
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  24%|█████▋                  | 47/200 [00:33<01:49,  1.39it/s]
+[DBG MMMB] ex=47  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=332x512 at 0x7BE9918D59A0>
+  Q       : O que a garota da imagem está fazendo?
+Options:
+A. Sentado
+B. Dormindo
+C. Dançando
+D. De pé
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  24%|█████▊                  | 48/200 [00:34<01:50,  1.38it/s]
+[DBG MMMB] ex=48  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x369 at 0x7BE991F434D0>
+  Q       : Qual é o assunto principal da imagem?
+Options:
+A. Várias fábricas e chaminés
+B. Um prédio emitindo fumaça
+C. Um céu nublado
+D. Um tanque à distância
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  24%|█████▉                  | 49/200 [00:35<01:50,  1.37it/s]
+[DBG MMMB] ex=49  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x466 at 0x7BE991824470>
+  Q       : Quantas pessoas estão cantando em um microfone?
+Options:
+A. 1
+B. 2
+C. 3
+D. 4
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  25%|██████                  | 50/200 [00:36<01:50,  1.36it/s]
+[DBG MMMB] ex=50  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x342 at 0x7BE991EFEAB0>
+  Q       : Quantas cadeiras tem na imagem?
+Options:
+A. 3
+B. 2
+C. 4
+D. 5
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  26%|██████                  | 51/200 [00:36<01:45,  1.42it/s]
+[DBG MMMB] ex=51  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x377 at 0x7BE991F432F0>
+  Q       : Quantos lagos existem na imagem?
+Options:
+A. Um
+B. Dois
+C. Três
+D. Nenhum
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  26%|██████▏                 | 52/200 [00:37<01:41,  1.46it/s]
+[DBG MMMB] ex=52  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991EFC290>
+  Q       : Qual é a cor dominante do céu na imagem?
+Options:
+A. Azul
+B. Laranja
+C. Amarelo
+D. Vermelho
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  26%|██████▎                 | 53/200 [00:38<01:43,  1.43it/s]
+[DBG MMMB] ex=53  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=313x512 at 0x7BE991EFDD60>
+  Q       : Qual é o tema geral desta imagem?
+Options:
+A. Um grupo de amigos fazendo um piquenique
+B. Relaxamento no quintal
+C. Um jardim com cores vibrantes
+D. Um comercial de móveis para áreas externas
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  27%|██████▍                 | 54/200 [00:38<01:44,  1.39it/s]
+[DBG MMMB] ex=54  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x377 at 0x7BE991F42090>
+  Q       : Qual é a cor da porta do prédio de pedra?
+Options:
+A. Vermelho
+B. Branco
+C. Marrom
+D. Preto
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  28%|██████▌                 | 55/200 [00:39<01:45,  1.37it/s]
+[DBG MMMB] ex=55  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x424 at 0x7BE991EFE3F0>
+  Q       : Que tipo de esporte está sendo praticado na imagem?
+Options:
+A. Futebol
+B. tênis
+C. Basquetebol
+D. Voleibol
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  28%|██████▋                 | 56/200 [00:40<01:46,  1.36it/s]
+[DBG MMMB] ex=56  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE991F407D0>
+  Q       : O que você pode encontrar no canto superior direito da imagem?
+Options:
+A. Uma folha
+B. Uma árvore fina e alta
+C. Um ramo
+D. Uma girafa
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  28%|██████▊                 | 57/200 [00:41<01:45,  1.35it/s]
+[DBG MMMB] ex=57  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE992062960>
+  Q       : Qual é a faixa etária da maioria das pessoas no palco?
+Options:
+A. Crianças
+B. Adultos
+C. Jovens adultos
+D. Adolescentes
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  29%|██████▉                 | 58/200 [00:42<01:46,  1.34it/s]
+[DBG MMMB] ex=58  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x288 at 0x7BE991EFC740>
+  Q       : Qual é a atmosfera geral da cena descrita pelos dados?
+Options:
+A. Uma praia movimentada
+B. Uma trilha tranquila na montanha
+C. Uma rua movimentada da cidade
+D. Um parque sereno
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  30%|███████                 | 59/200 [00:42<01:46,  1.33it/s]
+[DBG MMMB] ex=59  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x347 at 0x7BE9917E98E0>
+  Q       : Qual é o material da mesa da sala de jantar?
+Options:
+A. Vidro
+B. Madeira
+C. Metal
+D. Plástico
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  30%|███████▏                | 60/200 [00:43<01:44,  1.34it/s]
+[DBG MMMB] ex=60  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=341x512 at 0x7BE991F43FB0>
+  Q       : Quantas pessoas parecem estar sorrindo na imagem?
+Options:
+A. 0
+B. 3
+C. 2
+D. 1
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  30%|███████▎                | 61/200 [00:44<01:44,  1.34it/s]
+[DBG MMMB] ex=61  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x373 at 0x7BE991784290>
+  Q       : Quantas pessoas estão na imagem?
+Options:
+A. 1
+B. 3
+C. 2
+D. 4
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  31%|███████▍                | 62/200 [00:44<01:38,  1.40it/s]
+[DBG MMMB] ex=62  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=383x512 at 0x7BE991EA55B0>
+  Q       : Qual é a cor do vestido usado pelo premiado da imagem?
+Options:
+A. Azul
+B. Verde
+C. Vermelho
+D. Amarelo
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  32%|███████▌                | 63/200 [00:45<01:38,  1.38it/s]
+[DBG MMMB] ex=63  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991785250>
+  Q       : Qual é o esquema de cores dominante deste banheiro?
+Options:
+A. Amarelo e preto
+B. Branco e preto
+C. Bege e marrom
+D. Cinza e branco
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  32%|███████▋                | 64/200 [00:46<01:39,  1.37it/s]
+[DBG MMMB] ex=64  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE991EA7C50>
+  Q       : Qual é a cor da guitarra no palco?
+Options:
+A. Preto e branco
+B. Branco
+C. Vermelho
+D. Preto
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  32%|███████▊                | 65/200 [00:47<01:38,  1.37it/s]
+[DBG MMMB] ex=65  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x377 at 0x7BE991F99B20>
+  Q       : Qual é a cor do corrimão visto na imagem?
+Options:
+A. Marrom
+B. Preto
+C. Ouro
+D. Branco
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  33%|███████▉                | 66/200 [00:47<01:38,  1.36it/s]
+[DBG MMMB] ex=66  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991784290>
+  Q       : Qual é a cor da cadeira em primeiro plano?
+Options:
+A. Branco
+B. Marrom
+C. Preto
+D. Cinza
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  34%|████████                | 67/200 [00:48<01:38,  1.35it/s]
+[DBG MMMB] ex=67  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x512 at 0x7BE991FF58B0>
+  Q       : Quantos travesseiros há na cama da imagem?
+Options:
+A. Nenhum
+B. Um
+C. Três
+D. Dois
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  34%|████████▏               | 68/200 [00:49<01:37,  1.35it/s]
+[DBG MMMB] ex=68  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x418 at 0x7BE991F42C60>
+  Q       : Que jogo está sendo jogado na imagem?
+Options:
+A. Futebol
+B. Beisebol
+C. Basquetebol
+D. Voleibol
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  34%|████████▎               | 69/200 [00:50<01:37,  1.35it/s]
+[DBG MMMB] ex=69  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991DDA450>
+  Q       : Qual é a cor dominante na imagem?
+Options:
+A. Vermelho
+B. Azul
+C. Verde
+D. Preto
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  35%|████████▍               | 70/200 [00:50<01:31,  1.42it/s]
+[DBG MMMB] ex=70  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x375 at 0x7BE991FF7890>
+  Q       : Qual é a contagem aproximada de pessoas visíveis na imagem?
+Options:
+A. 5
+B. 10
+C. 15
+D. 20
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  36%|████████▌               | 71/200 [00:51<01:32,  1.39it/s]
+[DBG MMMB] ex=71  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=387x512 at 0x7BE991FF78F0>
+  Q       : Em que direção caminham a mulher e a criança na imagem?
+Options:
+A. Em direção ao espectador
+B. No lado esquerdo da imagem
+C. Longe do espectador
+D. No lado direito da imagem
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  36%|████████▋               | 72/200 [00:52<01:33,  1.37it/s]
+[DBG MMMB] ex=72  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE99201C950>
+  Q       : Qual é a cor predominante do portão na imagem?
+Options:
+A. Preto
+B. Branco
+C. Cinza
+D. Azul
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  36%|████████▊               | 73/200 [00:52<01:33,  1.36it/s]
+[DBG MMMB] ex=73  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=384x512 at 0x7BE991EA61E0>
+  Q       : Quantos arcos existem na imagem?
+Options:
+A. Um
+B. Quatro
+C. Três
+D. Dois
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  37%|████████▉               | 74/200 [00:53<01:28,  1.42it/s]
+[DBG MMMB] ex=74  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE991DD8E30>
+  Q       : O que a pessoa na imagem está fazendo?
+Options:
+A. Falando no telefone
+B. Bebendo chá
+C. Digitando no telefone
+D. Segurando uma bebida
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  38%|█████████               | 75/200 [00:54<01:29,  1.40it/s]
+[DBG MMMB] ex=75  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE991ECD5E0>
+  Q       : Qual é o atributo do SUV verde no estacionamento?
+Options:
+A. Grande
+B. Lustroso
+C. Estacionado
+D. Rápido
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  38%|█████████               | 76/200 [00:55<01:29,  1.38it/s]
+[DBG MMMB] ex=76  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x451 at 0x7BE9918F6600>
+  Q       : Quantas pessoas estão na imagem?
+Options:
+A. dois
+B. um
+C. três
+D. quatro
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  38%|█████████▏              | 77/200 [00:55<01:25,  1.44it/s]
+[DBG MMMB] ex=77  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE99201DB50>
+  Q       : Quantos travesseiros há na cama do quarto?
+Options:
+A. 1
+B. 3
+C. 2
+D. 4
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  39%|█████████▎              | 78/200 [00:56<01:26,  1.41it/s]
+[DBG MMMB] ex=78  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=386x512 at 0x7BE991F3A0C0>
+  Q       : O que a boca da mulher está fazendo?
+Options:
+A. Sorrindo
+B. Abrir
+C. Meio aberto
+D. Fechado
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  40%|█████████▍              | 79/200 [00:57<01:27,  1.38it/s]
+[DBG MMMB] ex=79  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x377 at 0x7BE99202EFC0>
+  Q       : Qual é a cor dos sapatos usados ​​na imagem?
+Options:
+A. Verde
+B. Azul
+C. Vermelho
+D. Preto
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  40%|█████████▌              | 80/200 [00:57<01:27,  1.37it/s]
+[DBG MMMB] ex=80  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x342 at 0x7BE9918F6600>
+  Q       : Quantas pessoas estão visíveis na imagem?
+Options:
+A. 2
+B. 1
+C. 3
+D. 4
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  40%|█████████▋              | 81/200 [00:58<01:27,  1.36it/s]
+[DBG MMMB] ex=81  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE991D92F00>
+  Q       : O que está no primeiro plano da imagem?
+Options:
+A. Um poste de metal prateado
+B. Um teclado
+C. Um violão
+D. Um homem tocando bateria
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  41%|█████████▊              | 82/200 [00:59<01:27,  1.35it/s]
+[DBG MMMB] ex=82  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE99202E1B0>
+  Q       : Quantas cadeiras há na varanda?
+Options:
+A. Nenhum
+B. Dois
+C. Um
+D. Três
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  42%|█████████▉              | 83/200 [01:00<01:22,  1.42it/s]
+[DBG MMMB] ex=83  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991EA5A00>
+  Q       : Qual objeto está no lado esquerdo da cama?
+Options:
+A. A televisão
+B. A planta
+C. A cadeira
+D. A janela
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  42%|██████████              | 84/200 [01:00<01:23,  1.39it/s]
+[DBG MMMB] ex=84  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=421x512 at 0x7BE991EA7500>
+  Q       : Qual é o objeto mais proeminente na imagem?
+Options:
+A. Um espelho
+B. Uma bola de basquete
+C. Uma pessoa
+D. Uma bola
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  42%|██████████▏             | 85/200 [01:01<01:23,  1.38it/s]
+[DBG MMMB] ex=85  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x342 at 0x7BE991ECE840>
+  Q       : Que tipo de roupa o homem que está na frente do pódio está usando?
+Options:
+A. Fantasia do Homem Aranha
+B. Uniforme do exército
+C. Terno de casamento
+D. Terno de negócios
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  43%|██████████▎             | 86/200 [01:02<01:23,  1.36it/s]
+[DBG MMMB] ex=86  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x361 at 0x7BE992062150>
+  Q       : Que tipo de evento está ocorrendo na imagem?
+Options:
+A. Casamento ao ar livre
+B. Jogo de futebol
+C. Show
+D. Festa de aniversário
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  44%|██████████▍             | 87/200 [01:03<01:22,  1.36it/s]
+[DBG MMMB] ex=87  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x341 at 0x7BE9920603B0>
+  Q       : Qual é a cor do comedouro de pássaros da imagem?
+Options:
+A. Branco
+B. Verde
+C. Marrom
+D. Vermelho
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  44%|██████████▌             | 88/200 [01:03<01:22,  1.36it/s]
+[DBG MMMB] ex=88  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=461x512 at 0x7BE991F99100>
+  Q       : O que a imagem retrata principalmente?
+Options:
+A. Um processo de vinificação
+B. Um guia para diferentes tipos de óculos
+C. Uma coleção de garrafas de vinho
+D. Um conjunto de cartazes relacionados ao vinho
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  44%|██████████▋             | 89/200 [01:04<01:22,  1.34it/s]
+[DBG MMMB] ex=89  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x371 at 0x7BE99203CA10>
+  Q       : Quantas pessoas estão presentes na imagem?
+Options:
+A. 1
+B. 2
+C. 3
+D. 4
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  45%|██████████▊             | 90/200 [01:05<01:21,  1.35it/s]
+[DBG MMMB] ex=90  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=342x512 at 0x7BE991DBC710>
+  Q       : Qual é a cor do vestido da mulher da imagem?
+Options:
+A. Preto
+B. Azul
+C. Verde
+D. Vermelho
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  46%|██████████▉             | 91/200 [01:06<01:20,  1.35it/s]
+[DBG MMMB] ex=91  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=341x512 at 0x7BE991E09880>
+  Q       : Qual é a cor do vaso de planta da imagem?
+Options:
+A. Vermelho
+B. Marrom
+C. Verde
+D. Amarelo
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  46%|███████████             | 92/200 [01:06<01:20,  1.35it/s]
+[DBG MMMB] ex=92  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x424 at 0x7BE991D90D40>
+  Q       : Qual é a cena retratada na imagem?
+Options:
+A. Um grupo de mulheres carregando feixes de grama através de um rio
+B. Um grupo de pessoas assistindo o pôr do sol na praia
+C. Um homem e uma mulher caminhando nas montanhas
+D. Um grupo de pessoas andando de caiaque em um rio
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  46%|███████████▏            | 93/200 [01:07<01:18,  1.36it/s]
+[DBG MMMB] ex=93  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x401 at 0x7BE991D90920>
+  Q       : Qual é o objeto principal da imagem?
+Options:
+A. Céu
+B. Cavalos
+C. Grama
+D. Árvores
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  47%|███████████▎            | 94/200 [01:08<01:18,  1.35it/s]
+[DBG MMMB] ex=94  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE991F99100>
+  Q       : Que tipo de evento está ocorrendo nesta imagem?
+Options:
+A. Uma cerimônia de formatura
+B. Um culto na igreja
+C. Uma recepção de casamento
+D. Um funeral
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  48%|███████████▍            | 95/200 [01:09<01:18,  1.34it/s]
+[DBG MMMB] ex=95  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x323 at 0x7BE991E0A750>
+  Q       : Qual é a cor da grama na imagem?
+Options:
+A. Não pode ser determinado
+B. Marrom
+C. Amarelo
+D. Verde
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  48%|███████████▌            | 96/200 [01:09<01:17,  1.34it/s]
+[DBG MMMB] ex=96  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x278 at 0x7BE991E48B30>
+  Q       : Como você descreveria a posição do turista vestindo camisa amarela?
+Options:
+A. Perto do centro da imagem
+B. No canto superior esquerdo da imagem
+C. No canto inferior direito da imagem
+D. No canto superior direito da imagem
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  48%|███████████▋            | 97/200 [01:10<01:16,  1.35it/s]
+[DBG MMMB] ex=97  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x384 at 0x7BE99203FF20>
+  Q       : Quantas pessoas estão se apresentando no palco?
+Options:
+A. Um
+B. Dois
+C. Quatro
+D. Três
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  49%|███████████▊            | 98/200 [01:11<01:15,  1.35it/s]
+[DBG MMMB] ex=98  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=512x370 at 0x7BE991E4B2C0>
+  Q       : Qual é a cor da fita da medalha usada por um dos integrantes da equipe?
+Options:
+A. Azul
+B. Branco
+C. Vermelho
+D. Preto
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  50%|███████████▉            | 99/200 [01:11<01:15,  1.34it/s]
+[DBG MMMB] ex=99  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=760x506 at 0x7BE99203FF20>
+  Q       : Abaixo está uma teia alimentar de um ecossistema de tundra em Nunavut, um território no norte do Canadá.
+Uma teia alimentar modela como a matéria consumida pelos organismos se move através de um ecossistema. As setas em uma teia alimentar representam como a matéria se move entre os organismos de um ecossistema.
+Qual destes organismos contém matéria que já fez parte do líquen?
+Options:
+A. mirtilo
+B. cogumelo
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  50%|███████████▌           | 100/200 [01:12<01:14,  1.35it/s]
+[DBG MMMB] ex=100  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE991DBCC80>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. brilhante
+B. escorregadio
+C. opaco
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  50%|███████████▌           | 101/200 [01:13<01:13,  1.34it/s]
+[DBG MMMB] ex=101  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=760x506 at 0x7BE991E62CC0>
+  Q       : Abaixo está uma teia alimentar de Little Rock Lake, um ecossistema lacustre de água doce em Wisconsin.
+Uma teia alimentar modela como a matéria consumida pelos organismos se move através de um ecossistema. As setas em uma teia alimentar representam como a matéria se move entre os organismos de um ecossistema.
+Qual dos seguintes organismos é o principal consumidor nesta cadeia alimentar?
+Options:
+A. copépode
+B. tipo de peixe preto
+C. bactérias
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  51%|███████████▋           | 102/200 [01:14<01:12,  1.34it/s]
+[DBG MMMB] ex=102  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=312x237 at 0x7BE991F99FD0>
+  Q       : Figura: Floresta tropical de Daintree.
+A floresta tropical Daintree é um ecossistema de floresta tropical no nordeste da Austrália.
+O que descreve melhor o ecossistema da floresta tropical Daintree?
+Options:
+A. Tem chuva o ano todo. Também possui solo pobre em nutrientes.
+B. Tem invernos frios. Ele também possui muitos tipos diferentes de organismos.
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  52%|███████████▊           | 103/200 [01:14<01:11,  1.36it/s]
+[DBG MMMB] ex=103  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE991DC3FB0>
+  Q       : Qual desses estados fica mais ao norte?
+Options:
+A. Maine
+B. Carolina do Sul
+C. Kansas
+D. Delaware
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  52%|███████████▉           | 104/200 [01:15<01:07,  1.42it/s]
+[DBG MMMB] ex=104  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=188x200 at 0x7BE991F9AF00>
+  Q       : De que material é feito esse caminho?
+Options:
+A. plástico
+B. tijolo
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  52%|████████████           | 105/200 [01:16<01:04,  1.47it/s]
+[DBG MMMB] ex=105  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE991F9AFF0>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. azul
+B. duro
+C. pegajoso
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  53%|████████████▏          | 106/200 [01:16<01:05,  1.43it/s]
+[DBG MMMB] ex=106  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=172x208 at 0x7BE991E62CC0>
+  Q       : Selecione a melhor resposta.
+Qual propriedade corresponde a este objeto?
+Options:
+A. elástico
+B. azul
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  54%|████████████▎          | 107/200 [01:17<01:06,  1.40it/s]
+[DBG MMMB] ex=107  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=312x237 at 0x7BE991E488C0>
+  Q       : Figura: Parque Nacional Yasuni.
+A floresta amazônica na América do Sul é o maior ecossistema de floresta tropical do mundo. O Parque Nacional Yasuni, no Equador, que fica na floresta amazônica, tem muitas espécies diferentes de plantas, pássaros e mamíferos.
+Qual afirmação descreve o ecossistema do Parque Nacional Yasuni?
+Options:
+A. Possui principalmente plantas pequenas.
+B. Possui muitos tipos diferentes de organismos.
+C. Possui solo rico em nutrientes.
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  54%|████████████▍          | 108/200 [01:18<01:06,  1.39it/s]
+[DBG MMMB] ex=108  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE991E63500>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. frágil
+B. saltitante
+C. amarelo
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  55%|████████████▌          | 109/200 [01:19<01:05,  1.38it/s]
+[DBG MMMB] ex=109  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE991E0B920>
+  Q       : Os lobos árticos vivem no Ártico canadense e na Groenlândia. O está adaptado para ser camuflado na neve.
+Figura: Lobo Ártico.
+Qual animal também está adaptado para se camuflar na neve?
+Options:
+A. doninha de cauda curta
+B. cuco-falcão comum
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  55%|████████████▋          | 110/200 [01:19<01:05,  1.38it/s]
+[DBG MMMB] ex=110  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=252x192 at 0x7BE991DD9520>
+  Q       : Figura: Praia Tambor, Costa Rica.
+A Praia Tambor está localizada na Costa Rica, um país da América Central. Uma temperatura de 84°F foi medida na praia de Tambor na sexta-feira.
+Dica: o clima é como é a atmosfera em um determinado lugar e hora. Clima é o padrão do tempo em um determinado lugar.
+Esta passagem descreve o tempo ou o clima?
+Options:
+A. clima
+B. clima
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  56%|████████████▊          | 111/200 [01:20<01:04,  1.38it/s]
+[DBG MMMB] ex=111  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE991D91D00>
+  Q       : Borboletas de folha de carvalho laranja vivem nas florestas da Ásia. Esta borboleta está adaptada para se camuflar entre folhas mortas.
+Figura: borboleta folha de carvalho laranja.
+Qual animal também está adaptado para se camuflar entre folhas mortas?
+Options:
+A. sapo venenoso de morango
+B. Sapo com chifres do Suriname
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  56%|████████████▉          | 112/200 [01:21<01:03,  1.38it/s]
+[DBG MMMB] ex=112  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE9918D5370>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. suave
+B. elástico
+C. difuso
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  56%|████████████▉          | 113/200 [01:22<01:03,  1.37it/s]
+[DBG MMMB] ex=113  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=704x358 at 0x7BE991D91AC0>
+  Q       : Qual continente está destacado?
+Options:
+A. América do Norte
+B. África
+C. Ásia
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  57%|█████████████          | 114/200 [01:22<01:00,  1.43it/s]
+[DBG MMMB] ex=114  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE991E488C0>
+  Q       : Qual desses estados fica mais ao norte?
+Options:
+A. Flórida
+B. Illinois
+C. Ohio
+D. Nova Hampshire
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  57%|█████████████▏         | 115/200 [01:23<00:57,  1.48it/s]
+[DBG MMMB] ex=115  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE9918D5370>
+  Q       : Os flamingos vivem perto de pântanos, rios e oceanos. Eles comem pequenos crustáceos que vivem em águas rasas. Os flamingos obtêm sua comida caminhando pela água ou vadeando.
+As pernas do animal são adaptadas para vadear. São leves e mantêm o corpo da ave acima da água.
+Figura: flamingo.
+As patas de qual animal também estão adaptadas para vadear?
+Options:
+A. kookaburra
+B. Colher da Eurásia
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  58%|█████████████▎         | 116/200 [01:24<00:58,  1.44it/s]
+[DBG MMMB] ex=116  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE990F7E630>
+  Q       : Os chimpanzés vivem nas florestas da África Central. Seus membros são adaptados para subir em árvores.
+Figura: chimpanzé.
+Quais membros de animais também são adaptados para subir em árvores?
+Options:
+A. preguiça de três dedos
+B. tartaruga marinha
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  58%|█████████████▍         | 117/200 [01:24<00:58,  1.42it/s]
+[DBG MMMB] ex=117  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE9918D6720>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. salgado
+B. áspero
+C. pegajoso
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  59%|█████████████▌         | 118/200 [01:25<00:58,  1.39it/s]
+[DBG MMMB] ex=118  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=760x506 at 0x7BE99191C7A0>
+  Q       : Abaixo está uma teia alimentar de um ecossistema oceânico. O ecossistema está localizado na Baía de Monterey, na costa da Califórnia.
+Uma teia alimentar é um modelo que mostra como a matéria consumida pelos seres vivos se move através de um ecossistema. As setas mostram como a matéria se move através da teia alimentar.
+Com base nas setas, qual dos seguintes seres vivos é um decompositor?
+Options:
+A. kelp
+B. estrela morcego
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  60%|█████████████▋         | 119/200 [01:26<00:58,  1.38it/s]
+[DBG MMMB] ex=119  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE990F9BBF0>
+  Q       : Qual desses estados fica mais a oeste?
+Options:
+A. Missouri
+B. Flórida
+C. Montana
+D. Óregon
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  60%|█████████████▊         | 120/200 [01:27<00:58,  1.38it/s]
+[DBG MMMB] ex=120  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990F7E630>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. escorregadio
+B. transparente
+C. amarelo
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  60%|█████████████▉         | 121/200 [01:27<00:57,  1.37it/s]
+[DBG MMMB] ex=121  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=312x237 at 0x7BE9918F2A80>
+  Q       : Figura: Parque Nacional Cape Breton Highlands.
+O Parque Nacional Cape Breton Highlands é um ecossistema taiga no leste do Canadá. É principalmente coberto por florestas de taiga que abrigam alces, ursos, águias e outros organismos.
+Qual afirmação descreve o ecossistema do Parque Nacional Cape Breton Highlands?
+Options:
+A. Possui solo rico em nutrientes.
+B. Possui muitas árvores perenes.
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  61%|██████████████         | 122/200 [01:28<00:57,  1.37it/s]
+[DBG MMMB] ex=122  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE990F7D790>
+  Q       : Os falcões noturnos comuns comem insetos e outros pequenos invertebrados. O formato do bico é adaptado para capturar insetos.
+Figura: falcão noturno comum.
+Qual bico de ave também está adaptado para capturar insetos?
+Options:
+A. andorinha de celeiro
+B. papagaio pendurado
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  62%|██████████████▏        | 123/200 [01:29<00:56,  1.37it/s]
+[DBG MMMB] ex=123  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=760x506 at 0x7BE9918F0B00>
+  Q       : Abaixo está uma teia alimentar de um ecossistema de tundra em Nunavut, um território no norte do Canadá.
+Uma teia alimentar modela como a matéria consumida pelos organismos se move através de um ecossistema. As setas em uma teia alimentar representam como a matéria se move entre os organismos de um ecossistema.
+Com base nas setas, qual dos seguintes organismos é consumidor?
+Options:
+A. cogumelo
+B. líquen
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  62%|██████████████▎        | 124/200 [01:29<00:55,  1.37it/s]
+[DBG MMMB] ex=124  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=197x252 at 0x7BE991EE6E40>
+  Q       : Figura: Ilhas Canárias.
+Estava parcialmente nublado nas Ilhas Canárias na última terça-feira.
+Dica: o clima é como é a atmosfera em um determinado lugar e hora. Clima é o padrão do tempo em um determinado lugar.
+Esta passagem descreve o tempo ou o clima?
+Options:
+A. clima
+B. clima
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  62%|██████████████▍        | 125/200 [01:30<00:54,  1.37it/s]
+[DBG MMMB] ex=125  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=425x154 at 0x7BE990F7E300>
+  Q       : Este diagrama mostra uma cadeia alimentar de um ecossistema desértico no sul da Califórnia.
+Nesta cadeia alimentar, a mariposa da mandioca é consumidora. Por que?
+Options:
+A. Faz sua própria comida.
+B. Ele come outra coisa viva.
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  63%|██████████████▍        | 126/200 [01:31<00:53,  1.38it/s]
+[DBG MMMB] ex=126  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=114x189 at 0x7BE990FB2690>
+  Q       : De que material é feito este vaso de flores?
+Options:
+A. seda
+B. vidro
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  64%|██████████████▌        | 127/200 [01:31<00:50,  1.44it/s]
+[DBG MMMB] ex=127  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990FD6720>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. translúcido
+B. opaco
+C. frágil
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  64%|██████████████▋        | 128/200 [01:32<00:50,  1.41it/s]
+[DBG MMMB] ex=128  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=172x208 at 0x7BE990F7C050>
+  Q       : Selecione a melhor resposta.
+Qual propriedade corresponde a este objeto?
+Options:
+A. elástico
+B. transparente
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  64%|██████████████▊        | 129/200 [01:33<00:50,  1.40it/s]
+[DBG MMMB] ex=129  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=252x192 at 0x7BE990FD7170>
+  Q       : Figura: Cataratas do Nilo Azul.
+As Cataratas do Nilo Azul ficam na Etiópia. Os ventos nesta parte da África sopram geralmente do sudeste.
+Dica: o clima é como é a atmosfera em um determinado lugar e hora. Clima é o padrão do tempo em um determinado lugar.
+Esta passagem descreve o tempo ou o clima?
+Options:
+A. clima
+B. clima
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  65%|██████████████▉        | 130/200 [01:34<00:50,  1.39it/s]
+[DBG MMMB] ex=130  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=179x188 at 0x7BE990FD70B0>
+  Q       : De que material é feita esta caixa de ovos?
+Options:
+A. madeira
+B. isopor
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  66%|███████████████        | 131/200 [01:34<00:49,  1.38it/s]
+[DBG MMMB] ex=131  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE991B78A10>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. brilhante
+B. difuso
+C. azul
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  66%|███████████████▏       | 132/200 [01:35<00:49,  1.37it/s]
+[DBG MMMB] ex=132  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE990FD63F0>
+  Q       : Qual desses estados fica mais a leste?
+Options:
+A. Nebrasca
+B. Luisiana
+C. Idaho
+D. Arizona
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  66%|███████████████▎       | 133/200 [01:36<00:49,  1.36it/s]
+[DBG MMMB] ex=133  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=448x323 at 0x7BE990FF9A60>
+  Q       : Use o gráfico para responder à questão abaixo.
+Qual mês é, em média, o mais quente em Roma?
+Options:
+A. Dezembro, janeiro e fevereiro
+B. julho e agosto
+C. Março e abril
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  67%|███████████████▍       | 134/200 [01:37<00:48,  1.37it/s]
+[DBG MMMB] ex=134  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE9919439B0>
+  Q       : Os pumas são carnívoros ou comedores de carne. Eles comem mamíferos como veados e coelhos. A boca está adaptada para rasgar carne.
+Figura: puma.
+A boca de qual animal também está adaptada para rasgar carne?
+Options:
+A. tigre
+B. marmota
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  68%|███████████████▌       | 135/200 [01:37<00:47,  1.38it/s]
+[DBG MMMB] ex=135  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=760x506 at 0x7BE990FFBE90>
+  Q       : Abaixo está uma teia alimentar de Little Rock Lake, um ecossistema lacustre de água doce em Wisconsin.
+Uma teia alimentar modela como a matéria consumida pelos organismos se move através de um ecossistema. As setas em uma teia alimentar representam como a matéria se move entre os organismos de um ecossistema.
+Qual dos seguintes organismos é o decompositor nesta teia alimentar?
+Options:
+A. algas verdes
+B. molde de água
+C. algas douradas
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  68%|███████████████▋       | 136/200 [01:38<00:46,  1.37it/s]
+[DBG MMMB] ex=136  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE990FB3BC0>
+  Q       : Os ursos polares vivem dentro e ao redor do frio Oceano Ártico. O está adaptado para ser camuflado na neve.
+Figura: urso polar.
+Qual animal também está adaptado para se camuflar na neve?
+Options:
+A. Lebre ártica
+B. camelo
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  68%|███████████████▊       | 137/200 [01:39<00:45,  1.38it/s]
+[DBG MMMB] ex=137  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990FB1640>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. duro
+B. amarelo
+C. pegajoso
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  69%|███████████████▊       | 138/200 [01:40<00:45,  1.37it/s]
+[DBG MMMB] ex=138  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE9918F6360>
+  Q       : Qual desses estados fica mais a leste?
+Options:
+A. Geórgia
+B. Delaware
+C. Dakota do Norte
+D. Colorado
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  70%|███████████████▉       | 139/200 [01:40<00:44,  1.36it/s]
+[DBG MMMB] ex=139  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=449x323 at 0x7BE990FD6870>
+  Q       : Use o gráfico para responder à questão abaixo.
+Qual o mês é, em média, o mais chuvoso em Christchurch?
+Options:
+A. Agosto
+B. abril
+C. Poderia
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  70%|████████████████       | 140/200 [01:41<00:44,  1.35it/s]
+[DBG MMMB] ex=140  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE99101AA50>
+  Q       : Qual desses estados está mais ao sul?
+Options:
+A. Missouri
+B. Michigan
+C. Maine
+D. Óregon
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  70%|████████████████▏      | 141/200 [01:42<00:41,  1.42it/s]
+[DBG MMMB] ex=141  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=364x208 at 0x7BE991018DA0>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses dois objetos têm em comum?
+Options:
+A. azedo
+B. elástico
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  71%|████████████████▎      | 142/200 [01:42<00:41,  1.39it/s]
+[DBG MMMB] ex=142  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=748x208 at 0x7BE9910476B0>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses quatro objetos têm em comum?
+Options:
+A. opaco
+B. frágil
+C. suave
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  72%|████████████████▍      | 143/200 [01:43<00:41,  1.37it/s]
+[DBG MMMB] ex=143  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=172x208 at 0x7BE990FB1640>
+  Q       : Selecione a melhor resposta.
+Qual propriedade corresponde a este objeto?
+Options:
+A. flexível
+B. frágil
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  72%|████████████████▌      | 144/200 [01:44<00:40,  1.37it/s]
+[DBG MMMB] ex=144  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=364x208 at 0x7BE990F9AA20>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses dois objetos têm em comum?
+Options:
+A. azedo
+B. azul
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  72%|████████████████▋      | 145/200 [01:45<00:40,  1.36it/s]
+[DBG MMMB] ex=145  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE990FFACC0>
+  Q       : As araras vermelhas vivem nas florestas da América Central e do Sul. Eles comem sementes grandes e nozes. O formato do bico é adaptado para quebrar nozes grandes e duras.
+Figura: arara vermelha.
+Qual bico de pássaro também está adaptado para quebrar nozes grandes e duras?
+Options:
+A. Papagaio cinza africano
+B. foice de ponta branca
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'A'  |  ✗ WRONG
+MMMB pt baseline:  73%|████████████████▊      | 146/200 [01:45<00:39,  1.37it/s]
+[DBG MMMB] ex=146  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE9918B8680>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. flexível
+B. transparente
+C. opaco
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  74%|████████████████▉      | 147/200 [01:46<00:39,  1.36it/s]
+[DBG MMMB] ex=147  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE9910455E0>
+  Q       : Comemos sementes grandes e nozes. O formato do bico é adaptado para quebrar nozes grandes e duras.
+Figura: Periquito Alexandrino.
+Qual bico de pássaro também está adaptado para quebrar nozes grandes e duras?
+Options:
+A. íbis careca
+B. arara vermelha
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  74%|█████████████████      | 148/200 [01:47<00:37,  1.37it/s]
+[DBG MMMB] ex=148  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE991047CB0>
+  Q       : Os chocos extravagantes são animais venenosos com pele de cores vivas. As cores vivas servem como sinal de alerta de que o animal é venenoso. A pele do animal está adaptada para afastar predadores.
+Figura: choco extravagante.
+Qual pele de animal é melhor adaptada como sinal de alerta para afastar predadores?
+Options:
+A. líquen catidídeo
+B. nudibrânquio opalescente
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  74%|█████████████████▏     | 149/200 [01:48<00:37,  1.38it/s]
+[DBG MMMB] ex=149  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=458x323 at 0x7BE990FF9A90>
+  Q       : Use o gráfico para responder à questão abaixo.
+Quais três meses têm mais de 200 milímetros de precipitação em Cingapura?
+Options:
+A. Novembro, dezembro e janeiro
+B. Agosto, setembro e outubro
+C. Maio, junho e julho
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  75%|█████████████████▎     | 150/200 [01:48<00:36,  1.38it/s]
+[DBG MMMB] ex=150  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE991056630>
+  Q       : Garças cinzentas vivem perto de pântanos, rios e lagos. Eles comem sapos e peixes que vivem em águas rasas. As garças cinzentas caçam suas presas caminhando pela água ou vadeando.
+As pernas do animal são adaptadas para vadear. São leves e mantêm o corpo da ave acima da água.
+Figura: garça cinzenta.
+As patas de qual animal também estão adaptadas para vadear?
+Options:
+A. martim-pescador comum
+B. cegonha pintada
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  76%|█████████████████▎     | 151/200 [01:49<00:35,  1.37it/s]
+[DBG MMMB] ex=151  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE990FF9850>
+  Q       : Qual desses estados está mais ao sul?
+Options:
+A. Kansas
+B. Connecticut
+C. Ohio
+D. Dakota do Sul
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'A'  |  ✗ WRONG
+MMMB pt baseline:  76%|█████████████████▍     | 152/200 [01:50<00:33,  1.44it/s]
+[DBG MMMB] ex=152  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=688x150 at 0x7BE9910563F0>
+  Q       : Os meteorologistas podem fazer previsões sobre eventos climáticos. Por exemplo, a passagem abaixo descreve como um meteorologista pode usar observações da atmosfera da Terra para prever um tornado.
+Figura: um tornado passando por um campo.
+Qual das seguintes afirmações é apoiada pela passagem?
+Options:
+A. Os cientistas podem estudar massas de ar para prever eventos climáticos.
+B. Meteorologistas são cientistas que estudam meteoros.
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  76%|█████████████████▌     | 153/200 [01:50<00:33,  1.41it/s]
+[DBG MMMB] ex=153  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=748x208 at 0x7BE991055D30>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses quatro objetos têm em comum?
+Options:
+A. flexível
+B. salgado
+C. suave
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  77%|█████████████████▋     | 154/200 [01:51<00:33,  1.39it/s]
+[DBG MMMB] ex=154  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE990E7C170>
+  Q       : Os sapos dourados têm glândulas venenosas em sua pele de cores vivas. A cor brilhante serve como sinal de alerta de que o animal é venenoso. A pele do animal está adaptada para afastar predadores.
+Figura: sapo dardo dourado.
+Qual pele de animal é melhor adaptada como sinal de alerta para afastar predadores?
+Options:
+A. peixe-Leão
+B. impala
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  78%|█████████████████▊     | 155/200 [01:52<00:32,  1.38it/s]
+[DBG MMMB] ex=155  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=172x208 at 0x7BE991055A30>
+  Q       : Selecione a melhor resposta.
+Qual propriedade corresponde a este objeto?
+Options:
+A. translúcido
+B. colorida
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  78%|█████████████████▉     | 156/200 [01:53<00:32,  1.37it/s]
+[DBG MMMB] ex=156  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=172x208 at 0x7BE99101B320>
+  Q       : Selecione a melhor resposta.
+Qual propriedade corresponde a este objeto?
+Options:
+A. flexível
+B. saltitante
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  78%|██████████████████     | 157/200 [01:53<00:31,  1.36it/s]
+[DBG MMMB] ex=157  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE991ECC3E0>
+  Q       : As víboras com chifres vivem nos desertos da África e do Oriente Médio. O está adaptado para ser camuflado em um deserto arenoso.
+Figura: víbora com chifres.
+Qual animal também está adaptado para se camuflar em um deserto arenoso?
+Options:
+A. Camaleão Namaqua
+B. salamandra de fogo
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  79%|██████████████████▏    | 158/200 [01:54<00:30,  1.37it/s]
+[DBG MMMB] ex=158  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990E7D730>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. brilhante
+B. escorregadio
+C. duro
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'C'  |  ✓ CORRECT
+MMMB pt baseline:  80%|██████████████████▎    | 159/200 [01:55<00:30,  1.36it/s]
+[DBG MMMB] ex=159  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=252x192 at 0x7BE991F3A000>
+  Q       : Figura: Havana.
+Havana é a capital de Cuba. Os ventos sopravam de leste no fim de semana passado.
+Dica: o clima é como é a atmosfera em um determinado lugar e hora. Clima é o padrão do tempo em um determinado lugar.
+Esta passagem descreve o tempo ou o clima?
+Options:
+A. clima
+B. clima
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  80%|██████████████████▍    | 160/200 [01:56<00:29,  1.36it/s]
+[DBG MMMB] ex=160  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=705x411 at 0x7BE990E9F830>
+  Q       : Com qual destes continentes o meridiano principal cruza?
+Options:
+A. América do Norte
+B. Ásia
+C. África
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  80%|██████████████████▌    | 161/200 [01:56<00:28,  1.36it/s]
+[DBG MMMB] ex=161  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=252x192 at 0x7BE990E7E930>
+  Q       : Figura: o Mar Vermelho.
+O Mar Vermelho é um local popular para a prática de windsurf. A velocidade do vento atingiu 30 milhas por hora lá na quinta-feira.
+Dica: o clima é como é a atmosfera em um determinado lugar e hora. Clima é o padrão do tempo em um determinado lugar.
+Esta passagem descreve o tempo ou o clima?
+Options:
+A. clima
+B. clima
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  81%|██████████████████▋    | 162/200 [01:57<00:27,  1.37it/s]
+[DBG MMMB] ex=162  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=457x323 at 0x7BE991F39CA0>
+  Q       : Use o gráfico para responder à questão abaixo.
+Qual mês é, em média, o mais frio em Detroit?
+Options:
+A. Janeiro e fevereiro
+B. Novembro e dezembro
+C. Junho e julho
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  82%|██████████████████▋    | 163/200 [01:58<00:27,  1.35it/s]
+[DBG MMMB] ex=163  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=312x237 at 0x7BE99101BA40>
+  Q       : Figura: Parque da Montanha Catoctin.
+Catoctin Mountain Park é um ecossistema de floresta decídua temperada em Maryland.
+O que descreve melhor o ecossistema do Catoctin Mountain Park?
+Options:
+A. Tem invernos frios e úmidos. Também possui solo rico em nutrientes.
+B. Tem invernos frios e úmidos. Também possui solo pobre em nutrientes.
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  82%|██████████████████▊    | 164/200 [01:58<00:26,  1.36it/s]
+[DBG MMMB] ex=164  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=505x456 at 0x7BE990E9E660>
+  Q       : O mapa abaixo mostra as temperaturas do ar na baixa atmosfera em 19 de abril de 2016. A área delineada mostra uma massa de ar que influenciou o clima na América do Norte naquele dia.
+Olha para o mapa. Em seguida, responda à pergunta abaixo.
+Fonte de dados: Administração Nacional Oceânica e Atmosférica dos Estados Unidos/Laboratório de Pesquisa do Sistema Terrestre, Divisão de Ciências Físicas
+Qual temperatura do ar foi medida dentro da área delineada mostrada?
+Options:
+A. -24ºC
+B. 3°C
+C. -4ºC
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  82%|██████████████████▉    | 165/200 [01:59<00:26,  1.32it/s]
+[DBG MMMB] ex=165  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=116x177 at 0x7BE991EFC6B0>
+  Q       : De que material é feita esta cadeira de balanço?
+Options:
+A. madeira
+B. seda
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  83%|███████████████████    | 166/200 [02:00<00:25,  1.32it/s]
+[DBG MMMB] ex=166  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=760x506 at 0x7BE990EB5430>
+  Q       : Abaixo está uma teia alimentar de um ecossistema de tundra em Nunavut, um território no norte do Canadá.
+Uma teia alimentar modela como a matéria consumida pelos organismos se move através de um ecossistema. As setas em uma teia alimentar representam como a matéria se move entre os organismos de um ecossistema.
+Qual destes organismos contém matéria que já fez parte do junça-ursa?
+Options:
+A. Raposa Ártica
+B. caribu de terra árida
+C. mirtilo
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  84%|███████████████████▏   | 167/200 [02:01<00:24,  1.33it/s]
+[DBG MMMB] ex=167  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE991054C80>
+  Q       : Qual desses estados está mais ao sul?
+Options:
+A. Colorado
+B. Montana
+C. Washington
+D. Pensilvânia
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  84%|███████████████████▎   | 168/200 [02:02<00:24,  1.33it/s]
+[DBG MMMB] ex=168  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=312x237 at 0x7BE990E7E240>
+  Q       : Figura: Taiga da Sibéria Oriental.
+A Taiga da Sibéria Oriental é uma grande floresta que cobre mais de um quarto da Rússia. É o lar de ursos pardos, lobos, veados e outros organismos.
+Qual afirmação descreve o ecossistema Taiga da Sibéria Oriental?
+Options:
+A. Possui principalmente plantas pequenas.
+B. Possui solo rico em nutrientes.
+C. Tem invernos longos e frios e verões curtos e frescos.
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  84%|███████████████████▍   | 169/200 [02:02<00:23,  1.34it/s]
+[DBG MMMB] ex=169  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=364x208 at 0x7BE990E9D040>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses dois objetos têm em comum?
+Options:
+A. duro
+B. elástico
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  85%|███████████████████▌   | 170/200 [02:03<00:22,  1.34it/s]
+[DBG MMMB] ex=170  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=705x411 at 0x7BE991F410D0>
+  Q       : Com qual destes continentes o meridiano principal cruza?
+Options:
+A. América do Norte
+B. África
+C. América do Sul
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  86%|███████████████████▋   | 171/200 [02:04<00:21,  1.35it/s]
+[DBG MMMB] ex=171  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE991F40A10>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. elástico
+B. duro
+C. saltitante
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  86%|███████████████████▊   | 172/200 [02:05<00:20,  1.34it/s]
+[DBG MMMB] ex=172  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=458x323 at 0x7BE991055F40>
+  Q       : Use o gráfico para responder à questão abaixo.
+Qual afirmação é verdadeira sobre a precipitação média mensal em Nairóbi?
+Options:
+A. Nairobi recebe aproximadamente a mesma quantidade de precipitação todos os meses.
+B. Mais precipitação cai em abril do que em agosto.
+C. Fevereiro é o mês mais chuvoso do ano.
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  86%|███████████████████▉   | 173/200 [02:05<00:20,  1.35it/s]
+[DBG MMMB] ex=173  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=449x323 at 0x7BE991F42840>
+  Q       : Use o gráfico para responder à questão abaixo.
+Qual mês tem a precipitação média mais baixa em Londres?
+Options:
+A. Julho
+B. novembro
+C. Fevereiro
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  87%|████████████████████   | 174/200 [02:06<00:19,  1.35it/s]
+[DBG MMMB] ex=174  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE990EE65D0>
+  Q       : Qual desses estados fica mais a leste?
+Options:
+A. Luisiana
+B. Ohio
+C. Maine
+D. Tenessi
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  88%|████████████████████▏  | 175/200 [02:07<00:17,  1.41it/s]
+[DBG MMMB] ex=175  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990FF9520>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. pegajoso
+B. salgado
+C. colorida
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  88%|████████████████████▏  | 176/200 [02:07<00:17,  1.39it/s]
+[DBG MMMB] ex=176  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE991EE47D0>
+  Q       : Dragões barbudos são lagartos que vivem nos desertos da Austrália. O está adaptado para ser camuflado em um deserto arenoso.
+Figura: dragão barbudo.
+Qual animal também está adaptado para se camuflar em um deserto arenoso?
+Options:
+A. víbora com chifres
+B. sapo dardo venenoso azul
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  88%|████████████████████▎  | 177/200 [02:08<00:16,  1.38it/s]
+[DBG MMMB] ex=177  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=704x358 at 0x7BE991EE5D30>
+  Q       : Qual continente está destacado?
+Options:
+A. Antártica
+B. América do Norte
+C. Ásia
+D. Europa
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'D'  →  predicted='D'
+  Gold    : 'D'  |  ✓ CORRECT
+MMMB pt baseline:  89%|████████████████████▍  | 178/200 [02:09<00:15,  1.44it/s]
+[DBG MMMB] ex=178  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE990E9D1C0>
+  Q       : Qual desses estados está mais ao sul?
+Options:
+A. Texas
+B. Maryland
+C. Michigan
+D. Ilha de Rodes
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  90%|████████████████████▌  | 179/200 [02:09<00:14,  1.49it/s]
+[DBG MMMB] ex=179  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE990F08B30>
+  Q       : Kudus são herbívoros ou comedores de plantas. Eles comem folhas e brotos. A boca do animal está adaptada para moer e comer matéria vegetal.
+Figura: kudu.
+A boca de qual animal também está adaptada para comer matéria vegetal?
+Options:
+A. cervo manchado
+B. Crocodilo do Nilo
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  90%|████████████████████▋  | 180/200 [02:10<00:13,  1.45it/s]
+[DBG MMMB] ex=180  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=172x208 at 0x7BE991EE5520>
+  Q       : Selecione a melhor resposta.
+Qual propriedade corresponde a este objeto?
+Options:
+A. transparente
+B. suave
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  90%|████████████████████▊  | 181/200 [02:11<00:13,  1.42it/s]
+[DBG MMMB] ex=181  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990F24BF0>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. macio
+B. frágil
+C. áspero
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  91%|████████████████████▉  | 182/200 [02:12<00:12,  1.39it/s]
+[DBG MMMB] ex=182  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990F7D4C0>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. azul
+B. pegajoso
+C. difuso
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  92%|█████████████████████  | 183/200 [02:12<00:12,  1.37it/s]
+[DBG MMMB] ex=183  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=288x288 at 0x7BE990F255B0>
+  Q       : Qual i na coluna 3?
+Options:
+A. a escola
+B. o Parque
+C. a lagoa
+D. o posto de gasolina
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  92%|█████████████████████▏ | 184/200 [02:13<00:11,  1.36it/s]
+[DBG MMMB] ex=184  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=705x411 at 0x7BE990F094F0>
+  Q       : Com qual destes oceanos o meridiano principal cruza?
+Options:
+A. o Oceano Atlântico
+B. o oceano Indiano
+C. o oceano Pacífico
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  92%|█████████████████████▎ | 185/200 [02:14<00:11,  1.35it/s]
+[DBG MMMB] ex=185  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE990F25310>
+  Q       : Qual desses estados fica mais a leste?
+Options:
+A. Luisiana
+B. Dakota do Norte
+C. Carolina do Norte
+D. Arizona
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'C'  |  ✗ WRONG
+MMMB pt baseline:  93%|█████████████████████▍ | 186/200 [02:15<00:10,  1.35it/s]
+[DBG MMMB] ex=186  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x201 at 0x7BE991EA79E0>
+  Q       : As cegonhas-de-bico-de-sela vivem perto de zonas húmidas e lagos. Eles comem principalmente peixe.
+O pescoço do ajuda a agarrar os peixes enquanto mantém o resto do corpo imóvel. Se a cegonha tivesse que mover o corpo, isso poderia assustar os peixes.
+Figura: cegonha-de-bico-de-sela.
+O pescoço de qual animal também está adaptado para caçar presas enquanto mantém o resto do corpo imóvel?
+Options:
+A. arrabio do norte
+B. garça de cabeça preta
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  94%|█████████████████████▌ | 187/200 [02:15<00:09,  1.32it/s]
+[DBG MMMB] ex=187  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE990EB5340>
+  Q       : Qual desses estados está mais ao sul?
+Options:
+A. Maine
+B. Massachussets
+C. Michigan
+D. Delaware
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'C'  →  predicted='C'
+  Gold    : 'D'  |  ✗ WRONG
+MMMB pt baseline:  94%|█████████████████████▌ | 188/200 [02:16<00:08,  1.39it/s]
+[DBG MMMB] ex=188  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=312x237 at 0x7BE991DD9C10>
+  Q       : Figura: Pântano Okefenokee.
+O Pântano Okefenokee é um ecossistema pantanoso na Geórgia e na Flórida.
+O que descreve melhor o ecossistema do Pântano Okefenokee?
+Options:
+A. Possui terrenos que ficam cobertos de água durante a maior parte do ano. Também possui solo rico em nutrientes.
+B. Possui solo pobre em nutrientes. Também possui apenas alguns tipos de organismos.
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  94%|█████████████████████▋ | 189/200 [02:17<00:07,  1.38it/s]
+[DBG MMMB] ex=189  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990F441D0>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. brilhante
+B. translúcido
+C. macio
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'A'  |  ✗ WRONG
+MMMB pt baseline:  95%|█████████████████████▊ | 190/200 [02:17<00:07,  1.36it/s]
+[DBG MMMB] ex=190  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE990F46ED0>
+  Q       : Qual desses estados fica mais ao norte?
+Options:
+A. Dakota do Sul
+B. Novo México
+C. Nevada
+D. Carolina do Sul
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  96%|█████████████████████▉ | 191/200 [02:19<00:07,  1.18it/s]
+[DBG MMMB] ex=191  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE9E3B25550>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. saltitante
+B. azul
+C. difuso
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  96%|██████████████████████ | 192/200 [02:19<00:06,  1.23it/s]
+[DBG MMMB] ex=192  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=448x323 at 0x7BE991DD8470>
+  Q       : Use o gráfico para responder à questão abaixo.
+Qual mês é, em média, o mais quente em Cidade do Cabo?
+Options:
+A. Abril, maio e novembro
+B. Dezembro, janeiro, fevereiro e março
+C. Agosto, setembro, outubro e novembro
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline:  96%|██████████████████████▏| 193/200 [02:20<00:05,  1.27it/s]
+[DBG MMMB] ex=193  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE991D90950>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. pegajoso
+B. opaco
+C. azul
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  97%|██████████████████████▎| 194/200 [02:21<00:04,  1.30it/s]
+[DBG MMMB] ex=194  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE991D90DD0>
+  Q       : s têm células urticantes em sua pele de cores vivas. As cores vivas servem como sinal de alerta de que o animal é tóxico e perigoso. A pele do animal está adaptada para afastar predadores.
+Figura: Nudibrânquio xale espanhol.
+Qual pele de animal é melhor adaptada como sinal de alerta para afastar predadores?
+Options:
+A. estrela do mar coroa de espinhos
+B. Mariposa apimentada
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  98%|██████████████████████▍| 195/200 [02:21<00:03,  1.32it/s]
+[DBG MMMB] ex=195  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=202x202 at 0x7BE990F461E0>
+  Q       : Macacos negros com crista vivem nas florestas tropicais da Indonésia. Eles sobem em árvores para encontrar comida e abrigo. As mãos e os pés do macaco estão adaptados para subir em árvores.
+Figura: macaco preto com crista.
+Qual animal também está adaptado para subir em árvores?
+Options:
+A. chital
+B. lar gibão
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  98%|██████████████████████▌| 196/200 [02:22<00:02,  1.34it/s]
+[DBG MMMB] ex=196  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=449x323 at 0x7BE990F47980>
+  Q       : Use o gráfico para responder à questão abaixo.
+Qual o mês é, em média, o mais chuvoso em Christchurch?
+Options:
+A. dezembro
+B. Poderia
+C. abril
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'B'  →  predicted='B'
+  Gold    : 'B'  |  ✓ CORRECT
+MMMB pt baseline:  98%|██████████████████████▋| 197/200 [02:23<00:02,  1.34it/s]
+[DBG MMMB] ex=197  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=556x208 at 0x7BE990EB7E00>
+  Q       : Selecione a melhor resposta.
+Qual propriedade esses três objetos têm em comum?
+Options:
+A. flexível
+B. amarelo
+C. difuso
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline:  99%|██████████████████████▊| 198/200 [02:24<00:01,  1.33it/s]
+[DBG MMMB] ex=198  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=312x237 at 0x7BE991E60A40>
+  Q       : Figura: Delta do Okavango.
+O Delta do Okavango é um ecossistema de zonas húmidas no Botswana, um país da África Austral.
+O que descreve melhor o ecossistema do Delta do Okavango?
+Options:
+A. Possui solo rico em nutrientes. Também possui outros ecossistemas aquáticos próximos.
+B. Possui solo pobre em nutrientes. Também possui outros ecossistemas aquáticos próximos.
+C. 
+D. 
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'A'  |  ✓ CORRECT
+MMMB pt baseline: 100%|██████████████████████▉| 199/200 [02:24<00:00,  1.34it/s]
+[DBG MMMB] ex=199  lang=pt  method=baseline
+<PIL.Image.Image image mode=RGB size=750x429 at 0x7BE991E604A0>
+  Q       : Qual desses estados fica mais a oeste?
+Options:
+A. Delaware
+B. Idaho
+C. Geórgia
+D. Arcansas
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
+MMMB pt baseline: 100%|███████████████████████| 200/200 [02:25<00:00,  1.37it/s]
+  outputs/eval_results/results_mmmb_pt_baseline.json: accuracy=0.630
+MMMB pt steered_a0.01:   0%|                            | 0/200 [00:00<?, ?it/s]
+[DBG MMMB] ex=0  lang=pt  method=steered_a0.01
+<PIL.Image.Image image mode=RGB size=512x373 at 0x7BE991EAE3C0>
+  Q       : Quantas pessoas no palco estão tocando teclado?
+Options:
+A. Nenhum
+B. Um
+C. Dois
+D. Três
+Answer with only the correct option letter (A, B, C, or D).
+  Model   : 'A'  →  predicted='A'
+  Gold    : 'B'  |  ✗ WRONG
