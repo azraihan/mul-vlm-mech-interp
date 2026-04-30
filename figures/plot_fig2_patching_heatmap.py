@@ -26,6 +26,7 @@ patching_attn     = np.load("outputs/patching/patching_attn.npy")       # (4, 32
 patching_mlp      = np.load("outputs/patching/patching_mlp.npy")        # (4, 32)
 
 arrays = [patching_residual, patching_attn, patching_mlp]
+vmax = float(np.ceil(patching_residual.max() * 10) / 10)  # round up to nearest 0.1
 col_titles = ["Residual Stream", "Attention Output", "MLP Output"]
 
 fig, axes = plt.subplots(N_LANGS, 3, figsize=(16, 2.5 * N_LANGS))
@@ -41,7 +42,7 @@ for col, (arr, col_title) in enumerate(zip(arrays, col_titles)):
         # Only draw the colorbar once — on the last column, last row.
         draw_cbar = (col == 2 and lang_idx == N_LANGS - 1)
         sns.heatmap(
-            data, ax=ax, cmap="RdBu_r", center=0, vmin=-0.05, vmax=0.3,
+            data, ax=ax, cmap="RdBu_r", center=0, vmin=-0.05, vmax=vmax,
             cbar=draw_cbar,
             cbar_ax=cbar_axes[0] if draw_cbar else None,
             xticklabels=[str(i) if i % 8 == 0 else "" for i in range(32)],
