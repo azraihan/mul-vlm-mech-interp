@@ -81,12 +81,14 @@ for col_i, lang in enumerate(col_keys):
         condition = "steered" if use_steering else "unsteered"
 
         if use_steering and sv is not None:
-            def make_steer_hook(L, vec, ap):
+            def make_steer_hook(L, vec):
                 def hook_fn(module, inp, output):
-                    h = output[0].clone()
-                    v = vec[L].to(h.device).to(h.dtype)
-                    h[:, ap:, :] += 1.0 * v
-                    return (h,) + output[1:]
+                    tensor = output[0] if isinstance(output, tuple) else output
+                    v = vec[L].to(tensor.device).to(tensor.dtype)
+                    if tensor.dim() == 3:
+                        tensor.data[:, -1:, :] += v
+                    else:
+                        tensor.data[-1:, :] += v
                 return hook_fn
 
             hooks = []
@@ -94,7 +96,7 @@ for col_i, lang in enumerate(col_keys):
                 if L in sv:
                     hooks.append(
                         model.language_model.model.layers[L].register_forward_hook(
-                            make_steer_hook(L, sv, answer_pos)
+                            make_steer_hook(L, sv)
                         )
                     )
             try:
