@@ -1,0 +1,62 @@
+% Table 1: Main Results
+\begin{table}[t]
+\centering
+\caption{Main results. Accuracy on MMMB and xGQA benchmarks. Ours shows the best accuracy across all tested $\alpha$ values per column.}
+\label{tab:main}
+\begin{tabular}{lccccccc}
+\toprule
+Method & EN-MMMB & PT-MMMB & RU-MMMB & DE-xGQA & PT-xGQA & RU-xGQA & Avg \\
+\midrule
+Baseline (LLaVA-1.5-7B) & 0.575 & 0.630 & 0.515 & 0.040 & 0.020 & 0.015 & 0.299 \\
+Ours (best $\alpha$) & n/a & \textbf{0.640} & \textbf{0.580} & \textbf{0.050} & \textbf{0.020} & \textbf{0.015} & \textbf{0.261} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table 2: Layer Range Ablation
+\begin{table}[t]
+\centering
+\caption{Layer range ablation on MMMB (best $\alpha$ per cell).}
+\label{tab:layer_range}
+\begin{tabular}{lcc}
+\toprule
+Layer Range & PT-MMMB & RU-MMMB \\
+\midrule
+Early (0--10) & 0.635 & 0.515 \\
+Mid (11--21) & 0.630 & 0.545 \\
+Late (22--31) & 0.630 & 0.515 \\
+Ours (mech.\ identified) & \textbf{0.640} & \textbf{0.580} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table 3: Visual Token Ablation
+\begin{table}[t]
+\centering
+\caption{Effect of removing visual tokens (blank image) on MMMB accuracy. Steered = best $\alpha$.}
+\label{tab:visual_ablation}
+\begin{tabular}{lcccc}
+\toprule
+Condition & PT Base & PT Steered & RU Base & RU Steered \\
+\midrule
+With image & 0.630 & 0.640 & 0.515 & 0.580 \\
+Without image (blank) & 0.420 & 0.415 & 0.465 & 0.485 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Table 4: Cross-Lingual Transfer
+\begin{table}[t]
+\centering
+\caption{Cross-lingual transfer on MMMB (best $\alpha$). Rows = steering vector source language, Cols = evaluation language. --- = own-language vector (see Table~\ref{tab:main}).}
+\label{tab:cross_lingual}
+\begin{tabular}{lcc}
+\toprule
+Source $\backslash$ Target & ru & pt \\
+\midrule
+pt & 0.555 & --- \\
+de & 0.580 & 0.640 \\
+ru & --- & 0.635 \\
+\bottomrule
+\end{tabular}
+\end{table}
