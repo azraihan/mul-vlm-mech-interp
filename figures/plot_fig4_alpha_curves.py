@@ -18,18 +18,17 @@ plt.rcParams.update({
 })
 os.makedirs("outputs/figures", exist_ok=True)
 
-alpha_sensitivity = json.load(open("outputs/ablations/alpha_sensitivity.json"))
+alpha_sensitivity = json.load(open("../outputs/ablations/alpha_sensitivity.json"))
 
-colors  = {"pt": "#2166ac", "de": "#d6604d", "ru": "#4dac26", "en": "#808080"}
+colors = {"pt": "#648FFF", "de": "#FE6100", "ru": "#DC267F", "en": "#FFB000"}
 markers = {"pt": "o",       "de": "s",       "ru": "^",       "en": "x"}
 # Drop α=0.0 (baseline, already in Table 1) so log scale is clean
 alphas_x = [0.01, 0.02, 0.05, 0.07, 0.1, 0.2, 0.3, 0.4, 0.5]
 fig, ax = plt.subplots(1, 1, figsize=(7, 4.5))
 
-LARGE_GAP = 0.03  # threshold: outward arrows if gap >= this, inward if smaller
-
-# x positions for gap arrows (between ticks, one per lang to avoid overlap)
-arrow_x = {"pt": 1.1, "ru": 0.38, "de": 0.30, "en": None}
+# x positions for gap arrows (one per lang to avoid overlap)
+arrow_x  = {"pt": 1.15, "ru": 1.10, "de": 0.28, "en": None}
+LABEL_X  = 1.42   # fixed right-margin x for all +Xpp labels
 
 dataset_data = alpha_sensitivity.get("mmmb", {})
 peak_added     = False
@@ -66,34 +65,34 @@ for lang, acc_dict in dataset_data.items():
 
     gap = peak_val - baseline_val
     ap = dict(color=color, lw=1.5, mutation_scale=12)
+    mid = (peak_val + baseline_val) / 2
 
-    if gap >= LARGE_GAP:
-        # Outward (diverging) bidirectional arrow
+    if gap >= 0.02:
         ax.annotate("", xy=(x_arr, peak_val), xytext=(x_arr, baseline_val),
                     arrowprops=dict(arrowstyle="<->", **ap))
     else:
-        # Inward (converging) arrows — both point toward the midpoint
-        mid = (peak_val + baseline_val) / 2
-        ax.annotate("", xy=(x_arr, mid), xytext=(x_arr, baseline_val),
-                    arrowprops=dict(arrowstyle="->", **ap))
-        ax.annotate("", xy=(x_arr, mid), xytext=(x_arr, peak_val),
-                    arrowprops=dict(arrowstyle="->", **ap))
+        tick_w = 0.015
+        for y_tick in [peak_val, baseline_val]:
+            ax.plot([x_arr - tick_w, x_arr + tick_w], [y_tick, y_tick],
+                    color=color, lw=1.5, solid_capstyle="round")
+        ax.plot([x_arr, x_arr], [baseline_val, peak_val], color=color, lw=1.5)
 
-    ax.text(x_arr * 1.18, (peak_val + baseline_val) / 2,
-            f"+{gap*100:.1f}pp", color=color, fontsize=8.5,
-            va="center", fontweight="bold")
+    ax.text(LABEL_X, mid,
+            f"+{gap*100:.1f}pp", color=color, fontsize=9,
+            va="center", fontweight="bold",
+            bbox=dict(boxstyle="round,pad=0.2", facecolor="white", edgecolor="none", alpha=0.85))
 
 ax.set_xscale("log")
-ax.set_xlim(left=0.01, right=1.4)
+ax.set_xlim(left=0.01, right=1.8)
 ax.set_xticks(alphas_x)
 ax.set_xticklabels([str(a) for a in alphas_x], rotation=45, ha="right")
-ax.set_xlabel("Steering coefficient α (log scale)")
-ax.set_ylabel("Accuracy")
+ax.set_xlabel("Steering coefficient α (log scale)", labelpad=10)
+ax.set_ylabel("Accuracy", labelpad=10)
 ax.legend(fontsize=9)
 
 fig.tight_layout()
 
-plt.savefig("outputs/figures/fig4_alpha_curves.pdf", bbox_inches="tight")
-plt.savefig("outputs/figures/fig4_alpha_curves.png", bbox_inches="tight", dpi=150)
+plt.savefig("../outputs/figures/fig4_alpha_curves.pdf", bbox_inches="tight")
+plt.savefig("../outputs/figures/fig4_alpha_curves.png", bbox_inches="tight", dpi=150)
 plt.close()
 print("Saved fig4_alpha_curves.pdf/png")
