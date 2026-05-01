@@ -66,10 +66,10 @@ echo "[1c/5] Skipping xGQA re-download (dataset already present in data/xgqa/)..
 # python data/download_xgqa.py
 
 echo "[2/5] Experiment 3: Steering Vectors + Evaluation (~3–4h on H100)..."
-python experiments/exp3_steering.py
+# python experiments/exp3_steering.py
 
 echo "[3/5] Experiment 4: Ablations (~2–3h on H100)..."
-python experiments/exp4_ablations.py
+# python experiments/exp4_ablations.py
 
 echo "[4/5] Generating figures..."
 # python figures/plot_fig1_logit_lens.py
@@ -79,7 +79,7 @@ echo "[4/5] Generating figures..."
 python figures/plot_fig5_qualitative.py
 
 echo "[5/5] Generating tables..."
-python tables/generate_tables.py > tables/tables.tex
+# python tables/generate_tables.py > tables/tables.tex
 
 echo ""
 echo "=== SESSION 2 COMPLETE — Final verification ==="
