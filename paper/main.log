@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.30)  1 MAY 2026 15:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.30)  1 MAY 2026 17:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -628,13 +628,13 @@ Package pdftex.def Info: ../outputs/figures/fig1_logit_lens.pdf  used on input
 line 229.
 (pdftex.def)             Requested size: 455.24411pt x 314.67752pt.
 [2]
-<../outputs/figures/fig2_patching_heatmap.pdf, id=182, 1102.5798pt x 532.50507p
+<../outputs/figures/fig2_patching_heatmap.pdf, id=182, 1102.5798pt x 561.01091p
 t>
 File: ../outputs/figures/fig2_patching_heatmap.pdf Graphic file (type pdf)
 <use ../outputs/figures/fig2_patching_heatmap.pdf>
 Package pdftex.def Info: ../outputs/figures/fig2_patching_heatmap.pdf  used on 
 input line 272.
-(pdftex.def)             Requested size: 455.24411pt x 219.86418pt.
+(pdftex.def)             Requested size: 455.24411pt x 231.63387pt.
 <../outputs/figures/fig3_visual_contribution.pdf, id=183, 857.96597pt x 303.227
 86pt>
 File: ../outputs/figures/fig3_visual_contribution.pdf Graphic file (type pdf)
@@ -642,20 +642,23 @@ File: ../outputs/figures/fig3_visual_contribution.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../outputs/figures/fig3_visual_contribution.pdf  used 
 on input line 286.
 (pdftex.def)             Requested size: 455.24411pt x 160.89969pt.
- [3 <../outputs/figures/fig1_logit_lens.pdf>] [4 <../outputs/figures/fig2_patch
-ing_heatmap.pdf> <../outputs/figures/fig3_visual_contribution.pdf>]
-<../outputs/figures/fig4_alpha_curves.pdf, id=345, 495.50253pt x 316.12651pt>
+ [3 <../outputs/figures/fig1_logit_lens.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4 <../outputs/figures/fig2_patching_heatmap.pdf> <../outputs/figures/fig3_vis
+ual_contribution.pdf>]
+<../outputs/figures/fig4_alpha_curves.pdf, id=350, 496.23923pt x 316.12651pt>
 File: ../outputs/figures/fig4_alpha_curves.pdf Graphic file (type pdf)
 <use ../outputs/figures/fig4_alpha_curves.pdf>
 Package pdftex.def Info: ../outputs/figures/fig4_alpha_curves.pdf  used on inpu
 t line 450.
-(pdftex.def)             Requested size: 373.3035pt x 238.16515pt.
-<../outputs/figures/fig5_qualitative.pdf, id=350, 1002.48465pt x 592.90883pt>
+(pdftex.def)             Requested size: 373.3035pt x 237.81784pt.
+<../outputs/figures/fig5_qualitative.pdf, id=355, 966.61125pt x 751.10948pt>
 File: ../outputs/figures/fig5_qualitative.pdf Graphic file (type pdf)
 <use ../outputs/figures/fig5_qualitative.pdf>
 Package pdftex.def Info: ../outputs/figures/fig5_qualitative.pdf  used on input
  line 465.
-(pdftex.def)             Requested size: 386.96027pt x 228.86317pt.
+(pdftex.def)             Requested size: 386.96027pt x 300.69061pt.
 
 Underfull \hbox (badness 5726) in paragraph at lines 503--510
 \T1/cmr/m/n/10.95 (+20) language) and Rus-sian (58.0% = own-
@@ -666,7 +669,10 @@ Underfull \hbox (badness 1377) in paragraph at lines 6--13
 []\T1/cmr/m/n/10 (+20) Jannik Brinkmann, Chris Wendler, Chris-tian
  []
 
-[6 <../outputs/figures/fig4_alpha_curves.pdf>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <../outputs/figures/fig4_alpha_curves.pdf>]
 Underfull \hbox (badness 5908) in paragraph at lines 23--30
 []\T1/cmr/m/n/10 (+20) Clément Du-mas, Chris Wendler, Ve-ni-amin
  []
@@ -681,7 +687,7 @@ Underfull \hbox (badness 1292) in paragraph at lines 75--80
 []\T1/cmr/m/n/10 (+20) Haotian Liu, Chun-yuan Li, Yuheng Li, and
  []
 
-
+[7 <../outputs/figures/fig5_qualitative.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 89--93
 []\T1/cmr/m/n/10 (+20) nostalgebraist. 2020.  In-ter-pret-ing
  []
@@ -702,7 +708,7 @@ Underfull \hbox (badness 1082) in paragraph at lines 96--101
 []\T1/cmr/m/n/10 (+20) Jean de Dieu Nyandwi, Yueqi Song, Sim-ran
  []
 
-[7 <../outputs/figures/fig5_qualitative.pdf>])
+)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -744,7 +750,7 @@ Here is how much of TeX's memory you used:
  37478 multiletter control sequences out of 15000+600000
  592846 words of font info for 244 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,93p,1001b,633s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,10n,93p,1001b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -771,10 +777,10 @@ t/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2024/texmf-dist/
 fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fo
 nts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2024/texmf-dist/font
 s/type1/urw/helvetic/uhvb8a.pfb>
-Output written on main.pdf (8 pages, 733642 bytes).
+Output written on main.pdf (8 pages, 858214 bytes).
 PDF statistics:
- 707 PDF objects out of 1000 (max. 8388607)
- 433 compressed objects within 5 object streams
+ 749 PDF objects out of 1000 (max. 8388607)
+ 440 compressed objects within 5 object streams
  80 named destinations out of 1000 (max. 500000)
  62594 words of extra memory for PDF output out of 74296 (max. 10000000)
 
