@@ -61,13 +61,14 @@ inset.set_xticks([0, 16, 31])
 inset.set_xticklabels(["0", "16", "31"], fontsize=7)
 inset.set_title("Visual only (zoomed)", fontsize=7, pad=3)
 
-# Both connector lines converge to the peak of the visual signal in the main plot
+# Left connector → peak of visual signal; right connector → rightmost point of main axis
 focus_layer = int(np.argmax(np.abs(vis_ru)))
 ix0, iy0, iw, ih = inset_pos
-for corner_x in [ix0, ix0 + iw]:
+targets = [(focus_layer, 0.0), (31, 0.0)]
+for corner_x, target in zip([ix0, ix0 + iw], targets):
     con = ConnectionPatch(
         xyA=(corner_x, iy0), coordsA="axes fraction",
-        xyB=(focus_layer, 0.0), coordsB="data",
+        xyB=target, coordsB="data",
         axesA=ax_ru, axesB=ax_ru,
         color="gray", alpha=0.5, linewidth=0.8,
     )
