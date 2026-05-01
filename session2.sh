@@ -76,8 +76,8 @@ echo "[4/5] Generating figures..."
 # python figures/plot_fig2_patching_heatmap.py
 # python figures/plot_fig3_visual_contribution.py
 # python figures/plot_fig4_alpha_curves.py
-python figures/plot_fig5_qualitative.py
-# python figures/plot_mmmb_analysis.py
+# python figures/plot_fig5_qualitative.py
+python figures/plot_mmmb_analysis.py
 
 echo "[5/5] Generating tables..."
 # python tables/generate_tables.py > tables/tables.tex
