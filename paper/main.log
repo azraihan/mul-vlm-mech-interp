@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.30)  1 MAY 2026 14:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.30)  1 MAY 2026 15:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -621,12 +621,12 @@ Underfull \hbox (badness 6364) in paragraph at lines 209--215
 e eval-u-ate
  []
 
-<../outputs/figures/fig1_logit_lens.pdf, id=136, 857.46582pt x 593.1534pt>
+<../outputs/figures/fig1_logit_lens.pdf, id=136, 858.104pt x 593.1534pt>
 File: ../outputs/figures/fig1_logit_lens.pdf Graphic file (type pdf)
 <use ../outputs/figures/fig1_logit_lens.pdf>
 Package pdftex.def Info: ../outputs/figures/fig1_logit_lens.pdf  used on input 
 line 229.
-(pdftex.def)             Requested size: 455.24411pt x 314.92189pt.
+(pdftex.def)             Requested size: 455.24411pt x 314.67752pt.
 [2]
 <../outputs/figures/fig2_patching_heatmap.pdf, id=182, 1102.5798pt x 532.50507p
 t>
@@ -644,13 +644,13 @@ on input line 286.
 (pdftex.def)             Requested size: 455.24411pt x 160.89969pt.
  [3 <../outputs/figures/fig1_logit_lens.pdf>] [4 <../outputs/figures/fig2_patch
 ing_heatmap.pdf> <../outputs/figures/fig3_visual_contribution.pdf>]
-<../outputs/figures/fig4_alpha_curves.pdf, id=340, 495.50253pt x 316.12651pt>
+<../outputs/figures/fig4_alpha_curves.pdf, id=345, 495.50253pt x 316.12651pt>
 File: ../outputs/figures/fig4_alpha_curves.pdf Graphic file (type pdf)
 <use ../outputs/figures/fig4_alpha_curves.pdf>
 Package pdftex.def Info: ../outputs/figures/fig4_alpha_curves.pdf  used on inpu
 t line 450.
 (pdftex.def)             Requested size: 373.3035pt x 238.16515pt.
-<../outputs/figures/fig5_qualitative.pdf, id=345, 1002.48465pt x 592.90883pt>
+<../outputs/figures/fig5_qualitative.pdf, id=350, 1002.48465pt x 592.90883pt>
 File: ../outputs/figures/fig5_qualitative.pdf Graphic file (type pdf)
 <use ../outputs/figures/fig5_qualitative.pdf>
 Package pdftex.def Info: ../outputs/figures/fig5_qualitative.pdf  used on input
@@ -771,9 +771,9 @@ t/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2024/texmf-dist/
 fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fo
 nts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2024/texmf-dist/font
 s/type1/urw/helvetic/uhvb8a.pfb>
-Output written on main.pdf (8 pages, 728513 bytes).
+Output written on main.pdf (8 pages, 733588 bytes).
 PDF statistics:
- 699 PDF objects out of 1000 (max. 8388607)
+ 704 PDF objects out of 1000 (max. 8388607)
  430 compressed objects within 5 object streams
  80 named destinations out of 1000 (max. 500000)
  62594 words of extra memory for PDF output out of 74296 (max. 10000000)
