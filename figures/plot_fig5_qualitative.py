@@ -118,14 +118,28 @@ def plot_curve(ax, en_curve, tl_curve, lang, title):
     if crossover is not None:
         y_cross = tl_curve[crossover]
 
-        # Vertical dashed drop-line from crossover point to y=0
-        ax.plot([crossover, crossover], [0, y_cross],
-                color="black", linestyle="--", linewidth=1.0, zorder=3)
+        # Capture current ylim so the drop-line doesn't alter autoscaling
+        y_lo, y_hi = ax.get_ylim()
 
-        # Layer number explicitly at foot of the line
-        ax.text(crossover, 0, f"L{crossover}",
-                ha="center", va="top", fontsize=7.5,
-                color="black", fontweight="bold", zorder=4)
+        # Vertical dashed drop-line from bottom axis to crossover point
+        ax.plot([crossover, crossover], [y_lo, y_cross],
+                color="black", linestyle="--", linewidth=1.0, zorder=3,
+                clip_on=True)
+
+        # Restore ylim in case the new line nudged it
+        ax.set_ylim(y_lo, y_hi)
+
+        # Layer number below the bottom x-axis (outside the plot area)
+        ax.annotate(
+            f"L{crossover}",
+            xy=(crossover, 0),                  # anchor: x in data, y=0 = bottom of axes
+            xycoords=("data", "axes fraction"),
+            xytext=(0, -12),                    # shift 12 pts downward
+            textcoords="offset points",
+            ha="center", va="top", fontsize=7.5,
+            color="black", fontweight="bold", zorder=4,
+            annotation_clip=False,
+        )
 
         # Longer red upward arrow above the crossover point
         curve_range = np.nanmax(np.concatenate([en_curve, tl_curve])) \
