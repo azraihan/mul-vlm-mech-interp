@@ -56,18 +56,19 @@ causal activation patching to show that non-English visual queries are routed
 through an English-biased representational bottleneck in layers 5--17,
 extending the English-pivot phenomenon of \citet{wendler-etal-2024-llamas} to
 the multimodal setting.
-Peak causal influence occurs at layer~8 ($\Delta\mathrm{AIE}{=}0.49$), with
-all measurable pivot signal running through text-token positions.
-Without visual context, language-specific representations do not emerge at any
-layer, confirming that visual content is necessary to activate the pivot pathway.
+Peak causal influence occurs at layer~8 ($\overline{\mathrm{AIE}}{=}0.49$,
+averaged across languages), with all measurable pivot signal running through
+text-token positions.
+Without meaningful visual content (blank-image condition), language-specific
+representations do not emerge at any layer, confirming that meaningful visual
+content is necessary to activate the pivot pathway.
 Building on these findings, we derive training-free language-steering vectors
 at the mechanistically identified pivot layers, improving Russian VQA by
 +6.5~pp and Portuguese by +1.0~pp on MMMB without any fine-tuning.
-Our results are consistent with the English pivot being a structural property
-of the LLM backbone that multimodal pre-training does not mitigate;
-we hypothesise that analogous pivot structures will be found in other
-LLM-backbone VLMs, and propose our mechanistic methodology as a blueprint for
-such investigations.
+Within this case study, our results are consistent with the English pivot
+being a structural property of the LLM backbone that multimodal pre-training
+does not mitigate; extending this mechanistic methodology to other VLMs and
+language families remains an important direction for future work.
 \end{abstract}
 
 % ═══════════════════════════════════════════════════════════════════════════════
@@ -95,19 +96,17 @@ Neither work addresses VLMs, leaving open whether the visual modality interacts
 with or suppresses this pivot.
 
 We fill this gap with the first causal mechanistic analysis of the English
-pivot in a multilingual VLM, conducting a focused case study on LLaVA-1.5-7B.
-We view our findings as a case study rather than universal claims, and
-hypothesise that analogous pivot structures---mediated through the LLM
-backbone's concept space---will generalise to other VLMs built on
-English-dominant LLM backbones; we propose our methodology as a blueprint
-for testing this hypothesis in future work.
+pivot in a multilingual VLM, presenting a focused case study on LLaVA-1.5-7B.
+We treat our findings as specific to this model and architecture; whether
+analogous structures arise in other VLMs is an open question we leave to
+future work.
 Our contributions are:
 
 \begin{itemize}[noitemsep,topsep=2pt]
 \item We confirm that LLaVA-1.5-7B routes non-English visual queries through
   an English-biased concept space in \textbf{layers 5--17}, with peak causal
-  responsibility at layer~8 ($\Delta\mathrm{AIE}{=}0.49$; \S\ref{sec:patching}).
-\item We show that visual context is \emph{necessary} for language-specific
+  responsibility at layer~8 (cross-language average $\overline{\mathrm{AIE}}{=}0.49$; \S\ref{sec:patching}).
+\item We show that meaningful visual content is \emph{necessary} for language-specific
   representations to emerge, and that under our patching design---which uses
   the same image in both passes---all measurable pivot signal runs through
   text-token positions; isolating visual causal contributions would require
@@ -252,12 +251,13 @@ whether mechanistic localisation is necessary.
   \caption{
     \textbf{Logit-lens PMI across layers.}
     Blue (solid): English answer token; red (dashed): target-language token.
-    Top row: real image; bottom row: all-black image.
+    Top row: real image; bottom row: all-white image.
     Grey band: mechanistically identified pivot region (layers 5--17).
     With a real image, both tokens develop strong positive PMI in late layers
     (20--29), with English peaking first at layers 20--23.
-    Without an image, PMI remains near-zero at every layer---language
-    representations do not emerge without visual context.
+    Without meaningful visual content, PMI is predominantly negative at every
+    layer; where marginally positive, values are substantially weaker than in
+    the image-present condition---language-specific representations do not emerge.
   }
   \label{fig:logit_lens}
 \end{figure*}
@@ -276,14 +276,14 @@ in the multimodal setting.
 The grey pivot region (layers 5--17) corresponds to where English PMI first
 begins to build, preceding both peaks.
 
-\paragraph{All-black-image condition.}
-Without meaningful visual content (image replaced by an all-black tensor of
-the same spatial dimensions), PMI values remain near-zero or negative ($<{-}0.4$)
-at every layer for every language.
-No meaningful language-specific representations form.
-This confirms that visual input is not merely incidental to the pivot---it is
-\emph{necessary} to activate the representational pathway that produces
-language-specific outputs.
+\paragraph{All-white-image condition.}
+Without meaningful visual content (image replaced by an all-white tensor of
+the same spatial dimensions), PMI values are predominantly negative at every
+layer for every language; where marginally positive, values are substantially
+weaker than in the image-present condition.
+This confirms that meaningful visual content is not merely incidental to the
+pivot---it is \emph{necessary} to activate the representational pathway that
+produces language-specific outputs.
 
 \noindent\textbf{Logit-lens vs.\ causal patching.}\enspace
 The grey pivot region (layers 5--17) identified in Figure~\ref{fig:logit_lens}
@@ -329,9 +329,12 @@ and only decoded into language-specific probabilities later.
 \paragraph{Residual stream patching.}
 Figure~\ref{fig:patching_heatmap} (left column) shows strongly positive AIE
 in layers 5--17 and near-zero thereafter.
-Peak AIE is at \textbf{layer~8} ($\overline{\mathrm{AIE}}{=}0.49$ averaged
-across languages), with the signal remaining above the 50\%-of-peak threshold
-(0.24) through layer~17 and dropping to noise floor ($<0.04$) by layer~20.
+Peak cross-language average AIE is at \textbf{layer~8}
+($\overline{\mathrm{AIE}}{=}0.49$); per-language peaks reach 0.52 (PT,
+layer~8), 0.62 (DE, layer~10), and 0.85 (RU, layer~10), reflecting
+Russian's substantially broader and stronger pivot.
+The signal remains above the 50\%-of-peak threshold (0.24) through layer~17
+and drops to noise floor ($<0.04$) by layer~20.
 We define the \textbf{pivot region} as layers 5--17.
 
 The pivot region occupies the first half of the LLM, consistent with
@@ -360,8 +363,8 @@ require paired semantically-equivalent images in different languages---a
 direction for future work.
 What the current design \emph{does} establish is that the pivot's causal
 pathway does not depend on any language-specific visual signal; the blank-image
-ablation (\S\ref{sec:logit_lens}) provides the positive evidence that visual
-context shapes \emph{when} language-specific representations emerge at all.
+ablation (\S\ref{sec:logit_lens}) provides positive evidence that meaningful
+visual content shapes \emph{when} language-specific representations emerge at all.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \subsection{Training-Free Steering at Pivot Layers}
@@ -479,7 +482,7 @@ Ours  (5--17)    & \textbf{64.0} ($\alpha{=}0.2$) & \textbf{58.0} ($\alpha{=}0.2
 \small
 \caption{
   \textbf{Visual token ablation on MMMB (\%).}
-  ``Steer'' = best $\alpha$: $\alpha{=}0.2$ (real image), $\alpha{=}0.02$ (all-black image).
+  ``Steer'' = best $\alpha$: $\alpha{=}0.2$ (real image), $\alpha{=}0.02$ (all-white image).
 }
 \label{tab:visual_ablation}
 \resizebox{\linewidth}{!}{%
@@ -489,7 +492,7 @@ Ours  (5--17)    & \textbf{64.0} ($\alpha{=}0.2$) & \textbf{58.0} ($\alpha{=}0.2
                    & \textbf{RU\,Base} & \textbf{RU\,Steer} \\
 \midrule
 Real image   & 63.0 & 64.0 & 51.5 & 58.0 \\
-All-black image  & 42.0 & 41.5 & 46.5 & 48.5 \\
+All-white image  & 42.0 & 41.5 & 46.5 & 48.5 \\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -556,11 +559,12 @@ The gap between ours and the best fixed range is +6.5 vs.\ +3.0~pp (mid)
 for Russian, confirming that mechanistic localisation is necessary.
 
 \paragraph{Visual token ablation (Table~\ref{tab:visual_ablation}).}
-All-black images drastically lower baseline performance (PT: $-21$~pp;
-RU: $-5$~pp), confirming visual context is necessary for correct answering.
-With all-black images, steering is marginal or slightly harmful, consistent with
-the logit-lens finding that visual input is required for strong
-language-specific representations to form.
+All-white images drastically lower baseline performance (PT: $-21$~pp;
+RU: $-5$~pp), confirming that meaningful visual content is necessary for
+correct answering.
+With all-white images, steering is marginal or slightly harmful, consistent
+with the logit-lens finding that meaningful visual content is required for
+strong language-specific representations to form.
 
 \paragraph{Steering coefficient sensitivity (Figure~\ref{fig:alpha}).}
 Performance peaks at $\alpha{=}0.2$ for both MMMB languages (independently)
