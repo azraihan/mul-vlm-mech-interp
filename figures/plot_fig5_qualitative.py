@@ -24,26 +24,33 @@ plt.rcParams.update({
     "figure.dpi": 150,
 })
 
-OUT_DIR = "outputs/figures/fig5"
-os.makedirs(OUT_DIR, exist_ok=True)
+OUT_PDF = "outputs/figures/fig5_qualitative.pdf"
+OUT_PNG = "outputs/figures/fig5_qualitative.png"
+OUT_DATA = "outputs/figures/fig5_qualitative_data.json"
+os.makedirs("outputs/figures", exist_ok=True)
 
-examples = json.load(open("data/probing_set/probing_set.json"))
+# ── Selected examples: (lang, probing_set_index, expected_category) ──────────
+SELECTED = [
+    ("ru", 61,  "boat"),
+    ("de", 75,  "orange"),
+    ("pt", 126, "spoon"),
+]
+
+examples     = json.load(open("data/probing_set/probing_set.json"))
 pivot_layers = json.load(open("outputs/pivot_layers.json"))["pivot_layers"]
 
-# Determine which examples still need generating
-pending = [
-    (ex_idx, ex) for ex_idx, ex in enumerate(examples)
-    if not os.path.exists(f"{OUT_DIR}/{ex_idx:03d}_{ex['category']}.png")
-]
-print(f"{len(pending)} / {len(examples)} figures to generate.")
-if not pending:
-    print("All done.")
-    sys.exit(0)
+# Validate selections
+for lang, idx, expected_cat in SELECTED:
+    ex = examples[idx]
+    assert ex["category"] == expected_cat, (
+        f"Mismatch at index {idx}: expected '{expected_cat}', got '{ex['category']}'"
+    )
+print("Selections validated:", [(lang, idx, cat) for lang, idx, cat in SELECTED])
 
 model, processor = load_model()
 baseline_log_probs = compute_pmi_baseline(model)
 
-# Load all steering vectors once upfront
+# Load steering vectors
 steering_vecs = {}
 for lang in LANGUAGES:
     sv_path = f"outputs/steering_vectors/steering_vec_{lang}.pt"
@@ -52,11 +59,10 @@ for lang in LANGUAGES:
         print(f"[SV] Loaded steering vector for {lang}")
 
 
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
 def compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=None):
-    """
-    Run one forward pass (optionally steered at pivot layers) and return
-    (en_curve, tl_curve) as PMI log-prob arrays of shape (32,).
-    """
+    """Forward pass (optionally steered) → (en_curve, tl_curve), each shape (32,)."""
     hooks = []
     if sv is not None:
         def make_hook(L, vec):
@@ -83,19 +89,20 @@ def compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=None):
 
     en_c = np.array([
         np.log(apply_logit_lens(model, residuals[l][answer_pos])[en_tid] + 1e-10)
-        - baseline_log_probs[en_tid]
-        for l in range(32)
+        - baseline_log_probs[en_tid] for l in range(32)
     ])
     tl_c = np.array([
         np.log(apply_logit_lens(model, residuals[l][answer_pos])[tl_tid] + 1e-10)
-        - baseline_log_probs[tl_tid]
-        for l in range(32)
+        - baseline_log_probs[tl_tid] for l in range(32)
     ])
     return en_c, tl_c
 
 
 def plot_curve(ax, en_curve, tl_curve, lang, title):
     layers = list(range(32))
+
+    ax.axvspan(min(pivot_layers) - 0.5, max(pivot_layers) + 0.5,
+               alpha=0.08, color="gray")
     ax.plot(layers, en_curve, color="#2166ac", linewidth=1.8, label="English")
     ax.plot(layers, tl_curve, color="#d6604d", linewidth=1.8, linestyle="--",
             label=LANG_NAMES[lang])
@@ -105,86 +112,151 @@ def plot_curve(ax, en_curve, tl_curve, lang, title):
     ax.set_ylabel("Log PMI", fontsize=8)
     ax.tick_params(labelsize=7)
     ax.set_title(title, fontsize=8.5, pad=3)
+    ax.legend(fontsize=7.5, loc="upper left", handlelength=1.5, framealpha=0.7)
+
     crossover = next((i for i in range(32) if tl_curve[i] > en_curve[i]), None)
     if crossover is not None:
-        ax.annotate("↑", xy=(crossover, tl_curve[crossover]),
-                    fontsize=12, color="red", ha="center")
+        y_cross = tl_curve[crossover]
+
+        # Vertical dashed drop-line from crossover point to y=0
+        ax.plot([crossover, crossover], [0, y_cross],
+                color="black", linestyle="--", linewidth=1.0, zorder=3)
+
+        # Layer number explicitly at foot of the line
+        ax.text(crossover, 0, f"L{crossover}",
+                ha="center", va="top", fontsize=7.5,
+                color="black", fontweight="bold", zorder=4)
+
+        # Longer red upward arrow above the crossover point
+        curve_range = np.nanmax(np.concatenate([en_curve, tl_curve])) \
+                    - np.nanmin(np.concatenate([en_curve, tl_curve]))
+        arrow_len = max(curve_range * 0.18, 0.3)
+        ax.annotate(
+            "",
+            xy=(crossover, y_cross + arrow_len),   # arrow head
+            xytext=(crossover, y_cross),            # arrow tail
+            arrowprops=dict(
+                arrowstyle="-|>",
+                color="red",
+                lw=2.0,
+                mutation_scale=14,
+            ),
+            zorder=5,
+        )
+
+    return crossover
 
 
-for ex_idx, ex in pending:
-    out_path = f"{OUT_DIR}/{ex_idx:03d}_{ex['category']}.png"
-    if os.path.exists(out_path):
-        print(f"[SKIP] {out_path}")
-        continue
+# ── Compute all curves ────────────────────────────────────────────────────────
 
-    img = Image.open(ex["image_path"]).convert("RGB")
+all_data = {}
+rows = []   # (lang, img, en_word, tl_word, en_u, tl_u, en_s, tl_s)
+
+for lang, idx, cat in SELECTED:
+    ex     = examples[idx]
     en_tid = ex["token_ids"]["en"]
-    cat = ex["category"]
-    print(f"\n[{ex_idx:03d}/{len(examples)-1}] category={cat}")
+    tl_tid = ex["token_ids"].get(lang)
+    img    = Image.open(ex["image_path"]).convert("RGB")
+    q      = ex["questions"][lang]
 
-    # Compute unsteered + steered curves for each language (2 forward passes × 3 langs = 6 total)
-    curves = {}
-    for lang in LANGUAGES:
-        tl_tid = ex["token_ids"].get(lang)
-        if tl_tid is None:
-            print(f"  [{lang}] no token_id — skipping")
-            continue
-        inputs, answer_pos = get_image_text_inputs(processor, img, ex["questions"][lang])
-        sv = steering_vecs.get(lang)
-        en_u, tl_u = compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=None)
-        en_s, tl_s = compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=sv)
-        curves[lang] = (en_u, tl_u, en_s, tl_s)
-        print(f"  [{lang}] done")
+    inputs, answer_pos = get_image_text_inputs(processor, img, q)
+    sv = steering_vecs.get(lang)
 
-    # ── Figure layout ─────────────────────────────────────────────────────
-    # 4 rows × 3 cols: rows 0-2 = one lang per row, row 3 = caption text
-    # col 0 = image (spans rows 0-3), cols 1-2 = unsteered / steered plots
-    fig = plt.figure(figsize=(18, 10))
-    gs = gridspec.GridSpec(
-        4, 3,
-        figure=fig,
-        width_ratios=[1, 2, 2],
-        height_ratios=[3, 3, 3, 1],
-        hspace=0.55,
-        wspace=0.3,
+    print(f"\n[{lang}] idx={idx} cat={cat}")
+    en_u, tl_u = compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=None)
+    en_s, tl_s = compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=sv)
+    print(f"  done")
+
+    en_word = TRANSLATIONS[cat]["en"]
+    tl_word = TRANSLATIONS[cat][lang]
+    rows.append((lang, img, en_word, tl_word, en_u, tl_u, en_s, tl_s))
+
+    all_data[lang] = {
+        "lang":          lang,
+        "lang_name":     LANG_NAMES[lang],
+        "example_index": idx,
+        "category":      cat,
+        "image_path":    ex["image_path"],
+        "question":      q,
+        "en_token_id":   en_tid,
+        "tl_token_id":   tl_tid,
+        "en_word":       en_word,
+        "tl_word":       tl_word,
+        "pivot_layers":  pivot_layers,
+        "curves": {
+            "unsteered": {"en": en_u.tolist(), "tl": tl_u.tolist()},
+            "steered":   {"en": en_s.tolist(), "tl": tl_s.tolist()},
+        },
+    }
+
+with open(OUT_DATA, "w", encoding="utf-8") as f:
+    json.dump(all_data, f, ensure_ascii=False, indent=2)
+print(f"\nSaved {OUT_DATA}")
+
+# ── Figure ────────────────────────────────────────────────────────────────────
+# 3 rows (ru / de / pt).  Each row: [image+caption | baseline | steered]
+# Left col uses a nested GridSpec to split image (tall) from caption (short).
+
+n_rows = len(rows)
+fig = plt.figure(figsize=(17, 4.2 * n_rows))
+outer = gridspec.GridSpec(
+    n_rows, 3,
+    figure=fig,
+    width_ratios=[1, 2.2, 2.2],
+    hspace=0.55,
+    wspace=0.32,
+)
+
+for row_i, (lang, img, en_word, tl_word, en_u, tl_u, en_s, tl_s) in enumerate(rows):
+
+    # Left sub-grid: image (tall) + caption+legend area (shorter)
+    left_gs = gridspec.GridSpecFromSubplotSpec(
+        2, 1, subplot_spec=outer[row_i, 0],
+        height_ratios=[4, 2], hspace=0.06,
     )
 
-    # Left: image spanning rows 0-2
-    ax_img = fig.add_subplot(gs[:3, 0])
+    ax_img = fig.add_subplot(left_gs[0])
     ax_img.imshow(np.array(img))
     ax_img.axis("off")
-    ax_img.set_title(f"#{ex_idx:03d}  —  {cat}", fontsize=10, pad=5)
 
-    # Left: caption (answer word per language) in row 3
-    ax_txt = fig.add_subplot(gs[3, 0])
-    ax_txt.axis("off")
-    trans = TRANSLATIONS.get(cat, {})
-    caption = "  |  ".join(
-        f"[{lg.upper()}] {trans.get(lg, '?')}"
-        for lg in ["en"] + LANGUAGES
+    ax_cap = fig.add_subplot(left_gs[1])
+    ax_cap.axis("off")
+
+    # Caption text at top of the area
+    ax_cap.text(
+        0.5, 0.98,
+        f"{en_word} ({tl_word})",
+        transform=ax_cap.transAxes,
+        fontsize=9, va="top", ha="center",
+        style="italic",
     )
-    ax_txt.text(0.5, 0.85, caption, transform=ax_txt.transAxes,
-                fontsize=8.5, va="top", ha="center", family="monospace")
 
-    # Right: 3 lang rows × 2 condition cols
-    for row_i, lang in enumerate(LANGUAGES):
-        if lang not in curves:
-            continue
-        en_u, tl_u, en_s, tl_s = curves[lang]
-        plot_curve(fig.add_subplot(gs[row_i, 1]),
-                   en_u, tl_u, lang, f"{LANG_NAMES[lang]} — without steering")
-        plot_curve(fig.add_subplot(gs[row_i, 2]),
-                   en_s, tl_s, lang, f"{LANG_NAMES[lang]} — with steering")
+    # Baseline graph
+    ax_base = fig.add_subplot(outer[row_i, 1])
+    plot_curve(ax_base, en_u, tl_u, lang, f"Baseline  ·  {LANG_NAMES[lang]}")
 
-    # Shared legend from first plot axes
-    plot_axes = [ax for ax in fig.axes if ax not in (ax_img, ax_txt)]
-    if plot_axes:
-        handles, labels = plot_axes[0].get_legend_handles_labels()
-        fig.legend(handles, labels, loc="lower center", ncol=2,
-                   bbox_to_anchor=(0.65, 0.0), fontsize=9)
+    # Steered graph
+    ax_steer = fig.add_subplot(outer[row_i, 2])
+    plot_curve(ax_steer, en_s, tl_s, lang, f"Steered  ·  {LANG_NAMES[lang]}")
 
-    plt.savefig(out_path, bbox_inches="tight", dpi=120)
-    plt.close()
-    print(f"  Saved {out_path}")
+    # Row legend in the caption area, below the caption text
+    handles, labels = ax_base.get_legend_handles_labels()
+    for ax in [ax_base, ax_steer]:
+        leg = ax.get_legend()
+        if leg:
+            leg.remove()
+    ax_cap.legend(
+        handles, labels,
+        loc="lower center",
+        ncol=2,
+        fontsize=8.5,
+        handlelength=1.8,
+        framealpha=0,
+        borderpad=0,
+    )
 
-print(f"\nDONE: figures written to {OUT_DIR}/")
+plt.savefig(OUT_PDF, bbox_inches="tight")
+plt.savefig(OUT_PNG, bbox_inches="tight", dpi=150)
+plt.close()
+print(f"Saved {OUT_PDF}")
+print(f"Saved {OUT_PNG}")
