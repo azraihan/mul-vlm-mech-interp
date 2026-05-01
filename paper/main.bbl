@@ -1,11 +1,15 @@
 \begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 
-\bibitem[{Brinkmann et~al.(2025)}]{brinkmann-etal-2025-large}
-Johannes Brinkmann and 1 others. 2025.
-\newblock Large language models are not robust multilingual learners: Language
-  ordering hurts in-context learning.
-\newblock In \emph{Proceedings of NAACL}.
+\bibitem[{Brinkmann et~al.(2025)Brinkmann, Wendler, Bartelt, and
+  Mueller}]{brinkmann-etal-2025-large}
+Jannik Brinkmann, Chris Wendler, Christian Bartelt, and Aaron Mueller. 2025.
+\newblock \href {https://arxiv.org/abs/2501.06346} {Large language models share
+  representations of latent grammatical concepts across typologically diverse
+  languages}.
+\newblock In \emph{Proceedings of the 2025 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (Volume 1: Long Papers)}.
 
 \bibitem[{Conneau et~al.(2020)Conneau, Khandelwal
   et~al.}]{conneau-etal-2020-unsupervised}
@@ -14,24 +18,33 @@ Alexis Conneau, Kartikay Khandelwal, and 1 others. 2020.
   representation learning at scale}.
 \newblock \emph{Preprint}, arXiv:1911.02116.
 
-\bibitem[{Dumas et~al.(2024)Dumas, Malvar, Biderman
-  et~al.}]{dumas-etal-2024-llamas}
-Pierre Dumas, Alex Malvar, Stella Biderman, and 1 others. 2024.
-\newblock \href {https://arxiv.org/abs/2402.00543} {{LLaMA}s process languages
-  similarly despite surface differences}.
-\newblock \emph{Preprint}, arXiv:2402.00543.
+\bibitem[{Dumas et~al.(2025)Dumas, Wendler, Veselovsky, Monea, and
+  West}]{dumas-etal-2024-llamas}
+Cl{\'e}ment Dumas, Chris Wendler, Veniamin Veselovsky, Giovanni Monea, and
+  Robert West. 2025.
+\newblock \href {https://arxiv.org/abs/2411.08745} {Separating tongue from
+  thought: Activation patching reveals language-agnostic concept
+  representations in transformers}.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics}.
 
-\bibitem[{Fan et~al.(2025)}]{fan-etal-2025-plast}
-Zhengping Fan and 1 others. 2025.
-\newblock {PLAST}: Plug-and-play language-steering for multilingual {VLM}s.
-\newblock In \emph{Proceedings of EMNLP Findings}.
+\bibitem[{Fan et~al.(2025)Fan, Wang, Mu, Huang, Li, Feng, Xiao, and
+  Zhu}]{fan-etal-2025-plast}
+Yuchun Fan, Yilong Wang, Yongyu Mu, Lei Huang, Bei Li, Xiaocheng Feng, Tong
+  Xiao, and Jingbo Zhu. 2025.
+\newblock \href {https://arxiv.org/abs/2508.18381} {Language-specific layer
+  matters: Efficient multilingual enhancement for large vision-language
+  models}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2025}.
 
 \bibitem[{Ferrando and
   Costa-juss{\`a}(2024)}]{ferrando-costa-jussa-2024-similarity}
 Javier Ferrando and Marta~R. Costa-juss{\`a}. 2024.
-\newblock Is it good to be similar? investigating the role of language
-  similarity in multilingual transformers.
-\newblock In \emph{Proceedings of EMNLP Findings}.
+\newblock \href {https://arxiv.org/abs/2410.06496} {On the similarity of
+  circuits across languages: a case study on the subject-verb agreement task}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2024}, pages 10115--10125.
 
 \bibitem[{Geva et~al.(2022)Geva, Caciularu, Wang, and
   Goldberg}]{geva-etal-2022-transformer}
@@ -40,29 +53,36 @@ Mor Geva, Avi Caciularu, Kevin~Ro Wang, and Yoav Goldberg. 2022.
   layers build predictions by promoting concepts in the vocabulary space}.
 \newblock \emph{Preprint}, arXiv:2203.14680.
 
-\bibitem[{Golovanevsky et~al.(2025)}]{golovanevsky-etal-2025-notice}
-Milana Golovanevsky and 1 others. 2025.
-\newblock What you see is what you get? probing {LLaVA} for visual robustness
-  via circuit analysis.
-\newblock In \emph{Proceedings of NAACL}.
+\bibitem[{Golovanevsky et~al.(2025)Golovanevsky, Rudman, Palit, Singh, and
+  Eickhoff}]{golovanevsky-etal-2025-notice}
+Michal Golovanevsky, William Rudman, Vedant Palit, Ritambhara Singh, and
+  Carsten Eickhoff. 2025.
+\newblock \href {https://arxiv.org/abs/2406.16320} {What do {VLMs} {NOTICE}?
+  {A} mechanistic interpretability pipeline for gaussian-noise-free text-image
+  corruption and evaluation}.
+\newblock In \emph{Proceedings of the 2025 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (Volume 1: Long Papers)}.
 
 \bibitem[{Lin et~al.(2014)Lin, Maire, Belongie
   et~al.}]{lin-etal-2014-microsoft}
 Tsung-Yi Lin, Michael Maire, Serge Belongie, and 1 others. 2014.
 \newblock Microsoft {COCO}: Common objects in context.
-\newblock In \emph{Proceedings of ECCV}.
+\newblock In \emph{Proceedings of the European Conference on Computer Vision}.
 
 \bibitem[{Liu et~al.(2024)Liu, Li, Li, and Lee}]{liu-etal-2024-improved}
 Haotian Liu, Chunyuan Li, Yuheng Li, and Yong~Jae Lee. 2024.
-\newblock Improved baselines with visual instruction tuning.
-\newblock In \emph{Proceedings of CVPR}.
-\newblock LLaVA-1.5.
+\newblock \href {https://arxiv.org/abs/2310.03744} {Improved baselines with
+  visual instruction tuning}.
+\newblock In \emph{Proceedings of the {IEEE/CVF} Conference on Computer Vision
+  and Pattern Recognition}.
 
 \bibitem[{Meng et~al.(2022)Meng, Bau, Andonian, and
   Belinkov}]{meng-etal-2022-locating}
 Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov. 2022.
-\newblock Locating and editing factual associations in {GPT}.
-\newblock In \emph{Advances in NeurIPS}.
+\newblock \href {https://arxiv.org/abs/2202.05262} {Locating and editing
+  factual associations in {GPT}}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
 
 \bibitem[{nostalgebraist(2020)}]{nostalgebraist-2020}
 nostalgebraist. 2020.
@@ -70,34 +90,45 @@ nostalgebraist. 2020.
 \newblock
   \url{https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens}.
 
-\bibitem[{Nyandwi et~al.(2025)}]{nyandwi-etal-2025-grounding}
-Bahati Nyandwi and 1 others. 2025.
-\newblock {CulturalPangea}: Grounding multilingual {VLM}s in cultural context.
-\newblock In \emph{Proceedings of EMNLP}.
+\bibitem[{Nyandwi et~al.(2025)Nyandwi, Song, Khanuja, and
+  Neubig}]{nyandwi-etal-2025-grounding}
+Jean de~Dieu Nyandwi, Yueqi Song, Simran Khanuja, and Graham Neubig. 2025.
+\newblock \href {https://arxiv.org/abs/2508.07414} {Grounding multilingual
+  multimodal {LLMs} with cultural knowledge}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}.
 
-\bibitem[{Resck et~al.(2025)}]{resck-etal-2025-explainability}
-Lucas Resck and 1 others. 2025.
-\newblock Explainability of multilingual {LLM}s via activation patching.
-\newblock In \emph{Proceedings of EMNLP}.
+\bibitem[{Resck et~al.(2025)Resck, Augenstein, and
+  Korhonen}]{resck-etal-2025-explainability}
+Lucas Resck, Isabelle Augenstein, and Anna Korhonen. 2025.
+\newblock \href {https://aclanthology.org/2025.emnlp-main.1033} {Explainability
+  and interpretability of multilingual large language models: {A} survey}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}.
 
-\bibitem[{Song et~al.(2025)}]{song-etal-2025-missing}
-Bohao Song and 1 others. 2025.
-\newblock What is missing in multilingual visual reasoning?
-\newblock In \emph{Proceedings of NAACL}.
+\bibitem[{Song et~al.(2025)Song, Khanuja, and Neubig}]{song-etal-2025-missing}
+Yueqi Song, Simran Khanuja, and Graham Neubig. 2025.
+\newblock \href {https://arxiv.org/abs/2403.01404} {What is missing in
+  multilingual visual reasoning and how to fix it}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  NAACL 2025}, pages 2654--2667.
 
-\bibitem[{Sun et~al.(2023)}]{sun-etal-2023-mmmb}
-Jihai Sun and 1 others. 2023.
-\newblock {MMMB}: A multilingual multimodal benchmark.
-\newblock arXiv preprint.
-\newblock TODO: verify arXiv ID and full author list before submission.
+\bibitem[{Sun et~al.(2025)Sun, Zhou, Li, Lu, Yi, Chen, Xu, Luo, Zhang, Zhan,
+  and Ye}]{sun-etal-2023-mmmb}
+Hai-Long Sun, Da-Wei Zhou, Yang Li, Shiyin Lu, Chao Yi, Qing-Guo Chen, Zhao Xu,
+  Weihua Luo, Kaifu Zhang, De-Chuan Zhan, and Han-Jia Ye. 2025.
+\newblock \href {https://arxiv.org/abs/2406.02539} {Parrot: Multilingual visual
+  instruction tuning}.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}.
 
 \bibitem[{Wendler et~al.(2024)Wendler, Veselovsky, Monea, and
   West}]{wendler-etal-2024-llamas}
 Chris Wendler, Veniamin Veselovsky, Giovanni Monea, and Robert West. 2024.
-\newblock {LLaMA}s know more than they show: On the intrinsic representation of
-  {LLM} factual knowledge.
-\newblock In \emph{Proceedings of ACL}.
-\newblock Introduces the three-phase English-pivot model for LLaMA.
+\newblock \href {https://arxiv.org/abs/2402.10588} {Do {Llamas} work in
+  {English}? {On} the latent language of multilingual transformers}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 15209--15228.
 
 \bibitem[{Zou et~al.(2023)Zou, Phan, Chen
   et~al.}]{zou-etal-2023-representation}
