@@ -42,7 +42,7 @@ def plot_curves(ax, curves, options, gold, pred, title):
         lw = 2.5 if opt == gold else 1.4
         label = f"{opt}. {options[opt]}"
         if opt == gold:
-            label += "  ✓"
+            label += "  (correct)"
         ax.plot(layers, curves[opt],
                 color=OPT_COLORS[opt], linestyle=OPT_STYLES[opt],
                 linewidth=lw, label=label)
@@ -51,10 +51,39 @@ def plot_curves(ax, curves, options, gold, pred, title):
     ax.set_xlabel("Layer", fontsize=9)
     ax.set_ylabel("Log PMI", fontsize=9)
     ax.tick_params(labelsize=8)
-    marker = "✓" if pred == gold else "✗"
+    marker = "(correct)" if pred == gold else "(wrong)"
     ax.set_title(f"{title}  —  predicted: {pred} {marker}", fontsize=9, pad=3)
     ax.legend(fontsize=7.5, loc="upper left", framealpha=0.7,
               handlelength=1.8, labelspacing=0.3)
+    if "C" in curves and "D" in curves:
+        hl = list(range(13, 20))
+        c_h = [curves["C"][l] for l in hl]
+        d_h = [curves["D"][l] for l in hl]
+        ax.fill_between(hl, c_h, d_h,
+                        where=[c > d for c, d in zip(c_h, d_h)],
+                        alpha=0.22, color=OPT_COLORS["C"], zorder=1, interpolate=True)
+        ax.fill_between(hl, c_h, d_h,
+                        where=[d >= c for c, d in zip(c_h, d_h)],
+                        alpha=0.22, color=OPT_COLORS["D"], zorder=1, interpolate=True)
+        winner = "C" if curves["C"][31] > curves["D"][31] else "D"
+        winner_vals = [curves[winner][l] for l in hl]
+        mid_x = hl[len(hl) // 2]                        # middle of fill region
+        top_y = max(max(c_h), max(d_h))                  # top of fill region
+        slope = curves[winner][hl[-1]] - curves[winner][hl[0]]
+        trend_arrow = "↑" if slope >= 0 else "↓"
+        ax.text(
+            mid_x, top_y - 0.4,
+            f"Log PMI({winner}) ",
+            color=OPT_COLORS[winner],
+            fontsize=8.5, fontweight="bold", ha="right", va="bottom",
+        )
+        ax.text(
+            mid_x, top_y - 0.4,
+            trend_arrow,
+            color=OPT_COLORS[winner],
+            fontsize=11, fontweight="bold", ha="left", va="bottom",
+        )
+
 
 
 def draw_case_figure(d, base_curves, steer_curves, out_png):
@@ -71,10 +100,10 @@ def draw_case_figure(d, base_curves, steer_curves, out_png):
     img = Image.open(d["image_path"]).convert("RGB")
 
     fig = plt.figure(figsize=(16, 8))
-    gs  = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[1, 2.5], wspace=0.3)
+    gs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[1, 2.5], wspace=0.3)
 
     left_gs = gridspec.GridSpecFromSubplotSpec(
-        2, 1, subplot_spec=gs[0], height_ratios=[3, 2], hspace=0.12
+        2, 1, subplot_spec=gs[0], height_ratios=[3, 2], hspace=0.15
     )
     right_gs = gridspec.GridSpecFromSubplotSpec(
         2, 1, subplot_spec=gs[1], hspace=0.5
@@ -83,19 +112,6 @@ def draw_case_figure(d, base_curves, steer_curves, out_png):
     ax_img = fig.add_subplot(left_gs[0])
     ax_img.imshow(np.array(img))
     ax_img.axis("off")
-    ax_img.set_title(f"{lang_label}  ·  {stem}  ·  gold: {gold}", fontsize=9, pad=4)
-
-    ax_txt = fig.add_subplot(left_gs[1])
-    ax_txt.axis("off")
-    wrapped_q = textwrap.fill(d["question"], width=42)
-    opt_lines = "\n".join(
-        f"  {k}. {options[k]}" for k in ["A", "B", "C", "D"] if k in options
-    )
-    caption = f"{wrapped_q}\n\n{opt_lines}"
-    ax_txt.text(0.04, 0.97, caption, transform=ax_txt.transAxes,
-                fontsize=8, va="top", ha="left",
-                bbox=dict(boxstyle="round,pad=0.4", facecolor="#f5f5f5",
-                          edgecolor="#cccccc", linewidth=0.6))
 
     ax_base = fig.add_subplot(right_gs[0])
     plot_curves(ax_base, base_curves, options, gold, base_pred,
@@ -105,12 +121,17 @@ def draw_case_figure(d, base_curves, steer_curves, out_png):
     plot_curves(ax_steer, steer_curves, options, gold, steer_pred,
                 f"Steered  (α = {alpha})")
 
-    subset_label = d.get("subset", "")
-    if subset_label == "steered_wins":
-        subset_label = "steered wins"
-    elif subset_label == "baseline_wins":
-        subset_label = "baseline wins"
-    fig.suptitle(f"{lang_label} · {subset_label}", fontsize=10, y=1.01)
+    ax_txt = fig.add_subplot(left_gs[1])
+    ax_txt.axis("off")
+    wrapped_q = textwrap.fill(d["question"], width=42)
+    opt_lines = "\n".join(
+        f"  {k}. {options[k]}" for k in ["A", "B", "C", "D"] if k in options
+    )
+    caption = f"{wrapped_q}\n\n{opt_lines}\n\nCorrect answer: {gold}"
+    ax_txt.text(0.5, 0.5, caption, transform=ax_txt.transAxes,
+                fontsize=8, va="center", ha="center",
+                bbox=dict(boxstyle="round,pad=0.4", facecolor="#f5f5f5",
+                          edgecolor="#cccccc", linewidth=0.6))
 
     plt.savefig(out_png, bbox_inches="tight", dpi=130)
     plt.close()
@@ -124,6 +145,10 @@ if len(sys.argv) > 1:
     json_path = sys.argv[1]
     print(f"Regenerating figure from {json_path}")
     d = json.load(open(json_path, encoding="utf-8"))
+
+    _project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if not os.path.isabs(d["image_path"]):
+        d["image_path"] = os.path.join(_project_root, d["image_path"])
 
     pivot_layers = d["pivot_layers"]
 
