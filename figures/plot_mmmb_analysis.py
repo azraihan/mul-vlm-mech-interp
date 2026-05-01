@@ -4,12 +4,8 @@ import json
 import textwrap
 import numpy as np
 from PIL import Image
-import torch
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from models.llava_wrapper import (load_model, get_image_text_inputs,
-                                   extract_residual_streams, apply_logit_lens,
-                                   compute_pmi_baseline)
 from models.constants import LANG_NAMES
 
 import matplotlib
@@ -31,6 +27,120 @@ OUT_DIR = "outputs/figures/mmmb_analysis"
 
 OPT_COLORS = {"A": "#2166ac", "B": "#d6604d", "C": "#4dac26", "D": "#762a83"}
 OPT_STYLES = {"A": "-",       "B": "--",       "C": "-.",      "D": ":"}
+
+pivot_layers = None  # set in either mode below
+
+
+# ── Plotting helpers ──────────────────────────────────────────────────────────
+
+def plot_curves(ax, curves, options, gold, pred, title):
+    layers = list(range(32))
+    ax.axvspan(min(pivot_layers) - 0.5, max(pivot_layers) + 0.5,
+               alpha=0.08, color="gray", label="Pivot (5–17)")
+    available = [k for k in ["A", "B", "C", "D"] if k in options]
+    for opt in available:
+        lw = 2.5 if opt == gold else 1.4
+        label = f"{opt}. {options[opt]}"
+        if opt == gold:
+            label += "  ✓"
+        ax.plot(layers, curves[opt],
+                color=OPT_COLORS[opt], linestyle=OPT_STYLES[opt],
+                linewidth=lw, label=label)
+    ax.axhline(0, color="black", linewidth=0.5, linestyle=":")
+    ax.set_xlim(0, 31)
+    ax.set_xlabel("Layer", fontsize=9)
+    ax.set_ylabel("Log PMI", fontsize=9)
+    ax.tick_params(labelsize=8)
+    marker = "✓" if pred == gold else "✗"
+    ax.set_title(f"{title}  —  predicted: {pred} {marker}", fontsize=9, pad=3)
+    ax.legend(fontsize=7.5, loc="upper left", framealpha=0.7,
+              handlelength=1.8, labelspacing=0.3)
+
+
+def draw_case_figure(d, base_curves, steer_curves, out_png):
+    """Render and save one MMMB case figure from pre-computed curve dicts."""
+    lang       = d["lang"]
+    lang_label = LANG_NAMES.get(lang, lang.upper())
+    options    = d["options"]
+    gold       = d["answer"]
+    base_pred  = d["baseline_predicted"]
+    steer_pred = d["steered_predicted"]
+    alpha      = d.get("alpha", ALPHA)
+    stem       = os.path.splitext(os.path.basename(d["image_path"]))[0]
+
+    img = Image.open(d["image_path"]).convert("RGB")
+
+    fig = plt.figure(figsize=(16, 8))
+    gs  = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[1, 2.5], wspace=0.3)
+
+    left_gs = gridspec.GridSpecFromSubplotSpec(
+        2, 1, subplot_spec=gs[0], height_ratios=[3, 2], hspace=0.12
+    )
+    right_gs = gridspec.GridSpecFromSubplotSpec(
+        2, 1, subplot_spec=gs[1], hspace=0.5
+    )
+
+    ax_img = fig.add_subplot(left_gs[0])
+    ax_img.imshow(np.array(img))
+    ax_img.axis("off")
+    ax_img.set_title(f"{lang_label}  ·  {stem}  ·  gold: {gold}", fontsize=9, pad=4)
+
+    ax_txt = fig.add_subplot(left_gs[1])
+    ax_txt.axis("off")
+    wrapped_q = textwrap.fill(d["question"], width=42)
+    opt_lines = "\n".join(
+        f"  {k}. {options[k]}" for k in ["A", "B", "C", "D"] if k in options
+    )
+    caption = f"{wrapped_q}\n\n{opt_lines}"
+    ax_txt.text(0.04, 0.97, caption, transform=ax_txt.transAxes,
+                fontsize=8, va="top", ha="left",
+                bbox=dict(boxstyle="round,pad=0.4", facecolor="#f5f5f5",
+                          edgecolor="#cccccc", linewidth=0.6))
+
+    ax_base = fig.add_subplot(right_gs[0])
+    plot_curves(ax_base, base_curves, options, gold, base_pred,
+                "Baseline (no steering)")
+
+    ax_steer = fig.add_subplot(right_gs[1])
+    plot_curves(ax_steer, steer_curves, options, gold, steer_pred,
+                f"Steered  (α = {alpha})")
+
+    subset_label = d.get("subset", "")
+    if subset_label == "steered_wins":
+        subset_label = "steered wins"
+    elif subset_label == "baseline_wins":
+        subset_label = "baseline wins"
+    fig.suptitle(f"{lang_label} · {subset_label}", fontsize=10, y=1.01)
+
+    plt.savefig(out_png, bbox_inches="tight", dpi=130)
+    plt.close()
+    print(f"  Saved {out_png}")
+
+
+# ── JSON replay mode ──────────────────────────────────────────────────────────
+# Usage: python figures/plot_mmmb_analysis.py <path/to/{stem}_data.json>
+
+if len(sys.argv) > 1:
+    json_path = sys.argv[1]
+    print(f"Regenerating figure from {json_path}")
+    d = json.load(open(json_path, encoding="utf-8"))
+
+    pivot_layers = d["pivot_layers"]
+
+    base_curves  = {o: np.array(v) for o, v in d["curves"]["baseline"].items()}
+    steer_curves = {o: np.array(v) for o, v in d["curves"]["steered"].items()}
+
+    out_png = os.path.splitext(json_path)[0].removesuffix("_data") + ".png"
+    draw_case_figure(d, base_curves, steer_curves, out_png)
+    sys.exit(0)
+
+
+# ── Normal mode: run model and compute curves ─────────────────────────────────
+
+import torch
+from models.llava_wrapper import (load_model, get_image_text_inputs,
+                                   extract_residual_streams, apply_logit_lens,
+                                   compute_pmi_baseline)
 
 # ── Gather all cases ──────────────────────────────────────────────────────────
 
@@ -90,6 +200,7 @@ for lang in ["pt", "ru"]:
     if os.path.exists(sv_path):
         steering_vecs[lang] = torch.load(sv_path, map_location="cuda")
         print(f"[SV] Loaded steering vector for {lang}")
+
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -151,29 +262,6 @@ def predict_from_curves(curves, options):
     return max(available, key=lambda o: curves[o][31])
 
 
-def plot_curves(ax, curves, options, gold, pred, title):
-    layers = list(range(32))
-    ax.axvspan(min(pivot_layers) - 0.5, max(pivot_layers) + 0.5,
-               alpha=0.08, color="gray", label="Pivot (5–17)")
-    available = [k for k in ["A", "B", "C", "D"] if k in options]
-    for opt in available:
-        lw = 2.5 if opt == gold else 1.4
-        label = f"{opt}. {options[opt]}"
-        if opt == gold:
-            label += "  ✓"
-        ax.plot(layers, curves[opt],
-                color=OPT_COLORS[opt], linestyle=OPT_STYLES[opt],
-                linewidth=lw, label=label)
-    ax.axhline(0, color="black", linewidth=0.5, linestyle=":")
-    ax.set_xlim(0, 31)
-    ax.set_xlabel("Layer", fontsize=9)
-    ax.set_ylabel("Log PMI", fontsize=9)
-    ax.tick_params(labelsize=8)
-    marker = "✓" if pred == gold else "✗"
-    ax.set_title(f"{title}  —  predicted: {pred} {marker}", fontsize=9, pad=3)
-    ax.legend(fontsize=7.5, loc="upper left", framealpha=0.7,
-              handlelength=1.8, labelspacing=0.3)
-
 # ── Main loop ─────────────────────────────────────────────────────────────────
 
 for case in pending:
@@ -220,55 +308,6 @@ for case in pending:
     with open(case["out_json"], "w", encoding="utf-8") as f:
         json.dump(plot_data, f, ensure_ascii=False, indent=2)
 
-    # ── Figure layout ─────────────────────────────────────────────────────
-    # Left col:  image (top) + question text (bottom)
-    # Right col: baseline curves (top) + steered curves (bottom)
-    fig = plt.figure(figsize=(16, 8))
-    gs  = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[1, 2.5], wspace=0.3)
-
-    left_gs = gridspec.GridSpecFromSubplotSpec(
-        2, 1, subplot_spec=gs[0], height_ratios=[3, 2], hspace=0.12
-    )
-    right_gs = gridspec.GridSpecFromSubplotSpec(
-        2, 1, subplot_spec=gs[1], hspace=0.5
-    )
-
-    # Image
-    ax_img = fig.add_subplot(left_gs[0])
-    ax_img.imshow(np.array(img))
-    ax_img.axis("off")
-    lang_label = LANG_NAMES.get(lang, lang.upper())
-    ax_img.set_title(f"{lang_label}  ·  {case['stem']}  ·  gold: {gold}",
-                     fontsize=9, pad=4)
-
-    # Question + options text
-    ax_txt = fig.add_subplot(left_gs[1])
-    ax_txt.axis("off")
-    wrapped_q = textwrap.fill(case["question"], width=42)
-    opt_lines = "\n".join(
-        f"  {k}. {options[k]}" for k in ["A", "B", "C", "D"] if k in options
-    )
-    caption = f"{wrapped_q}\n\n{opt_lines}"
-    ax_txt.text(0.04, 0.97, caption, transform=ax_txt.transAxes,
-                fontsize=8, va="top", ha="left",
-                bbox=dict(boxstyle="round,pad=0.4", facecolor="#f5f5f5",
-                          edgecolor="#cccccc", linewidth=0.6))
-
-    # Baseline curves
-    ax_base = fig.add_subplot(right_gs[0])
-    plot_curves(ax_base, base_curves, options, gold, base_pred,
-                "Baseline (no steering)")
-
-    # Steered curves
-    ax_steer = fig.add_subplot(right_gs[1])
-    plot_curves(ax_steer, steer_curves, options, gold, steer_pred,
-                f"Steered  (α = {ALPHA})")
-
-    subset_label = "steered wins" if case["subset"] == "steered_wins" else "baseline wins"
-    fig.suptitle(f"{lang_label} · {subset_label}", fontsize=10, y=1.01)
-
-    plt.savefig(case["out_png"], bbox_inches="tight", dpi=130)
-    plt.close()
-    print(f"  Saved {case['out_png']}")
+    draw_case_figure(plot_data, base_curves, steer_curves, case["out_png"])
 
 print(f"\nDONE. Figures saved to {OUT_DIR}/")
