@@ -72,10 +72,10 @@ echo "[3/5] Experiment 4: Ablations (~2–3h on H100)..."
 python experiments/exp4_ablations.py
 
 echo "[4/5] Generating figures..."
-python figures/plot_fig1_logit_lens.py
-python figures/plot_fig2_patching_heatmap.py
-python figures/plot_fig3_visual_contribution.py
-python figures/plot_fig4_alpha_curves.py
+# python figures/plot_fig1_logit_lens.py
+# python figures/plot_fig2_patching_heatmap.py
+# python figures/plot_fig3_visual_contribution.py
+# python figures/plot_fig4_alpha_curves.py
 python figures/plot_fig5_qualitative.py
 
 echo "[5/5] Generating tables..."
