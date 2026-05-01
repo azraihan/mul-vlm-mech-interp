@@ -98,7 +98,7 @@ legend_handles = [
 ]
 fig.legend(handles=legend_handles, loc="lower center", ncol=2,
            fontsize=10, bbox_to_anchor=(0.45, -0.04),
-           frameon=True, framealpha=0.5, facecolor="lightgrey")
+           frameon=True, framealpha=0.3, facecolor="lightgrey")
 
 plt.savefig("../outputs/figures/fig2_patching_heatmap.pdf", bbox_inches="tight")
 plt.savefig("../outputs/figures/fig2_patching_heatmap.png", bbox_inches="tight", dpi=150)
