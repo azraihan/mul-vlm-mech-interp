@@ -380,6 +380,29 @@ English baselines.
 Portuguese gains +1.0~pp (63.0\% $\to$ 64.0\%); the smaller absolute gain
 reflects the already high Portuguese baseline, which exceeds English---likely
 due to MMMB test-set difficulty variation across languages.
+Figure~\ref{fig:case_study} shows a representative Portuguese example where
+steering shifts the model's prediction from the wrong option (C) to the
+correct answer (D), with the PMI curves at the pivot layers revealing the
+mechanism behind the correction.
+
+\begin{figure*}[t]
+  \centering
+  \safefig[width=\textwidth]{../outputs/figures/pt_0015.png}%
+         {Portuguese MMMB case study: baseline vs.\ steered PMI curves}
+  \caption{
+    \textbf{Representative Portuguese MMMB case (steered wins).}
+    \emph{Left:} input image and question with four answer options; correct
+    answer is D.
+    \emph{Top right (Baseline):} logit-lens PMI curves for all four options
+    across 32 layers---the model incorrectly peaks on option~C at layer~31.
+    \emph{Bottom right (Steered, $\alpha{=}0.2$):} after applying the
+    Portuguese steering vector at pivot layers 5--17, option~D dominates
+    at layer~31, recovering the correct answer.
+    The shaded fill in the pivot region highlights where C and D compete;
+    steering resolves this competition in favour of the correct option.
+  }
+  \label{fig:case_study}
+\end{figure*}
 
 % ─────────────────────────────────────────────────────────────────────────────
 \subsection{Ablations}
