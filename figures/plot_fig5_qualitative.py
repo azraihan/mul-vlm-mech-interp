@@ -24,10 +24,14 @@ plt.rcParams.update({
     "figure.dpi": 150,
 })
 
-OUT_PDF = "outputs/figures/fig5_qualitative.pdf"
-OUT_PNG = "outputs/figures/fig5_qualitative.png"
-OUT_DATA = "outputs/figures/fig5_qualitative_data.json"
-os.makedirs("outputs/figures", exist_ok=True)
+OUT_PDF = "../outputs/figures/fig5_qualitative.pdf"
+OUT_PNG = "../outputs/figures/fig5_qualitative.png"
+OUT_DATA = "../outputs/figures/fig5_qualitative_data.json"
+os.makedirs("../outputs/figures", exist_ok=True)
+
+PRECOMPUTED_PATH = OUT_DATA
+use_precomputed = os.path.exists(PRECOMPUTED_PATH)
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ── Selected examples: (lang, probing_set_index, expected_category) ──────────
 SELECTED = [
@@ -36,8 +40,8 @@ SELECTED = [
     ("pt", 126, "spoon"),
 ]
 
-examples     = json.load(open("data/probing_set/probing_set.json"))
-pivot_layers = json.load(open("outputs/pivot_layers.json"))["pivot_layers"]
+with open("../data/probing_set/probing_set.json", "r", encoding="utf-8") as f:
+    examples = json.load(f)
 
 # Validate selections
 for lang, idx, expected_cat in SELECTED:
@@ -47,16 +51,27 @@ for lang, idx, expected_cat in SELECTED:
     )
 print("Selections validated:", [(lang, idx, cat) for lang, idx, cat in SELECTED])
 
-model, processor = load_model()
-baseline_log_probs = compute_pmi_baseline(model)
+if use_precomputed:
+    with open(PRECOMPUTED_PATH, "r", encoding="utf-8") as f:
+        all_data = json.load(f)
+    print(f"Loaded precomputed data: {PRECOMPUTED_PATH}")
+    any_lang = next(iter(all_data.values()))
+    pivot_layers = any_lang.get("pivot_layers", [])
+else:
+    with open("../outputs/pivot_layers.json", "r", encoding="utf-8") as f:
+        pivot_layers = json.load(f)["pivot_layers"]
 
-# Load steering vectors
-steering_vecs = {}
-for lang in LANGUAGES:
-    sv_path = f"outputs/steering_vectors/steering_vec_{lang}.pt"
-    if os.path.exists(sv_path):
-        steering_vecs[lang] = torch.load(sv_path, map_location="cuda")
-        print(f"[SV] Loaded steering vector for {lang}")
+if not use_precomputed:
+    model, processor = load_model()
+    baseline_log_probs = compute_pmi_baseline(model)
+
+    # Load steering vectors
+    steering_vecs = {}
+    for lang in LANGUAGES:
+        sv_path = f"../outputs/steering_vectors/steering_vec_{lang}.pt"
+        if os.path.exists(sv_path):
+            steering_vecs[lang] = torch.load(sv_path, map_location="cuda")
+            print(f"[SV] Loaded steering vector for {lang}")
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -129,14 +144,14 @@ def plot_curve(ax, en_curve, tl_curve, lang, title):
         # Restore ylim in case the new line nudged it
         ax.set_ylim(y_lo, y_hi)
 
-        # Layer number below the bottom x-axis (outside the plot area)
+        # Layer number left of the vertical line, just above the x-axis
         ax.annotate(
             f"L{crossover}",
             xy=(crossover, 0),                  # anchor: x in data, y=0 = bottom of axes
             xycoords=("data", "axes fraction"),
-            xytext=(0, -12),                    # shift 12 pts downward
+            xytext=(-5, 4),                     # shift left and slightly above
             textcoords="offset points",
-            ha="center", va="top", fontsize=7.5,
+            ha="right", va="bottom", fontsize=7.5,
             color="black", fontweight="bold", zorder=4,
             annotation_clip=False,
         )
@@ -161,51 +176,68 @@ def plot_curve(ax, en_curve, tl_curve, lang, title):
     return crossover
 
 
-# ── Compute all curves ────────────────────────────────────────────────────────
+# ── Compute or load curves ───────────────────────────────────────────────────
 
-all_data = {}
 rows = []   # (lang, img, en_word, tl_word, en_u, tl_u, en_s, tl_s)
 
-for lang, idx, cat in SELECTED:
-    ex     = examples[idx]
-    en_tid = ex["token_ids"]["en"]
-    tl_tid = ex["token_ids"].get(lang)
-    img    = Image.open(ex["image_path"]).convert("RGB")
-    q      = ex["questions"][lang]
+if use_precomputed:
+    for lang, idx, cat in SELECTED:
+        if lang not in all_data:
+            raise KeyError(f"Missing '{lang}' in {PRECOMPUTED_PATH}")
+        entry = all_data[lang]
+        img_path = entry["image_path"]
+        if not os.path.isabs(img_path):
+            img_path = os.path.join(REPO_ROOT, img_path)
+        img = Image.open(img_path).convert("RGB")
+        en_word = entry["en_word"]
+        tl_word = entry["tl_word"]
+        en_u = np.array(entry["curves"]["unsteered"]["en"])
+        tl_u = np.array(entry["curves"]["unsteered"]["tl"])
+        en_s = np.array(entry["curves"]["steered"]["en"])
+        tl_s = np.array(entry["curves"]["steered"]["tl"])
+        rows.append((lang, img, en_word, tl_word, en_u, tl_u, en_s, tl_s))
+else:
+    all_data = {}
+    for lang, idx, cat in SELECTED:
+        ex     = examples[idx]
+        en_tid = ex["token_ids"]["en"]
+        tl_tid = ex["token_ids"].get(lang)
+        img    = Image.open(ex["image_path"]).convert("RGB")
+        q      = ex["questions"][lang]
 
-    inputs, answer_pos = get_image_text_inputs(processor, img, q)
-    sv = steering_vecs.get(lang)
+        inputs, answer_pos = get_image_text_inputs(processor, img, q)
+        sv = steering_vecs.get(lang)
 
-    print(f"\n[{lang}] idx={idx} cat={cat}")
-    en_u, tl_u = compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=None)
-    en_s, tl_s = compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=sv)
-    print(f"  done")
+        print(f"\n[{lang}] idx={idx} cat={cat}")
+        en_u, tl_u = compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=None)
+        en_s, tl_s = compute_curves(inputs, answer_pos, en_tid, tl_tid, sv=sv)
+        print("  done")
 
-    en_word = TRANSLATIONS[cat]["en"]
-    tl_word = TRANSLATIONS[cat][lang]
-    rows.append((lang, img, en_word, tl_word, en_u, tl_u, en_s, tl_s))
+        en_word = TRANSLATIONS[cat]["en"]
+        tl_word = TRANSLATIONS[cat][lang]
+        rows.append((lang, img, en_word, tl_word, en_u, tl_u, en_s, tl_s))
 
-    all_data[lang] = {
-        "lang":          lang,
-        "lang_name":     LANG_NAMES[lang],
-        "example_index": idx,
-        "category":      cat,
-        "image_path":    ex["image_path"],
-        "question":      q,
-        "en_token_id":   en_tid,
-        "tl_token_id":   tl_tid,
-        "en_word":       en_word,
-        "tl_word":       tl_word,
-        "pivot_layers":  pivot_layers,
-        "curves": {
-            "unsteered": {"en": en_u.tolist(), "tl": tl_u.tolist()},
-            "steered":   {"en": en_s.tolist(), "tl": tl_s.tolist()},
-        },
-    }
+        all_data[lang] = {
+            "lang":          lang,
+            "lang_name":     LANG_NAMES[lang],
+            "example_index": idx,
+            "category":      cat,
+            "image_path":    ex["image_path"],
+            "question":      q,
+            "en_token_id":   en_tid,
+            "tl_token_id":   tl_tid,
+            "en_word":       en_word,
+            "tl_word":       tl_word,
+            "pivot_layers":  pivot_layers,
+            "curves": {
+                "unsteered": {"en": en_u.tolist(), "tl": tl_u.tolist()},
+                "steered":   {"en": en_s.tolist(), "tl": tl_s.tolist()},
+            },
+        }
 
-with open(OUT_DATA, "w", encoding="utf-8") as f:
-    json.dump(all_data, f, ensure_ascii=False, indent=2)
-print(f"\nSaved {OUT_DATA}")
+    with open(OUT_DATA, "w", encoding="utf-8") as f:
+        json.dump(all_data, f, ensure_ascii=False, indent=2)
+    print(f"\nSaved {OUT_DATA}")
 
 # ── Figure ────────────────────────────────────────────────────────────────────
 # 3 rows (ru / de / pt).  Each row: [image+caption | baseline | steered]
