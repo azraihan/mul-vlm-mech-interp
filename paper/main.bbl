@@ -67,7 +67,8 @@ Michal Golovanevsky, William Rudman, Vedant Palit, Ritambhara Singh, and
 \bibitem[{Lin et~al.(2014)Lin, Maire, Belongie
   et~al.}]{lin-etal-2014-microsoft}
 Tsung-Yi Lin, Michael Maire, Serge Belongie, and 1 others. 2014.
-\newblock Microsoft {COCO}: Common objects in context.
+\newblock \href {https://arxiv.org/abs/1405.0312} {Microsoft {COCO}: Common
+  objects in context}.
 \newblock In \emph{Proceedings of the European Conference on Computer Vision}.
 
 \bibitem[{Liu et~al.(2024)Liu, Li, Li, and Lee}]{liu-etal-2024-improved}

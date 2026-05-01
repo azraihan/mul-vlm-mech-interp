@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.30)  1 MAY 2026 15:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.30)  1 MAY 2026 15:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -677,28 +677,28 @@ Underfull \hbox (badness 1874) in paragraph at lines 51--55
  []
 
 
-Underfull \hbox (badness 1292) in paragraph at lines 74--79
+Underfull \hbox (badness 1292) in paragraph at lines 75--80
 []\T1/cmr/m/n/10 (+20) Haotian Liu, Chun-yuan Li, Yuheng Li, and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--92
+Underfull \hbox (badness 10000) in paragraph at lines 89--93
 []\T1/cmr/m/n/10 (+20) nostalgebraist. 2020.  In-ter-pret-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--92
+Underfull \hbox (badness 10000) in paragraph at lines 89--93
 \T1/cmr/m/n/10 (+20) GPT: the logit lens.  [][]$\T1/cmtt/m/n/10 https : / / www
  .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--92
+Underfull \hbox (badness 10000) in paragraph at lines 89--93
 \T1/cmtt/m/n/10 lesswrong . com / posts / AcKRB8wDpdaN6v6ru /
  []
 
 
-Underfull \hbox (badness 1082) in paragraph at lines 95--100
+Underfull \hbox (badness 1082) in paragraph at lines 96--101
 []\T1/cmr/m/n/10 (+20) Jean de Dieu Nyandwi, Yueqi Song, Sim-ran
  []
 
@@ -771,10 +771,10 @@ t/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2024/texmf-dist/
 fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fo
 nts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2024/texmf-dist/font
 s/type1/urw/helvetic/uhvb8a.pfb>
-Output written on main.pdf (8 pages, 733588 bytes).
+Output written on main.pdf (8 pages, 733642 bytes).
 PDF statistics:
- 704 PDF objects out of 1000 (max. 8388607)
- 430 compressed objects within 5 object streams
+ 707 PDF objects out of 1000 (max. 8388607)
+ 433 compressed objects within 5 object streams
  80 named destinations out of 1000 (max. 500000)
  62594 words of extra memory for PDF output out of 74296 (max. 10000000)
 
