@@ -53,6 +53,36 @@ for cond in range(2):
         if cond == 0 and lang == 0:
             handles = [l1, l2, mpatches.Patch(color="gray", alpha=0.3, label="Pivot region")]
 
+# Second pass: add overlays after all curves are drawn so sharey ylim is finalized
+for cond in range(2):
+    for lang in range(N_LANGS):
+        ax = axes[cond, lang]
+        en_curve = mean_en[cond, lang, :]
+        tl_curve = mean_tl[cond, lang, :]
+        ylim = ax.get_ylim()
+
+        # vertical line from x-axis spine (ymin=0 fraction) to each curve's peak
+        for curve, color in [(en_curve, "#2166ac"), (tl_curve, "#d6604d")]:
+            peak_layer = int(np.argmax(curve))
+            peak_val = curve[peak_layer]
+            ymax_frac = (peak_val - ylim[0]) / (ylim[1] - ylim[0])
+            ax.axvline(peak_layer, ymin=0, ymax=ymax_frac, color=color,
+                       linewidth=1.5, linestyle=":", alpha=0.75)
+
+        # endpoint dot + value label at layer 31 — both above their dot
+        last_layer = 31
+        for curve, color in [(en_curve, "#2166ac"), (tl_curve, "#d6604d")]:
+            y_end = curve[last_layer]
+            ax.plot(last_layer, y_end, "o", color=color, markersize=5,
+                    zorder=5, clip_on=False)
+            ax.annotate(f"{y_end:.2f}", xy=(last_layer, y_end),
+                        xytext=(0, 7),
+                        textcoords="offset points",
+                        ha="center", va="bottom", fontsize=7, color=color,
+                        annotation_clip=False,
+                        bbox=dict(boxstyle="round,pad=0.15", facecolor="white",
+                                  edgecolor="none", alpha=0.85))
+
 fig.legend(handles=handles, loc="lower center", ncol=3, bbox_to_anchor=(0.5, -0.03))
 fig.tight_layout()
 
