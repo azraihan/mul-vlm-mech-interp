@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Brinkmann et~al.(2025)Brinkmann, Wendler, Bartelt, and
@@ -39,6 +39,14 @@ Javier Ferrando and Marta~R. Costa-juss{\`a}. 2024.
 \newblock In \emph{Findings of the Association for Computational Linguistics:
   EMNLP 2024}, pages 10115--10125.
 
+\bibitem[{Geigle et~al.(2024)Geigle, Jain, Timofte, and
+  Glava{\v{s}}}]{geigle-etal-2023-mblip}
+Gregor Geigle, Abhay Jain, Radu Timofte, and Goran Glava{\v{s}}. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.alvr-1.2} {m{BLIP}: Efficient
+  bootstrapping of multilingual vision-{LLM}s}.
+\newblock In \emph{Proceedings of the 3rd Workshop on Advances in Language and
+  Vision Research}, pages 7--25.
+
 \bibitem[{Geva et~al.(2022)Geva, Caciularu, Wang, and
   Goldberg}]{geva-etal-2022-transformer}
 Mor Geva, Avi Caciularu, Kevin~Ro Wang, and Yoav Goldberg. 2022.
@@ -70,6 +78,15 @@ Haotian Liu, Chunyuan Li, Yuheng Li, and Yong~Jae Lee. 2024.
   visual instruction tuning}.
 \newblock In \emph{Proceedings of the {IEEE/CVF} Conference on Computer Vision
   and Pattern Recognition}.
+
+\bibitem[{Maaz et~al.(2024)Maaz, Rasheed, Shaker, Khan, Cholakkal, Anwer,
+  Baldwin, Felsberg, and Khan}]{maaz-etal-2024-palo}
+Muhammad Maaz, Hanoona Rasheed, Abdelrahman Shaker, Salman Khan, Hisham
+  Cholakkal, Rao~M. Anwer, Tim Baldwin, Michael Felsberg, and Fahad~S. Khan.
+  2024.
+\newblock \href {https://arxiv.org/abs/2402.14818} {{PALO}: A polyglot large
+  multimodal model for 5b people}.
+\newblock \emph{arXiv preprint arXiv:2402.14818}.
 
 \bibitem[{Meng et~al.(2022)Meng, Bau, Andonian, and
   Belinkov}]{meng-etal-2022-locating}
