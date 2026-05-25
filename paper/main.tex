@@ -3,10 +3,10 @@
 %           bibtex main
 %           pdflatex main.tex  (twice for cross-refs)
 %
-% For camera-ready: replace \usepackage[review]{acl} with \usepackage{acl}
 % ─────────────────────────────────────────────────────────────────────────────
 \documentclass[11pt]{article}
-\usepackage[review]{acl}
+\usepackage{acl}
+\usepackage{times}
 
 % Encoding (pdfLaTeX — no fontspec/polyglossia needed)
 % T2A loaded alongside T1 to enable Cyrillic in Table A1 via \ru{}; T1 remains default
@@ -53,9 +53,14 @@
 % ─────────────────────────────────────────────────────────────────────────────
 \title{Causal Localization of the English Pivot in LLaVA:\\
 Mechanistic VLM Analysis and Training-Free\\
-Multilingual Steering}
+Multilingual Steering\thanks{Code: \url{https://github.com/azraihan/mul-vlm-mech-interp}}}
 
-\author{Anonymous ACL submission \\ Paper \#XXXX}
+\author{
+  \textbf{Abrar Zahin Raihan}$^*$ \and \textbf{Aurchi Chowdhury}$^*$ \\
+  Bangladesh University of Engineering and Technology \\
+  \texttt{raihanzahin95@gmail.com} \quad \texttt{aurchichowdhury07@gmail.com} \\[2pt]
+  {\small $^*$Equal contribution}
+}
 
 \begin{document}
 \maketitle
