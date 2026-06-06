@@ -1,8 +1,0 @@
-{
-  "accuracy": 0.515,
-  "correct": 103,
-  "total": 200,
-  "method": "baseline",
-  "lang": "ru",
-  "dataset": "mmmb"
-}

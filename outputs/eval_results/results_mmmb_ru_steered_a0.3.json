@@ -1,8 +1,0 @@
-{
-  "accuracy": 0.57,
-  "correct": 114,
-  "total": 200,
-  "method": "steered_a0.3",
-  "lang": "ru",
-  "dataset": "mmmb"
-}
