@@ -1,6 +1,7 @@
 # Causal Localization of the English Pivot in LLaVA: Mechanistic VLM Analysis and Training-Free Multilingual Steering
 
 **Abrar Zahin Raihan, Aurchi Chowdhury**
+
 Bangladesh University of Engineering and Technology
 
 Accepted to [MeLLM @ ACL 2026](https://mellm.org/) as an archival submission.
