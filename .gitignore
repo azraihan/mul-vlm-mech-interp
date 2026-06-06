@@ -3,3 +3,19 @@
 **__pycache__**
 
 **.DS_Store**
+
+.claude
+errors-paper
+logs
+mmmb_analysis
+outputs/ablations
+outputs/eval_results
+output/logit_lens
+output/patching
+output/steering_vectors
+output/pivot_layers.json
+
+paper
+
+*.sh
+organize.py 
