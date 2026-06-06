@@ -1,5 +1,6 @@
 *.ipynb
-*.md
+plan.md
+conversation.md
 **__pycache__**
 
 **.DS_Store**
